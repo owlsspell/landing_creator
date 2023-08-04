@@ -1,6 +1,8 @@
 import '@/styles/globals.css';
 import { Metadata } from 'next';
 import { Link } from '@nextui-org/link';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { ClerkProvider } from '@clerk/nextjs';
 import clsx from 'clsx';
 import { siteConfig } from '@/config/site';
 import { fontSans } from '@/config/fonts';
@@ -30,34 +32,36 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head />
-      <body
-        className={clsx(
-          'min-h-screen bg-background font-sans antialiased',
-          fontSans.variable,
-        )}
-      >
-        <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
-          <div className="relative flex flex-col h-screen">
-            <Navbar />
-            <main className="container flex-grow px-6 pt-16 mx-auto max-w-7xl">
-              {children}
-            </main>
-            <footer className="flex items-center justify-center w-full py-3">
-              <Link
-                isExternal
-                className="flex items-center gap-1 text-current"
-                href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
-                title="nextui.org homepage"
-              >
-                <span className="text-default-600">Powered by</span>
-                <p className="text-primary">NextUI</p>
-              </Link>
-            </footer>
-          </div>
-        </Providers>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <head />
+        <body
+          className={clsx(
+            'min-h-screen bg-background font-sans antialiased',
+            fontSans.variable,
+          )}
+        >
+          <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
+            <div className="relative flex flex-col h-screen">
+              <Navbar />
+              <main className="container flex-grow px-6 pt-16 mx-auto max-w-7xl">
+                {children}
+              </main>
+              <footer className="flex items-center justify-center w-full py-3">
+                <Link
+                  isExternal
+                  className="flex items-center gap-1 text-current"
+                  href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
+                  title="nextui.org homepage"
+                >
+                  <span className="text-default-600">Powered by</span>
+                  <p className="text-primary">NextUI</p>
+                </Link>
+              </footer>
+            </div>
+          </Providers>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

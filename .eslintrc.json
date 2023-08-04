@@ -1,6 +1,24 @@
 {
-  "extends": ["eslint:recommended", "next", "next/core-web-vitals"],
+  "extends": ["next/core-web-vitals", "eslint:recommended"],
   "rules": {
+    "spaced-comment": ["error", "always", {
+      "line": {
+          "markers": ["/"],
+          "exceptions": ["-", "+"]
+      },
+      "block": {
+          "markers": ["!"],
+          "exceptions": ["*"],
+          "balanced": true
+      }
+    }],
+      "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": false,
+      "optionalDependencies": false,
+      "peerDependencies": false,
+      "bundledDependencies": false
+      }
+    ],
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
     "import/extensions": [
       "error",
