@@ -1,0 +1,30 @@
+{
+  "extends": ["eslint:recommended", "next", "next/core-web-vitals"],
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+   ],
+   "react/jsx-props-no-spreading": [1, {
+    "html": "ignore",
+    "custom": "enforce",
+    "explicitSpread": "enforce"
+}]
+  },
+  "overrides": [
+    {
+        "files": ["*.tsx"],
+        "rules": {
+            "no-undef": "off",
+            "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }]
+        }
+    }
+  ]
+}
