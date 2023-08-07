@@ -6,7 +6,6 @@ export default function SamplePortal() {
         <img
           className="absolute inset-0 z-10 hidden object-cover object-top w-full h-full sm:block "
           src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg"
-          alt
         />
         <div
           className="absolute inset-0 z-10 hidden object-cover w-full h-full sm:block from-transparent to-black opacity-90 bg-gradient-to-b "
@@ -18,7 +17,6 @@ export default function SamplePortal() {
           <img
             className="absolute inset-0 block object-cover object-top w-full h-56 sm:hidden "
             src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg"
-            alt
           />
           <div
             className="absolute inset-0 block object-cover w-full h-56 sm:hidden from-transparent to-black opacity-90 bg-gradient-to-b "
@@ -53,7 +51,6 @@ export default function SamplePortal() {
                 <img
                   className="absolute z-10 object-cover object-center w-full h-full "
                   src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/drinks.jpg"
-                  alt
                 />
                 <div className="absolute inset-0 z-20 w-full h-full from-transparent to-black opacity-70 bg-gradient-to-r " />
                 <a
@@ -68,7 +65,6 @@ export default function SamplePortal() {
                 <img
                   className="absolute z-10 object-cover object-center w-full h-full "
                   src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/food.jpg"
-                  alt
                 />
                 <div className="absolute inset-0 z-20 w-full h-full from-transparent to-black opacity-70 bg-gradient-to-l " />
                 <a
@@ -83,7 +79,6 @@ export default function SamplePortal() {
                 <img
                   className="absolute z-10 object-cover object-top w-full h-full "
                   src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/shop.jpg"
-                  alt
                 />
                 <div className="absolute inset-0 z-20 w-full h-full from-transparent to-black opacity-70 bg-gradient-to-r " />
                 <a
