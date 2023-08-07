@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     { media: '(prefers-color-scheme: dark)', color: 'black' },
   ],
   icons: {
-    icon: '/favicon.ico',
+    icon: '/favicon.png',
     shortcut: '/favicon-16x16.png',
     apple: '/apple-touch-icon.png',
   },
@@ -51,11 +51,11 @@ export default function RootLayout({
                 <Link
                   isExternal
                   className="flex items-center gap-1 text-current"
-                  href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
-                  title="nextui.org homepage"
+                  href="https://gogoguest.com"
+                  title="GoGoGuest homepage"
                 >
                   <span className="text-default-600">Powered by</span>
-                  <p className="text-primary">NextUI</p>
+                  <p className="text-primary">GoGoGuest</p>
                 </Link>
               </footer>
             </div>

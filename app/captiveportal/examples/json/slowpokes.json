@@ -1,0 +1,206 @@
+{
+  "fonts": {
+    "sans": "Open Sans",
+    "serif": "Cutive"
+  },
+  "hero": {
+    "title": {
+      "text": "",
+      "classes": {
+        "font": "sans",
+        "size": "3xl",
+        "color": "black",
+        "weight": "bold",
+        "align": "top",
+        "margin-top": "0"
+      }
+    },
+    "image": {
+      "classes": {
+        "fit": "top"
+      }
+    },
+    "overlay": {
+      "classes": {
+        "color-from": "white",
+        "color-to": "white",
+        "opacity": "90",
+        "gradient": "to-b",
+        "rounded": "2xl"
+      }
+    },
+    "div": {
+      "classes": {
+        "width": "96"
+      }
+    }
+  },
+  "background": {
+    "overlay": {
+      "classes": {
+        "color-from": "transparent",
+        "color-to": "black",
+        "opacity": "90",
+        "gradient": "to-b"
+      }
+    }
+  },
+  "headings": {
+    "signin": [{
+        "text": "SIGN IN TO",
+        "classes": {
+          "font": "sans",
+          "size": "5xl",
+          "color": "warmGray-800",
+          "weight": "semibold",
+          "align": "left"
+        }
+      },
+      {
+        "text": "Connect to WiFi",
+        "classes": {
+          "font": "serif",
+          "size": "4xl",
+          "color": "green-900",
+          "weight": "extrabold",
+          "align": "left",
+          "tracking": "tight",
+          "margin-top": "2"
+        }
+      },
+      {
+        "text": "*Connect for two hours using a receipt purchased within the last sixty minutes.",
+        "classes": {
+          "font": "sans",
+          "size": "sm",
+          "color": "trueGray-800",
+          "weight": "regular",
+          "align": "left",
+          "margin-top": "2"
+        }
+      }
+    ],
+    "success": [{
+      "text": "YOU'RE CONNECTED",
+      "classes": {
+        "font": "serif",
+        "size": "2xl",
+        "color": "green-900",
+        "weight": "bold",
+        "align": "center",
+        "margin-top": "2"
+      }
+    }]
+  },
+  "notices": [
+    {
+      "message": {
+        "text": "Drink Menu",
+        "classes": {
+          "font": "sans",
+          "color": "white",
+          "weight": "bold",
+          "align": "right",
+          "size": "2xl"
+        }
+      },
+      "link": "https://cdn.shopify.com/s/files/1/0247/9197/3985/files/DRINK_MENU_7.23.22.jpg?v=1658672687",
+      "image": {
+        "url": "drinks.jpg",
+        "classes": {
+          "fit": "center"
+        }
+      },
+      "overlay": {
+        "classes": {
+          "color-from": "transparent",
+          "color-to": "black",
+          "opacity": "70",
+          "gradient": "to-r"
+        }
+      }
+    },
+    {
+      "message": {
+        "text": "Food Menu",
+        "classes": {
+          "font": "sans",
+          "color": "white",
+          "weight": "bold",
+          "align": "left",
+          "size": "2xl"
+        }
+      },
+      "link": "https://cdn.shopify.com/s/files/1/0247/9197/3985/files/FOOD_MENU_7-23-22.jpg?v=1658672705",
+      "image": {
+        "url": "food.jpg",
+        "classes": {
+          "fit": "center"
+        }
+      },
+      "overlay": {
+        "classes": {
+          "color-from": "transparent",
+          "color-to": "black",
+          "opacity": "70",
+          "gradient": "to-l"
+        }
+      }
+    },
+    {
+      "message": {
+        "text": "Shop Our Merch",
+        "classes": {
+          "font": "sans",
+          "color": "white",
+          "weight": "bold",
+          "align": "right",
+          "size": "2xl"
+        }
+      },
+      "link": "https://www.imaslowpoke.com/pages/shop",
+      "image": {
+        "url": "shop.jpg",
+        "classes": {
+          "fit": "top"
+        }
+      },
+      "overlay": {
+        "classes": {
+          "color-from": "transparent",
+          "color-to": "black",
+          "opacity": "70",
+          "gradient": "to-r"
+        }
+      }
+    }
+  ],
+  "form": {
+    "submit": {
+      "content": "SIGN IN",
+      "classes": {
+        "text": "white",
+        "background": "green-900",
+        "hover": "green-700"
+      }
+    },
+    "fields": {
+      "standard": [
+        { "name": "name", "label": "Full Name", "value": "", "placeholder": "" },
+        { "name": "email", "label": "Email Address", "value": "", "placeholder": "" },
+        {
+          "name": "order",
+          "label": "Order Number",
+          "value": "",
+          "placeholder": "e.g. 109"
+        },
+        {
+          "name": "total",
+          "label": "Order Total",
+          "value": "",
+          "placeholder": "0.00"
+        }
+      ]
+    }
+  }
+}

@@ -10,6 +10,10 @@ export const siteConfig = {
       href: '/',
     },
     {
+      label: 'Captive Portal',
+      href: '/captiveportal',
+    },
+    {
       label: 'Docs',
       href: '/docs',
     },

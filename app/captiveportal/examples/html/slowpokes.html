@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/captiveportal/images/favicon.png">
+
+  <link rel="stylesheet" href="/captiveportal/css/tailwind.generated.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans" rel="stylesheet">
+  <style>
+    .font-sans {
+      font-family: 'Open Sans';
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cutive&amp;display=swap" rel="stylesheet">
+  <style>
+    .font-serif {
+      font-family: 'Cutive';
+    }
+  </style>
+  <title> Slowpokes WiFi Sign On</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    $(function () {
+
+      $("#submit").submit(function (e) {
+        var isValid = true;
+        $("#submit input, select").not("[type=submit]").each(function () {
+
+          if ((this.value === '')) {
+            $(this).addClass('border-red-500 bg-red-200');
+            isValid = false;
+          } else {
+            $(this).removeClass('border-red-500 bg-red-200');
+          }
+        });
+        if (isValid === false) {
+          e.preventDefault();
+          return false;
+        } else {
+          // Disable submit button
+          $('#submit input[type="submit"]')
+            .val("Please Wait...")
+            .attr('disabled', true);
+          return true;
+        }
+      });
+
+    });
+  </script>
+</head>
+
+<body>
+  <div class="relative flex flex-col min-h-screen bg-gray-400 sm:flex-row">
+
+    <img class="absolute inset-0 z-10 hidden object-cover object-top w-full h-full sm:block " src="/captiveportal/images/merchant/slowpokes/hero.jpg" alt>
+    <div class="absolute inset-0 z-10 hidden object-cover w-full h-full sm:block from-transparent to-black opacity-90 bg-gradient-to-b ">
+    </div>
+
+
+    <div class="relative flex flex-col justify-center h-56 overflow-hidden border sm:flex-1 sm:h-auto">
+
+      <img class="absolute inset-0 block object-cover object-top w-full h-56 sm:hidden " src="/captiveportal/images/merchant/slowpokes/hero.jpg" alt>
+      <div class="absolute inset-0 block object-cover w-full h-56 sm:hidden from-transparent to-black opacity-90 bg-gradient-to-b ">
+      </div>
+
+      <div class="relative w-full h-auto p-8 mx-auto md:w-96 ">
+        <div class="absolute inset-0 z-20 w-full h-full sm:rounded-2xl from-white to-white opacity-90 bg-gradient-to-b rounded-2xl ">
+        </div>
+        <div class="flex flex-col justify-center">
+          <img class="z-20 mx-auto max-h-32" src="/captiveportal/images/merchant/slowpokes/logo.png">
+          <h2 class="z-20 mt-0 font-sans text-3xl font-bold text-black text-top ">
+          </h2>
+        </div>
+      </div>
+    </div>
+
+
+    <div
+      class="z-20 flex flex-col justify-center pb-0 my-0 mb-0 bg-transparent sm:flex-1 sm:pt-2 sm:px-2 lg:flex-none lg:px-20 xl:px-24">
+      <div class="w-full h-auto px-6 py-6 mx-auto bg-white sm:shadow-2xl sm:w-96 sm:rounded-2xl">
+
+        <div>
+          <p class="font-sans text-5xl font-semibold text-left  text-warmGray-800">
+            SIGN IN TO
+          </p>
+          <p class="mt-2 font-serif text-4xl font-extrabold tracking-tight text-left text-green-900 ">
+            Connect to WiFi
+          </p>
+          <p class="mt-2 font-sans text-sm text-left  text-trueGray-800 font-regular">
+            *Connect for two hours using a receipt purchased within the last forty five minutes.
+          </p>
+        </div>
+
+        <div class="mt-6">
+          <form name="submit" id="submit" action="#" method="POST" class="space-y-6">
+            <div class="flex flex-col gap-4">
+              <label class="block">
+                <span class="font-sans text-gray-700">Full Name</span>
+                <input type="text" name="name" value
+                  class="block w-full mt-1 font-sans bg-gray-100 border-transparent rounded-md focus:border-gray-500 focus:bg-white focus:ring-0 "
+                  placeholder />
+              </label>
+              <label class="block">
+                <span class="font-sans text-gray-700">Email Address</span>
+                <input type="text" name="email" value
+                  class="block w-full mt-1 font-sans bg-gray-100 border-transparent rounded-md focus:border-gray-500 focus:bg-white focus:ring-0 "
+                  placeholder />
+              </label>
+              <div class="flex flex-row gap-4">
+                <label class="block">
+                  <span class="font-sans text-gray-700">Order Number</span>
+                  <input type="text" name="order" value
+                    class="block w-full mt-1 font-sans bg-gray-100 border-transparent rounded-md focus:border-gray-500 focus:bg-white focus:ring-0 "
+                    placeholder="e.g. 109" />
+                </label>
+                <label class="block">
+                  <span class="font-sans text-gray-700">Order Total</span>
+                  <input type="text" name="total" value
+                    class="block w-full mt-1 font-sans bg-gray-100 border-transparent rounded-md focus:border-gray-500 focus:bg-white focus:ring-0 "
+                    placeholder="0.00" />
+                </label>
+              </div>
+              <input type="submit" value="SIGN IN" class="px-4 py-2 my-2 font-sans font-bold text-white bg-green-900 rounded cursor-pointer hover:bg-green-700 " />
+
+
+          </form>
+        </div>
+        <a href="https://gogoguest.com">
+          <img class="z-10 w-2/3 mx-auto mt-12 mb-2" src="/captiveportal/images/poweredby.svg"
+            alt="Powered By GoGoGuest" />
+        </a>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>

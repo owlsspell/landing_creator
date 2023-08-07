@@ -1,6 +1,7 @@
 {
-  "extends": ["next/core-web-vitals", "eslint:recommended"],
+  "extends": ["next", "eslint:recommended"],
   "rules": {
+    "react/jsx-one-expression-per-line": [0, { "allow": "none" }],
     "spaced-comment": ["error", "always", {
       "line": {
           "markers": ["/"],
@@ -12,8 +13,9 @@
           "balanced": true
       }
     }],
-      "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": false,
+    "import/no-extraneous-dependencies": ["error", {
+      "includeInternal": false,
+      "devDependencies": ["test/**"],
       "optionalDependencies": false,
       "peerDependencies": false,
       "bundledDependencies": false
