@@ -1,12 +1,11 @@
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
 import { usePortalsStore } from '@/store/state';
 import values from "@/app/captiveportal/examples/json/slowpokes.json"
-import { ColorPicker } from '@/components/colorpicker';
-import { useTheme } from 'next-themes';
 import { PortalInputs } from '@/store/types';
+import CaptiveInputs from '@/components/captiveportal/captiveinputs';
+import CaptiveSubmitButton from '@/components/captiveportal/captivesubmitbutton';
+import CaptiveTitles from '@/components/captiveportal/captivetitles';
 
 
 const CaptivePortalForm = () => {
@@ -19,40 +18,41 @@ const CaptivePortalForm = () => {
     handleSubmit,
     watch,
     setValue,
+    getValues,
     formState: { errors }
   } = useForm<PortalInputs>({ defaultValues: values });
-
-  const { theme } = useTheme()
 
   const onSubmit: SubmitHandler<PortalInputs> = (data) => console.log(data);
 
   // console.log(watch()); // watch input value by passing the name of it
 
-  watch((data) => {
-    updatePortals(data)
-  })
+  // watch((data) => {
+  //   // updatePortals(data)
+  //   console.log(data);
+  //   // updateField(updateField)
+  // })
+  // watch("form.submit.content", (data) => {
+  //   console.log('form', data);
+
+  // })
+
+  React.useEffect(() => {
+    const subscription = watch((data, { name, type }) => {
+
+      console.log(data, name, type)
+      updatePortals(data)
+    });
+    return () => subscription.unsubscribe();
+  }, [watch]);
+
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-    <form className="flex flex-col text-left gap-y-4 w-96" onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex flex-col text-left gap-y-4 w-96 overflow-y-scroll px-1" onSubmit={handleSubmit(onSubmit)}>
       <h1 className="text-2xl font-bold">Form Editor</h1>
-      {/* register your input into the hook by invoking the "register" function */}
-      {/* <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="name">Full name</Label>
-        <Input  {...register('name')} />
-      </div> */}
-      <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label>Submit button</Label>
-        <Input  {...register('form.submit.content')} />
-      </div>
-      <ColorPicker theme={theme} value={"#15803d"} setValue={setValue} />
-      {/* <label className="inline-block">
-        <span className="font-bold">Not a required test field</span>
-        <input
-          className="w-full px-4 py-2 text-gray-700 border border-gray-300 border-solid rounded"
-          defaultValue="test"
-          {...register('example')}
-        />
-      </label> */}
+
+      <CaptiveTitles register={register} getValues={getValues} />
+      <CaptiveInputs register={register} getValues={getValues} />
+      <CaptiveSubmitButton register={register} setValue={setValue} />
 
       {/* include validation with required or other standard HTML validation rules */}
       {/* <label className="inline-block">

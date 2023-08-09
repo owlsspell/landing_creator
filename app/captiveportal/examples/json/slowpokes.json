@@ -186,20 +186,32 @@
     },
     "fields": {
       "standard": [
-        { "name": "name", "label": "Full Name", "value": "", "placeholder": "" },
-        { "name": "email", "label": "Email Address", "value": "", "placeholder": "" },
         {
-          "name": "order",
-          "label": "Order Number",
+          "name": "name",
+          "label": "Full Name",
           "value": "",
-          "placeholder": "e.g. 109"
+          "placeholder": ""
         },
         {
-          "name": "total",
-          "label": "Order Total",
+          "name": "email",
+          "label": "Email Address",
           "value": "",
-          "placeholder": "0.00"
-        }
+          "placeholder": ""
+        },
+        [
+          {
+            "name": "order",
+            "label": "Order Number",
+            "value": "",
+            "placeholder": "e.g. 109"
+          },
+          {
+            "name": "total",
+            "label": "Order Total",
+            "value": "",
+            "placeholder": "0.00"
+          }
+        ]
       ]
     }
   }

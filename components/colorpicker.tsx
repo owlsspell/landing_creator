@@ -1,3 +1,5 @@
+'use client';
+
 import { PortalInputs } from "@/store/types";
 import cn from "classnames"
 import { ChangeEvent, useEffect, useState } from "react";
@@ -6,13 +8,14 @@ import { UseFormSetValue } from "react-hook-form";
 interface ColorPickerProps {
     value?: string
 
-    theme?: "dark" | "light"
+    themeDefault?: "dark" | "light" | String
 
     setValue: UseFormSetValue<PortalInputs>
 }
 
-export const ColorPicker = ({ value = "#000000", theme = "dark", setValue }: ColorPickerProps) => {
+export const ColorPicker = ({ value = "#000000", themeDefault, setValue }: ColorPickerProps) => {
 
+    const [theme, setTheme] = useState('')
     const [color, setColor] = useState(value)
 
     const [isCopied, setCopied] = useState(false)
@@ -49,6 +52,10 @@ export const ColorPicker = ({ value = "#000000", theme = "dark", setValue }: Col
     useEffect(() => {
         setColor(value);
     }, [value])
+
+    useEffect(() => {
+        setTheme(themeDefault)
+    }, [themeDefault])
 
     return (
         <section className={classes.base}>
