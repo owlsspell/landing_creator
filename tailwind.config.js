@@ -9,6 +9,15 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
+  safelist: [
+    {
+      // Swap out the two lines below to compile all colors v. a limited sample.
+      // pattern: /stone|orange|yellow|emerald|sky|fuchsia/,
+      // pattern: /^bg-stone|^bg-orange|^bg-yellow|^bg-emerald|^bg-sky|^bg-fuchsia/,
+      // pattern: /^bg-(stone|orange|yellow|emerald|sky|fuchsia)/,
+      pattern: /^(bg|text)-slate|^(bg|text)-zinc|^(bg|text)-stone|^(bg|text)-red|^(bg|text)-orange|^(bg|text)-amber|^(bg|text)-yellow|^(bg|text)-lime|^(bg|text)-green|^(bg|text)-emerald|^(bg|text)-teal|^(bg|text)-cyan|^(bg|text)-sky|^(bg|text)-blue|^(bg|text)-indigo|^(bg|text)-violet|^(bg|text)-purple|^(bg|text)-fuchsia|^(bg|text)-pink|^(bg|text)-rose/,
+    },
+  ],
   theme: {
     container: {
       center: true,

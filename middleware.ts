@@ -2,7 +2,7 @@
 import { authMiddleware } from '@clerk/nextjs';
 
 export default authMiddleware({
-  publicRoutes: ['/', '/captiveportal', '/api/getAuthenticatedUserId'],
+  publicRoutes: ['/', '/captiveportal', '/playground', '/api/getAuthenticatedUserId'],
 });
 
 export const config = {
