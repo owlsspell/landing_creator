@@ -3,37 +3,45 @@
 
 'use client';
 
+import { useState } from 'react';
+import useRemoteColorStore from './remoteColorStore';
 import tailwindColors from './data/tailwindcolors';
 
 export default function PortalEditor() {
-  const handleColorClick = (event, color) => {
-    console.log(`clicked on string ${color}`);
-  }
+  const [color, setColor] = useState('black');
+  const [hidePalette, togglePalette] = useState(true);
+
+  const setRemoteColor = useRemoteColorStore((state) => state.setRemoteColor);
+
+  const handleColorClick = (event) => {
+    setColor(event?.target?.value);
+    setRemoteColor(event?.target?.value);
+  };
 
   return (
     <>
-      <div>Portal Editor</div>
+      <div className="m-2 text-left">Change LogoCard Title Color</div>
       <div>
-        <div className="flex flex-col items-center justify-start">
-          <div id="color-swatch-and-class-holder" className="flex flex-row justify-start px-1 py-1 mt-4 border border-gray-500 rounded-md w-28 gap-x-2">
-            <div id="current-color-swatch" className="relative w-6 h-6 bg-orange-600 border border-gray-700 shadow-lg cursor-pointer">
-              <div className="absolute left-0 w-24 font-thin text-tiny bottom-7">choose color</div>
-              <div id="hidden-picker-canvas" className="absolute left-0 h-64 mt-2 overflow-y-scroll border border-gray-300 rounded-md shadow-lg top-4">
+        <div className="flex flex-col items-start justify-start mx-4">
+          <div id="color-swatch-and-class-holder" className="flex flex-row justify-start px-1 py-1 mt-4 border-2 rounded-md shadow-md min-w-fit w-28 gap-x-2">
+            <div id="current-color-swatch" onClick={()=>togglePalette(!hidePalette)} className={`relative w-6 h-6 shrink-0 bg-${color} border border-gray-700 shadow-lg cursor-pointer`}>
+              <div className="absolute w-24 font-thin -left-4 text-tiny bottom-7">choose color</div>
+              <div id="hidden-picker-canvas" className={`${hidePalette?'hidden':'inline'} absolute left-0 h-64 mt-2 overflow-y-scroll border border-gray-300 rounded-md shadow-lg top-4`}>
                 <div id="colors-container" className="flex flex-col items-start p-2 bg-white rounded-md shadow-xs gap-y-1">
                   <div className="flex flex-row justify-start gap-x-0">
-                    <button type="button" onClick={(event) => handleColorClick(event, 'white')} value="white" className="w-6 h-6 transition-all duration-100 ease-in-out bg-white border shadow-lg cursor-pointer hover:scale-125 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-white" />
-                    <button type="button" onClick={(event) => handleColorClick(event, 'black')} value="black" className="w-6 h-6 transition-all duration-100 ease-in-out bg-black border shadow-lg cursor-pointer hover:scale-125 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-black" />
+                    <button type="button" onClick={(event) => handleColorClick(event)} value="white" className="w-6 h-6 transition-all duration-100 ease-in-out bg-white border shadow-lg cursor-pointer hover:scale-125 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-white" />
+                    <button type="button" onClick={(event) => handleColorClick(event)} value="black" className="w-6 h-6 transition-all duration-100 ease-in-out bg-black border shadow-lg cursor-pointer hover:scale-125 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-black" />
                   </div>
-                  {tailwindColors.colorNames.map((color) => (
-                    <div key={color} className="flex flex-row justify-start">{tailwindColors.colorVariants.map((variant) => (
-                      <button type="button" onClick={(event) => handleColorClick(event, `${color}-${variant}`)} key={color + variant} value={`${color}-${variant}`} title={`${color}-${variant}`} className={`w-6 h-6 transition-all duration-100 ease-in-out bg-${color}-${variant} border shadow-lg cursor-pointer hover:scale-125 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-${color}-${variant}`} />
+                  {tailwindColors.colorNames.map((colorName) => (
+                    <div key={colorName} className="flex flex-row justify-start">{tailwindColors.colorVariants.map((variant) => (
+                      <button type="button" onClick={(event) => handleColorClick(event)} key={colorName + variant} value={`${colorName}-${variant}`} title={`${colorName}-${variant}`} className={`w-6 h-6 transition-all duration-100 ease-in-out bg-${colorName}-${variant} border shadow-lg cursor-pointer hover:scale-125 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-${color}-${variant}`} />
                     ))}
                     </div>
                   ))}
                 </div>
               </div>
             </div>
-            <div id="current-color-class">red-700</div>
+            <div id="current-color-class">{color}</div>
           </div>
         </div>
       </div>
