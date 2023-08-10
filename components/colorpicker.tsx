@@ -1,74 +1,51 @@
 'use client';
 
+import tailwindColors from "@/store/data/tailwindcolors";
 import { PortalInputs } from "@/store/types";
-import cn from "classnames"
-import { ChangeEvent, useEffect, useState } from "react";
-import { UseFormSetValue } from "react-hook-form";
+import { useState } from "react";
+import { Label } from "./ui/label";
+import { usePortalsStore } from "@/store/state";
 
 interface ColorPickerProps {
     value?: string
-
-    themeDefault?: "dark" | "light" | String
-
-    setValue: UseFormSetValue<PortalInputs>
+    field: string
 }
 
-export const ColorPicker = ({ value = "#000000", themeDefault, setValue }: ColorPickerProps) => {
+export const ColorPicker = ({ value, field }: ColorPickerProps) => {
 
-    const [theme, setTheme] = useState('')
     const [color, setColor] = useState(value)
 
-    const [isCopied, setCopied] = useState(false)
+    const [hidePalette, togglePalette] = useState(true);
+    const updateFormProps = usePortalsStore((state) => state.updateFormProps);
 
-    const pickerID = `color-picker_${Date.now()}`
-
-    const classes = {
-        base: cn("flex flex-col p-5 rounded-xl", {
-            "bg-slate-800": theme === "dark",
-            "bg-gray-200": theme === "light",
-        }),
-        color: cn("w-24 absolute h-20 rounded-xl"),
-        backdrop: cn("w-24 blur-md opacity-50 h-20 rounded-xl"),
-        button: cn("text-gray-400 mt-4 text-sm w-full border py-2 rounded-xl",
-            "transition-colors", {
-            "border-gray-400 text-gray-500 hover:border-black hover:text-gray-700 hover:bg-black hover:text-gray-200": theme === "dark",
-            "text-gray-400 hover:border-black hover:text-gray-700 hover:bg-white": theme === "light"
-        })
-    }
-
-    const handleColorChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setColor(e.target.value)
-        setValue("form.submit.classes.background", e.target.value)
-    }
-
-    const handleCopyToClipBoard = () => {
-        navigator.clipboard.writeText(color).then(() => {
-            setCopied(true)
-        })
-
-        setTimeout(() => setCopied(false), 600)
-    }
-
-    useEffect(() => {
-        setColor(value);
-    }, [value])
-
-    useEffect(() => {
-        setTheme(themeDefault)
-    }, [themeDefault])
+    const handleColorClick = (event) => {
+        setColor(event?.target?.value);
+        updateFormProps(field, event?.target?.value);
+    };
 
     return (
-        <section className={classes.base}>
-            <input onChange={handleColorChange} type={"color"} id={pickerID} className={"h-0 w-0 opacity-0"} />
+        <div className="flex flex-col items-start justify-start">
+            <Label>Choose color</Label>
+            <div id="color-swatch-and-class-holder" className="flex flex-row justify-start px-1 py-1 mt-2 border-2 rounded-md shadow-md min-w-fit w-28 gap-x-2">
+                <div id="current-color-swatch" onClick={() => togglePalette(!hidePalette)} className={`relative w-6 h-6 shrink-0 bg-${color} border border-gray-700 shadow-lg cursor-pointer`}>
 
-            <section className={"relative"}>
-                <label htmlFor={pickerID}>
-                    <div style={{ backgroundColor: color }} className={classes.color} />
-                    <div style={{ backgroundColor: color }} className={classes.backdrop} />
-                </label>
-            </section>
-
-            <button onClick={handleCopyToClipBoard} className={classes.button}>{isCopied ? "Copied" : color}</button>
-        </section>
+                    <div id="hidden-picker-canvas" className={`${hidePalette ? 'hidden' : 'inline'} absolute left-0 h-64 mt-2 overflow-y-scroll border border-gray-300 rounded-md shadow-lg top-4 z-10`}>
+                        <div id="colors-container" className="flex flex-col items-start p-2 bg-white rounded-md shadow-xs gap-y-1">
+                            <div className="flex flex-row justify-start gap-x-0">
+                                <button type="button" onClick={(event) => handleColorClick(event)} value="white" className="w-6 h-6 transition-all duration-100 ease-in-out bg-white border shadow-lg cursor-pointer hover:scale-125 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-white" />
+                                <button type="button" onClick={(event) => handleColorClick(event)} value="black" className="w-6 h-6 transition-all duration-100 ease-in-out bg-black border shadow-lg cursor-pointer hover:scale-125 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-black" />
+                            </div>
+                            {tailwindColors.colorNames.map((colorName) => (
+                                <div key={colorName} className="flex flex-row justify-start">{tailwindColors.colorVariants.map((variant) => (
+                                    <button type="button" onClick={(event) => handleColorClick(event)} key={colorName + variant} value={`${colorName}-${variant}`} title={`${colorName}-${variant}`} className={`w-6 h-6 transition-all duration-100 ease-in-out bg-${colorName}-${variant} border shadow-lg cursor-pointer hover:scale-125 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-${color}-${variant}`} />
+                                ))}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+                <div id="current-color-class">{color}</div>
+            </div>
+        </div>
     )
 }

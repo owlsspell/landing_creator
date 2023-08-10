@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { usePortalsStore } from '@/store/state';
-import values from "@/app/captiveportal/examples/json/slowpokes.json"
+import values from "@/store/defaultslowpokes.json"
 import { PortalInputs } from '@/store/types';
 import CaptiveInputs from '@/components/captiveportal/captiveinputs';
 import CaptiveSubmitButton from '@/components/captiveportal/captivesubmitbutton';
@@ -52,7 +52,7 @@ const CaptivePortalForm = () => {
 
       <CaptiveTitles register={register} getValues={getValues} />
       <CaptiveInputs register={register} getValues={getValues} />
-      <CaptiveSubmitButton register={register} setValue={setValue} />
+      <CaptiveSubmitButton register={register} />
 
       {/* include validation with required or other standard HTML validation rules */}
       {/* <label className="inline-block">

@@ -6,15 +6,14 @@ import { Input } from '@/components/ui/input';
 import { PortalInputs } from '@/store/types';
 import { UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import { ColorPicker } from '../colorpicker';
-import { useTheme } from 'next-themes';
+import { usePortalsStore } from '@/store/state';
 
 interface InputsProps {
     register: UseFormRegister<PortalInputs>
-    setValue: UseFormSetValue<PortalInputs>
 }
-const CaptiveSubmitButton = ({ register, setValue }: InputsProps) => {
+const CaptiveSubmitButton = ({ register }: InputsProps) => {
 
-    const { theme } = useTheme()
+    const formProps = usePortalsStore((state) => state.formProps);
 
     return (
         <div className='border p-4 bg-gray-50'>
@@ -22,7 +21,8 @@ const CaptiveSubmitButton = ({ register, setValue }: InputsProps) => {
                 <Label>Submit button</Label>
                 <Input  {...register('form.submit.content')} />
             </div>
-            <ColorPicker themeDefault={theme} value={"#15803d"} setValue={setValue} />
+            <ColorPicker value={formProps.classes.background} field={"background"} />
+            <ColorPicker value={formProps.classes.hover} field={"hover"} />
         </div>
     );
 };

@@ -1,4 +1,5 @@
 import { usePortalsStore } from "@/store/state";
+import { useEffect, useState } from 'react';
 
 export default function SamplePortal() {
 
@@ -6,6 +7,13 @@ export default function SamplePortal() {
 
   const overlay = usePortalsStore((state) => state.portals.background.overlay.classes)
   const hero = usePortalsStore((state) => state.portals.hero)
+  const formProps = usePortalsStore((state) => state.formProps);
+
+  const [hover, setHover] = useState(`bg-${formProps.classes.background}`)
+
+  useEffect(() => {
+    setHover(`bg-${formProps.classes.background}`)
+  }, [formProps.classes.background])
 
   const backgroundClasses = [
     overlay["color-from"] ? `from-${overlay["color-from"]}` : "",
@@ -22,6 +30,7 @@ export default function SamplePortal() {
     hero.title.classes.align ? `text-${hero.title.classes.align}` : "",
     hero.title.classes["margin-top"] ? `mt-${hero.title.classes["margin-top"]}` : "",
   ]
+  const fields = usePortalsStore((state) => state.portals.form.fields.standard)
 
   return (
     <div>
@@ -69,65 +78,38 @@ export default function SamplePortal() {
             <div className="mt-6">
               <form name="submit" id="submit" action="#" method="POST" className="space-y-6">
                 <div className="flex flex-col gap-4">
-                  {portals.form.fields.standard.map((field, index) => {
-                    if (field.length === undefined) {
-                      return <label className="block" key={field.name}>
-                        <span className="font-sans text-gray-700">{field.label}</span>
-                        <input type="text" name={field.name} id={field.name}
-                          className="block w-full mt-1 font-sans bg-gray-100 border-transparent rounded-md focus:border-gray-500 focus:bg-white focus:ring-0 "
-                          placeholder={field.placeholder}
-                        />
-
-                      </label>
-                    } else {
-                      return <div className="flex flex-row gap-4" key={index}>
-                        {field.map(item => <label className="block" key={item.name}>
-                          <span className="font-sans text-gray-700">{item.label}</span>
-                          <input type="text" name={item.name}
-                            className="block w-full mt-1 font-sans bg-gray-100 border-transparent rounded-md focus:border-gray-500 focus:bg-white focus:ring-0 "
-                            placeholder={item.placeholder} />
-                        </label>
-                        )}
-                        {/* <label className="block">
-                          <span className="font-sans text-gray-700">Order Total</span>
-                          <input type="text" name="total"
-                            className="block w-full mt-1 font-sans bg-gray-100 border-transparent rounded-md focus:border-gray-500 focus:bg-white focus:ring-0 "
-                            placeholder="0.00" />
-                        </label> */}
-                      </div>
-
-
-                    }
-                  })}
-                  {/* <label  className="block">
-                    <span className="font-sans text-gray-700">Full Name</span>
-                    <input type="text" name="name" id="name"
+                  <label className="block" key={fields[0].name}>
+                    <span className="font-sans text-gray-700">{fields[0].label}</span>
+                    <input type="text" name={fields[0].name} id={fields[0].name}
                       className="block w-full mt-1 font-sans bg-gray-100 border-transparent rounded-md focus:border-gray-500 focus:bg-white focus:ring-0 "
+                      placeholder={fields[0].placeholder}
                     />
-
                   </label>
-                  <label className="block">
-                    <span className="font-sans text-gray-700">Email Address</span>
-                    <input type="text" name="email"
+                  <label className="block" key={fields[1].name}>
+                    <span className="font-sans text-gray-700">{fields[1].label}</span>
+                    <input type="text" name={fields[1].name} id={fields[1].name}
                       className="block w-full mt-1 font-sans bg-gray-100 border-transparent rounded-md focus:border-gray-500 focus:bg-white focus:ring-0 "
+                      placeholder={fields[1].placeholder}
                     />
-                  </label> */}
-                  {/* // <div className="flex flex-row gap-4">
-                  //   <label className="block">
-                  //     <span className="font-sans text-gray-700">Order Number</span>
-                  //     <input type="text" name="order"
-                  //       className="block w-full mt-1 font-sans bg-gray-100 border-transparent rounded-md focus:border-gray-500 focus:bg-white focus:ring-0 "
-                  //       placeholder="e.g. 109" />
-                  //   </label>
-                  //   <label className="block">
-                  //     <span className="font-sans text-gray-700">Order Total</span>
-                  //     <input type="text" name="total"
-                  //       className="block w-full mt-1 font-sans bg-gray-100 border-transparent rounded-md focus:border-gray-500 focus:bg-white focus:ring-0 "
-                  //       placeholder="0.00" />
-                  //   </label>
-                  // </div> */}
-
-                  <input type="submit" value={portals.form.submit.content} className={`px-4 py-2 my-2 font-sans font-bold text-${portals.form.submit.classes.text}  rounded cursor-pointer hover:bg-${portals.form.submit.classes.hover} `} style={{ backgroundColor: portals.form.submit.classes.background }} />
+                  </label>
+                  <div className="flex flex-row gap-4" >
+                    <label className="block" key={fields[2].name}>
+                      <span className="font-sans text-gray-700">{fields[2].label}</span>
+                      <input type="text" name={fields[2].name}
+                        className="block w-full mt-1 font-sans bg-gray-100 border-transparent rounded-md focus:border-gray-500 focus:bg-white focus:ring-0 "
+                        placeholder={fields[2].placeholder} />
+                    </label>
+                    <label className="block" key={fields[3].name}>
+                      <span className="font-sans text-gray-700">{fields[3].label}</span>
+                      <input type="text" name={fields[3].name}
+                        className="block w-full mt-1 font-sans bg-gray-100 border-transparent rounded-md focus:border-gray-500 focus:bg-white focus:ring-0 "
+                        placeholder={fields[3].placeholder} />
+                    </label>
+                  </div>
+                  <input type="submit" value={portals.form.submit.content} className={`px-4 py-2 my-2 font-sans font-bold text-${portals.form.submit.classes.text}  rounded cursor-pointer ${hover}`}
+                    onMouseEnter={() => setHover('bg-' + formProps.classes.hover)}
+                    onMouseLeave={() => setHover(`bg-${formProps.classes.background}`)}
+                  />
                   {/* <input type="submit" value="SIGN IN" class="px-4 py-2 my-2 font-sans font-bold text-white bg-green-900 rounded cursor-pointer hover:bg-green-700 " /> */}
                 </div>
               </form>
