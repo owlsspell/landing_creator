@@ -2,7 +2,10 @@ import { useBoundStore } from "@/store/state";
 import { useEffect, useState } from 'react';
 
 export default function SamplePortal() {
-  const heroTitle = useBoundStore((state) => state.backgroundOverlay);
+  const heroTitle = useBoundStore((state) => state.heroTitle);
+  const heroImage = useBoundStore((state) => state.heroImage);
+  const heroOverlay = useBoundStore((state) => state.heroOverlay);
+  const heroDiv = useBoundStore((state) => state.heroDiv);
   const overlay = useBoundStore((state) => state.backgroundOverlay);
   const submitText = useBoundStore((state) => state.submitText);
   const submitClasses = useBoundStore((state) => state.submitClasses);
@@ -22,36 +25,52 @@ export default function SamplePortal() {
     overlay.gradient ? `bg-gradient-${overlay.gradient}` : "",
   ]
 
-  const heroClasses = [
+  const heroTextClasses = [
     heroTitle.classes.font ? `font-${heroTitle.classes.font}` : "",
     heroTitle.classes.size ? `text-${heroTitle.classes.size}` : "",
     heroTitle.classes.color ? `text-${heroTitle.classes.color}` : "",
     heroTitle.classes.weight ? `font-${heroTitle.classes.weight}` : "",
     heroTitle.classes.align ? `text-${heroTitle.classes.align}` : "",
     heroTitle.classes["margin-top"] ? `mt-${heroTitle.classes["margin-top"]}` : "",
-    heroTitle.classes["margin-bottom"] ? `mt-${heroTitle.classes["margin-bottom"]}` : "",
+    heroTitle.classes["margin-bottom"] ? `mb-${heroTitle.classes["margin-bottom"]}` : "",
+  ]
+
+  const heroImageClasses = [
+    heroImage.classes.fit ? `font-${heroTitle.classes.fit}` : "",
+  ]
+
+  const heroOverlayClasses = [
+    heroOverlay["color-from"] ? `from-${heroOverlay["color-from"]}` : "",
+    heroOverlay["color-to"] ? `to-${heroOverlay["color-to"]}` : "",
+    heroOverlay.opacity ? `opacity-${heroOverlay.opacity}` : "",
+    heroOverlay.gradient ? `bg-gradient-${heroOverlay.gradient}` : "",
+    heroOverlay.rounded ? `rounded-${heroOverlay.rounded}` : "",
+  ]
+
+  const heroDivClasses = [
+    heroDiv.width ? `md:w-${heroDiv.width}` : "",
   ]
 
   return (
     <div>
       <div className="relative flex flex-col min-h-screen bg-gray-400 sm:flex-row">
-        <img className="absolute inset-0 z-10 hidden object-cover object-top w-full h-full sm:block " src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg" alt="" />
+        <img className={"absolute inset-0 z-10 hidden object-cover object-top w-full h-full sm:block " + heroImageClasses.join(' ')} src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg" alt="" />
         <div className={"absolute inset-0 z-10 hidden object-cover w-full h-full sm:block " + backgroundClasses.join(' ')}>
         </div>
 
 
         <div className="relative flex flex-col justify-center h-56 overflow-hidden border sm:flex-1 sm:h-auto">
 
-          <img className="absolute inset-0 block object-cover object-top w-full h-56 sm:hidden" src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg" alt="" />
+          <img className={"absolute inset-0 block object-cover w-full h-56 sm:hidden " + heroImageClasses.join(' ')} src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg" alt="" />
           <div className={"absolute inset-0 block object-cover w-full h-56 sm:hidden " + backgroundClasses.join(' ')}>
           </div>
 
-          <div className="relative w-full h-auto p-8 mx-auto md:w-96 ">
-            <div className="absolute inset-0 z-20 w-full h-full sm:rounded-2xl from-white to-white opacity-90 bg-gradient-to-b rounded-2xl ">
+          <div className={"relative w-full h-auto p-8 mx-auto " + heroDivClasses.join(' ')}>
+            <div className={"absolute inset-0 z-20 w-full h-full " + heroOverlayClasses.join(' ')}>
             </div>
             <div className="flex flex-col justify-center">
               <img className="z-20 mx-auto max-h-32" src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/logo.png" />
-              <h2 className={"z-20 " + heroClasses.join(' ')}>{heroTitle.text}
+              <h2 className={"z-20 " + heroTextClasses.join(' ')}>{heroTitle.text}
               </h2>
             </div>
           </div>

@@ -7,13 +7,15 @@ import {
 
 export function AccordionSample({
     children,
+    title
 }: {
     children: React.ReactNode;
+    title: string
 }) {
     return (
         <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="typography">
-                <AccordionTrigger>Typography</AccordionTrigger>
+                <AccordionTrigger>{title}</AccordionTrigger>
                 <AccordionContent>
                     {children}
                 </AccordionContent>

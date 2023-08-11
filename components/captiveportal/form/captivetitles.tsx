@@ -4,11 +4,10 @@ import React from 'react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { useBoundStore } from '@/store/state';
-import { Combobox } from '../ui/combobox';
 import tailwindColors from '@/store/data/tailwindcolors';
-import { ColorPicker } from '../colorpicker';
 import { aligns, fonts, sizes, weightList, trackingList, marginList } from '@/store/data/typography';
-import { AccordionSample } from '../accordion';
+import { AccordionSample } from '@/components/accordion';
+import ComboboxContainer, { ComboboxContainerForColors } from '@/components/comboboxcontainer';
 
 
 const CaptiveTitles = () => {
@@ -25,7 +24,7 @@ const CaptiveTitles = () => {
                 return <div className="grid w-full max-w-sm items-center gap-1.5 mb-2" key={field.text}>
                     <Label>Field {index + 1}</Label>
                     <Input value={signin[index].text} onChange={(e) => updateSigninText(index, e.target.value)} />
-                    <AccordionSample>
+                    <AccordionSample title="Typography">
                         <div className='grid grid-cols-2 gap-2'>
                             <ComboboxContainer title="Align" stateValue={field.classes.align} setStateValue={(val) => updateSigninClasses(index, 'align', val)} values={aligns} />
                             <ComboboxContainer title="Font" stateValue={field.classes.font} setStateValue={(val) => updateSigninClasses(index, 'font', val)} values={fonts} />
@@ -44,18 +43,6 @@ const CaptiveTitles = () => {
     );
 };
 
-const ComboboxContainer = ({ title, ...props }) => <>
-    <div className='flex items-center'>{title}</div>
-    <div className='flex justify-end'>
-        <Combobox {...props} />
-    </div>
-</>
-const ComboboxContainerForColors = ({ title, ...props }) => <>
-    <div className='flex items-center'>{title}</div>
-    <div className='flex justify-end'>
-        <ColorPicker {...props} />
-    </div>
-</>
 
 
 export default CaptiveTitles;

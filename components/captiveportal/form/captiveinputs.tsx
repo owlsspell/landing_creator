@@ -3,14 +3,8 @@
 import React from 'react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
-import { PortalInputs } from '@/store/types';
-import { UseFormGetValues, UseFormRegister, useForm } from 'react-hook-form';
 import { useBoundStore } from '@/store/state';
 
-interface InputsProps {
-    register: UseFormRegister<PortalInputs>
-    getValues: UseFormGetValues<PortalInputs>
-}
 const CaptiveInputs = () => {
 
     const fields = useBoundStore((state) => state.fields);

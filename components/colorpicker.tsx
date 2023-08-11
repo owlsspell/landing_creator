@@ -13,7 +13,6 @@ interface ColorPickerProps {
 export const ColorPicker = ({ label, value, setStateValue }: ColorPickerProps) => {
 
     const [color, setColor] = useState(value)
-
     const [hidePalette, togglePalette] = useState(true);
 
     const handleColorClick = (event) => {
@@ -24,8 +23,8 @@ export const ColorPicker = ({ label, value, setStateValue }: ColorPickerProps) =
     return (
         <div className="flex flex-col items-start justify-start">
             {label ? <Label className="mb-2">{label}</Label> : label}
-            <div id="color-swatch-and-class-holder" className="flex flex-row justify-start px-1 py-1 border-2 rounded-md shadow-md min-w-fit w-28 gap-x-2">
-                <div id="current-color-swatch" onClick={() => togglePalette(!hidePalette)} className={`relative w-6 h-6 shrink-0 bg-${color} border border-gray-700 shadow-lg cursor-pointer`}>
+            <div id="color-swatch-and-class-holder" className="flex flex-row justify-start px-1 py-1 border-2 rounded-md shadow-md min-w-fit w-28 w-[200px] gap-x-2">
+                <div id="current-color-swatch" onClick={() => togglePalette(!hidePalette)} className={`relative w-6 h-6 shrink-0 ${color ? `bg-${color}` : ""} border border-gray-700 shadow-lg cursor-pointer`}>
 
                     <div id="hidden-picker-canvas" className={`${hidePalette ? 'hidden' : 'inline'} absolute left-0 h-64 mt-2 overflow-y-scroll border border-gray-300 rounded-md shadow-lg top-4 z-10`}>
                         <div id="colors-container" className="flex flex-col items-start p-2 bg-white rounded-md shadow-xs gap-y-1">
@@ -44,6 +43,6 @@ export const ColorPicker = ({ label, value, setStateValue }: ColorPickerProps) =
                 </div>
                 <div id="current-color-class">{color}</div>
             </div>
-        </div>
+        </div >
     )
 }
