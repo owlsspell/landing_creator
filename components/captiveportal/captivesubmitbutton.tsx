@@ -3,26 +3,31 @@
 import React from 'react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
-import { PortalInputs } from '@/store/types';
-import { UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import { ColorPicker } from '../colorpicker';
-import { usePortalsStore } from '@/store/state';
+import { useBoundStore } from '@/store/state';
 
-interface InputsProps {
-    register: UseFormRegister<PortalInputs>
-}
-const CaptiveSubmitButton = ({ register }: InputsProps) => {
+const CaptiveSubmitButton = () => {
+    const submitText = useBoundStore((state) => state.submitText);
+    const updateSubmitContent = useBoundStore((state) => state.updateSubmitContent);
+    const submitClasses = useBoundStore((state) => state.submitClasses);
+    const updateSubmitClasses = useBoundStore((state) => state.updateSubmitClasses);
 
-    const formProps = usePortalsStore((state) => state.formProps);
+    const handleChange = (e) => {
+        updateSubmitContent(e.target.value)
+    }
 
     return (
         <div className='border p-4 bg-gray-50'>
             <div className="grid w-full max-w-sm items-center gap-1.5 mb-4">
                 <Label>Submit button</Label>
-                <Input  {...register('form.submit.content')} />
+                <Input value={submitText} onChange={handleChange} />
             </div>
-            <ColorPicker value={formProps.classes.background} field={"background"} />
-            <ColorPicker value={formProps.classes.hover} field={"hover"} />
+            <div className='mt-2'>
+                <ColorPicker label={'Choose color'} value={submitClasses.background} setStateValue={(val) => updateSubmitClasses(val, 'background')} />
+            </div>
+            <div className='mt-2'>
+                <ColorPicker label={'Choose hover color'} value={submitClasses.hover} setStateValue={(val) => updateSubmitClasses(val, 'hover')} />
+            </div>
         </div>
     );
 };

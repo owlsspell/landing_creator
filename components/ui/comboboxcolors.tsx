@@ -29,7 +29,7 @@ export function Combobox({ stateValue, setStateValue, values }) {
                     aria-expanded={open}
                     className="w-[200px] justify-between"
                 >
-                    {value ? value : <span></span>}
+                    {value}
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
             </PopoverTrigger>
@@ -40,8 +40,8 @@ export function Combobox({ stateValue, setStateValue, values }) {
                             <CommandItem
                                 key={val}
                                 onSelect={(currentValue) => {
-                                    setValue((currentValue === value || currentValue === 'default') ? "" : currentValue)
-                                    setStateValue(currentValue === 'default' ? "" : currentValue)
+                                    setValue(currentValue === value ? "" : currentValue)
+                                    setStateValue(currentValue)
                                     setOpen(false)
                                 }}
                             >
@@ -51,7 +51,7 @@ export function Combobox({ stateValue, setStateValue, values }) {
                                         value === val ? "opacity-100" : "opacity-0"
                                     )}
                                 />
-                                {val.length === 0 ? 'default' : val}
+                                {val}
                             </CommandItem>
                         ))}
                     </CommandGroup>

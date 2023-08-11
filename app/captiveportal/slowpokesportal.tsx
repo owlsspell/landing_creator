@@ -1,19 +1,19 @@
-import { usePortalsStore } from "@/store/state";
+import { useBoundStore } from "@/store/state";
 import { useEffect, useState } from 'react';
 
 export default function SamplePortal() {
+  const heroTitle = useBoundStore((state) => state.backgroundOverlay);
+  const overlay = useBoundStore((state) => state.backgroundOverlay);
+  const submitText = useBoundStore((state) => state.submitText);
+  const submitClasses = useBoundStore((state) => state.submitClasses);
+  const fields = useBoundStore((state) => state.fields);
+  const signin = useBoundStore((state) => state.signin)
 
-  const portals = usePortalsStore((state) => state.portals)
-
-  const overlay = usePortalsStore((state) => state.portals.background.overlay.classes)
-  const hero = usePortalsStore((state) => state.portals.hero)
-  const formProps = usePortalsStore((state) => state.formProps);
-
-  const [hover, setHover] = useState(`bg-${formProps.classes.background}`)
+  const [hover, setHover] = useState(`bg-${submitClasses.background}`)
 
   useEffect(() => {
-    setHover(`bg-${formProps.classes.background}`)
-  }, [formProps.classes.background])
+    setHover(`bg-${submitClasses.background}`)
+  }, [submitClasses.background])
 
   const backgroundClasses = [
     overlay["color-from"] ? `from-${overlay["color-from"]}` : "",
@@ -23,20 +23,20 @@ export default function SamplePortal() {
   ]
 
   const heroClasses = [
-    hero.title.classes.font ? `font-${hero.title.classes.font}` : "",
-    hero.title.classes.size ? `text-${hero.title.classes.size}` : "",
-    hero.title.classes.color ? `text-${hero.title.classes.color}` : "",
-    hero.title.classes.weight ? `font-${hero.title.classes.weight}` : "",
-    hero.title.classes.align ? `text-${hero.title.classes.align}` : "",
-    hero.title.classes["margin-top"] ? `mt-${hero.title.classes["margin-top"]}` : "",
+    heroTitle.classes.font ? `font-${heroTitle.classes.font}` : "",
+    heroTitle.classes.size ? `text-${heroTitle.classes.size}` : "",
+    heroTitle.classes.color ? `text-${heroTitle.classes.color}` : "",
+    heroTitle.classes.weight ? `font-${heroTitle.classes.weight}` : "",
+    heroTitle.classes.align ? `text-${heroTitle.classes.align}` : "",
+    heroTitle.classes["margin-top"] ? `mt-${heroTitle.classes["margin-top"]}` : "",
+    heroTitle.classes["margin-bottom"] ? `mt-${heroTitle.classes["margin-bottom"]}` : "",
   ]
-  const fields = usePortalsStore((state) => state.portals.form.fields.standard)
 
   return (
     <div>
       <div className="relative flex flex-col min-h-screen bg-gray-400 sm:flex-row">
         <img className="absolute inset-0 z-10 hidden object-cover object-top w-full h-full sm:block " src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg" alt="" />
-        <div className={"absolute inset-0 z-10 hidden object-cover w-full h-full sm:block " + backgroundClasses}>
+        <div className={"absolute inset-0 z-10 hidden object-cover w-full h-full sm:block " + backgroundClasses.join(' ')}>
         </div>
 
 
@@ -51,7 +51,7 @@ export default function SamplePortal() {
             </div>
             <div className="flex flex-col justify-center">
               <img className="z-20 mx-auto max-h-32" src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/logo.png" />
-              <h2 className={"z-20 " + heroClasses.join(' ')}>{hero.title.text}
+              <h2 className={"z-20 " + heroClasses.join(' ')}>{heroTitle.text}
               </h2>
             </div>
           </div>
@@ -61,7 +61,7 @@ export default function SamplePortal() {
         <div
           className="z-20 flex flex-col justify-center pb-0 my-0 mb-0 bg-transparent sm:flex-1 sm:pt-2 sm:px-2 lg:flex-none lg:px-20 xl:px-24">
           <div className="w-full h-auto px-6 py-6 mx-auto bg-white sm:shadow-2xl sm:w-96 sm:rounded-2xl">
-            {portals.headings.signin.map((field) => {
+            {signin.map((field) => {
               const classes = [
                 field.classes.font ? `font-${field.classes.font}` : "",
                 field.classes.size ? `text-${field.classes.size}` : "",
@@ -70,6 +70,7 @@ export default function SamplePortal() {
                 field.classes.align ? `text-${field.classes.align}` : "",
                 field.classes.tracking ? `tracking-${field.classes.tracking}` : "",
                 field.classes['margin-top'] ? `mt-${field.classes['margin-top']}` : "",
+                field.classes['margin-bottom'] ? `mt-${field.classes['margin-bottom']}` : "",
               ]
               return <p key={field.text} className={classes.join(' ')}>
                 {field.text}
@@ -106,9 +107,9 @@ export default function SamplePortal() {
                         placeholder={fields[3].placeholder} />
                     </label>
                   </div>
-                  <input type="submit" value={portals.form.submit.content} className={`px-4 py-2 my-2 font-sans font-bold text-${portals.form.submit.classes.text}  rounded cursor-pointer ${hover}`}
-                    onMouseEnter={() => setHover('bg-' + formProps.classes.hover)}
-                    onMouseLeave={() => setHover(`bg-${formProps.classes.background}`)}
+                  <input type="submit" value={submitText} className={`px-4 py-2 my-2 font-sans font-bold text-${submitClasses.text}  rounded cursor-pointer ${hover}`}
+                    onMouseEnter={() => setHover('bg-' + submitClasses.hover)}
+                    onMouseLeave={() => setHover(`bg-${submitClasses.background}`)}
                   />
                   {/* <input type="submit" value="SIGN IN" class="px-4 py-2 my-2 font-sans font-bold text-white bg-green-900 rounded cursor-pointer hover:bg-green-700 " /> */}
                 </div>

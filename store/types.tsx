@@ -84,6 +84,7 @@ export interface TitleClasses {
     align: string;
     tracking?: string;
     "margin-top"?: string;
+    "margin-bottom"?: string;
 }
 
 export interface Hero {
