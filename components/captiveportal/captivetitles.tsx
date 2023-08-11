@@ -8,6 +8,7 @@ import { Combobox } from '../ui/combobox';
 import tailwindColors from '@/store/data/tailwindcolors';
 import { ColorPicker } from '../colorpicker';
 import { aligns, fonts, sizes, weightList, trackingList, marginList } from '@/store/data/typography';
+import { AccordionSample } from '../accordion';
 
 
 const CaptiveTitles = () => {
@@ -24,16 +25,18 @@ const CaptiveTitles = () => {
                 return <div className="grid w-full max-w-sm items-center gap-1.5 mb-2" key={field.text}>
                     <Label>Field {index + 1}</Label>
                     <Input value={signin[index].text} onChange={(e) => updateSigninText(index, e.target.value)} />
-                    <div className='grid grid-cols-2 gap-2'>
-                        <ComboboxContainer title="Align" stateValue={field.classes.align} setStateValue={(val) => updateSigninClasses(index, 'align', val)} values={aligns} />
-                        <ComboboxContainer title="Font" stateValue={field.classes.font} setStateValue={(val) => updateSigninClasses(index, 'font', val)} values={fonts} />
-                        <ComboboxContainer title="Size" stateValue={field.classes.size} setStateValue={(val) => updateSigninClasses(index, 'size', val)} values={sizes} />
-                        <ComboboxContainerForColors title="Color" stateValue={field.classes.color} setStateValue={(val) => updateSigninClasses(index, 'color', val)} values={tailwindColors} />
-                        <ComboboxContainer title="Weight" stateValue={field.classes.weight} setStateValue={(val) => updateSigninClasses(index, 'weight', val)} values={weightList} />
-                        <ComboboxContainer title="Letter Spacing" stateValue={field.classes.tracking} setStateValue={(val) => updateSigninClasses(index, 'tracking', val)} values={trackingList} />
-                        <ComboboxContainer title="Margin Top" stateValue={field.classes['margin-top']} setStateValue={(val) => updateSigninClasses(index, 'margin-top', val)} values={marginList} />
-                        <ComboboxContainer title="Margin Bottom" stateValue={field.classes['margin-bottom']} setStateValue={(val) => updateSigninClasses(index, 'margin-bottom', val)} values={marginList} />
-                    </div>
+                    <AccordionSample>
+                        <div className='grid grid-cols-2 gap-2'>
+                            <ComboboxContainer title="Align" stateValue={field.classes.align} setStateValue={(val) => updateSigninClasses(index, 'align', val)} values={aligns} />
+                            <ComboboxContainer title="Font" stateValue={field.classes.font} setStateValue={(val) => updateSigninClasses(index, 'font', val)} values={fonts} />
+                            <ComboboxContainer title="Size" stateValue={field.classes.size} setStateValue={(val) => updateSigninClasses(index, 'size', val)} values={sizes} />
+                            <ComboboxContainerForColors title="Color" stateValue={field.classes.color} setStateValue={(val) => updateSigninClasses(index, 'color', val)} values={tailwindColors} />
+                            <ComboboxContainer title="Weight" stateValue={field.classes.weight} setStateValue={(val) => updateSigninClasses(index, 'weight', val)} values={weightList} />
+                            <ComboboxContainer title="Letter Spacing" stateValue={field.classes.tracking} setStateValue={(val) => updateSigninClasses(index, 'tracking', val)} values={trackingList} />
+                            <ComboboxContainer title="Margin Top" stateValue={field.classes['margin-top']} setStateValue={(val) => updateSigninClasses(index, 'margin-top', val)} values={marginList} />
+                            <ComboboxContainer title="Margin Bottom" stateValue={field.classes['margin-bottom']} setStateValue={(val) => updateSigninClasses(index, 'margin-bottom', val)} values={marginList} />
+                        </div>
+                    </AccordionSample>
                 </div>
 
             })}
