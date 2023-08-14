@@ -4,12 +4,14 @@ import CaptiveSubmitButton from '@/components/captiveportal/form/captivesubmitbu
 import CaptiveTitles from '@/components/captiveportal/form/captivetitles';
 import HeroTitle from '@/components/captiveportal/hero/hero';
 import BackgroundSettings from '@/components/captiveportal/background/captiveoverlay';
+import CaptiveFont from '@/components/captiveportal/font/captivefont';
 
 const CaptivePortalForm = () => {
 
   return (
     <form className="flex flex-col text-left gap-y-4 w-96 overflow-y-scroll px-1" onSubmit={(e) => console.log(e)}>
       <h1 className="text-2xl font-bold">Form Editor</h1>
+      <CaptiveFont />
       <CaptiveTitles />
       <CaptiveInputs />
       <CaptiveSubmitButton />

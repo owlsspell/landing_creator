@@ -1,1 +1,1 @@
-export const weightList = ["20", "30"];
+export const widthList = ["20", "30", "96"];

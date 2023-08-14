@@ -9,6 +9,7 @@ import {
 } from "./typography";
 import { objectPosition } from "./objectposition";
 import tailwindColors from "./tailwindcolors";
+import { widthList } from "./widthList";
 
 export const allVariables = {
   align: aligns,
@@ -26,7 +27,7 @@ export const allVariables = {
   gradient: gradientList,
   rounded: roundedList,
   fit: objectPosition,
-  width: weightList,
+  width: widthList,
   background: tailwindColors,
   hover: tailwindColors,
   text: tailwindColors,

@@ -6,9 +6,9 @@ import { Input } from '@/components/ui/input';
 import { useBoundStore } from '@/store/state';
 import ComboboxContainer, { ComboboxContainerForColors } from '../../comboboxcontainer';
 import { AccordionSample } from '../../accordion';
-import { aligns, fonts, sizes, weightList, trackingList, marginList } from '@/store/data/typography';
 import { objectPosition } from '@/store/data/objectposition';
-import { gradientList, opacityList, roundedList } from '@/store/data/overlay';
+import { allVariables, exclusionList } from '@/store/data/all';
+import { widthList } from '@/store/data/widthList';
 
 const HeroTitle = () => {
 
@@ -22,6 +22,9 @@ const HeroTitle = () => {
     const heroOverlay = useBoundStore((state) => state.heroOverlay);
     const updateHeroOverlay = useBoundStore((state) => state.updateHeroOverlay);
 
+    const heroDiv = useBoundStore((state) => state.heroDiv);
+    const updateHeroDiv = useBoundStore((state) => state.updateHeroDiv);
+
     const handleChange = (e) => {
         updateHeroTitleText(e.target.value)
     }
@@ -33,14 +36,12 @@ const HeroTitle = () => {
             <Input value={heroTitle.text} onChange={handleChange} />
             <AccordionSample title="Typography">
                 <div className='grid grid-cols-2 gap-2'>
-                    <ComboboxContainer title="Align" stateValue={heroTitle.classes.align} setStateValue={(val) => updateHeroTitleClasses('align', val)} values={aligns} />
-                    <ComboboxContainer title="Font" stateValue={heroTitle.classes.font} setStateValue={(val) => updateHeroTitleClasses('font', val)} values={fonts} />
-                    <ComboboxContainer title="Size" stateValue={heroTitle.classes.size} setStateValue={(val) => updateHeroTitleClasses('size', val)} values={sizes} />
-                    <ComboboxContainerForColors title="Color" stateValue={heroTitle.classes.color} setStateValue={(val) => updateHeroTitleClasses('color', val)} />
-                    <ComboboxContainer title="Weight" stateValue={heroTitle.classes.weight} setStateValue={(val) => updateHeroTitleClasses('weight', val)} values={weightList} />
-                    <ComboboxContainer title="Letter Spacing" stateValue={heroTitle.classes.tracking} setStateValue={(val) => updateHeroTitleClasses('tracking', val)} values={trackingList} />
-                    <ComboboxContainer title="Margin Top" stateValue={heroTitle.classes['margin-top']} setStateValue={(val) => updateHeroTitleClasses('margin-top', val)} values={marginList} />
-                    <ComboboxContainer title="Margin Bottom" stateValue={heroTitle.classes['margin-bottom']} setStateValue={(val) => updateHeroTitleClasses('margin-bottom', val)} values={marginList} />
+                    {Object.keys(heroTitle.classes).map((key) =>
+                        exclusionList.includes(key) ?
+                            <ComboboxContainerForColors key={key} title={key} stateValue={heroTitle.classes[key]} setStateValue={(val) => updateHeroTitleClasses(key, val)} values={allVariables[key]} />
+                            :
+                            <ComboboxContainer key={key} title={key} stateValue={heroTitle.classes[key]} setStateValue={(val) => updateHeroTitleClasses(key, val)} values={allVariables[key]} />
+                    )}
                 </div>
             </AccordionSample>
             <AccordionSample title="Image Settings">
@@ -50,14 +51,18 @@ const HeroTitle = () => {
             </AccordionSample>
             <AccordionSample title="Overlay">
                 <div className='grid grid-cols-2 gap-2'>
-                    <ComboboxContainerForColors title="Color From" stateValue={heroOverlay["color-from"]} setStateValue={(val) => updateHeroOverlay("color-from", val)} />
-                    <ComboboxContainerForColors title="Color To" stateValue={heroOverlay["color-to"]} setStateValue={(val) => updateHeroOverlay("color-to", val)} />
-                    <ComboboxContainer title="Opacity" stateValue={heroOverlay.opacity} setStateValue={(val) => updateHeroOverlay("opacity", val)} values={opacityList} />
-                    <ComboboxContainer title="Gradient" stateValue={heroOverlay.gradient} setStateValue={(val) => updateHeroOverlay("gradient", val)} values={gradientList} />
-                    <ComboboxContainer title="Rounded" stateValue={heroOverlay.rounded} setStateValue={(val) => updateHeroOverlay("rounded", val)} values={roundedList} />
+                    {Object.keys(heroOverlay).map((key) =>
+                        exclusionList.includes(key) ?
+                            <ComboboxContainerForColors key={key} title={key} stateValue={heroOverlay[key]} setStateValue={(val) => updateHeroOverlay(key, val)} values={allVariables[key]} />
+                            :
+                            <ComboboxContainer key={key} title={key} stateValue={heroOverlay[key]} setStateValue={(val) => updateHeroOverlay(key, val)} values={allVariables[key]} />
+                    )}
                 </div>
-
-
+            </AccordionSample>
+            <AccordionSample title="Width">
+                <div className='grid grid-cols-2 gap-2'>
+                    <ComboboxContainer title="Width" stateValue={heroDiv.width} setStateValue={(val) => updateHeroDiv('width', val)} values={widthList} />
+                </div>
             </AccordionSample>
 
         </div>
