@@ -12,7 +12,6 @@ const BackgroundSettings = () => {
     const updateBackgroundOverlay = useBoundStore((state) => state.updateBackgroundOverlay);
     return (
         <div className='border p-4 bg-gray-50'>
-            <h4 className="text-xl font-bold mb-4">Background settings</h4>
             <AccordionSample title="Overlay">
                 <div className='grid grid-cols-2 gap-2'>
                     {Object.keys(backgroundOverlay).map((key) =>

@@ -18,7 +18,6 @@ const CaptiveTitles = () => {
 
     return (
         <div className='border p-4 bg-gray-50'>
-            <h4 className="text-xl font-bold mb-4">Headings</h4>
             {inputs.map((field, index) => {
                 return <div className="grid w-full max-w-sm items-center gap-1.5 mb-2" key={field.text}>
                     <Label>Field {index + 1}</Label>

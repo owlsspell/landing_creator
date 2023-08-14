@@ -31,7 +31,6 @@ const HeroTitle = () => {
 
     return (
         <div className='border p-4 bg-gray-50'>
-            <h4 className="text-xl font-bold mb-4">Hero section</h4>
             <Label>Text</Label>
             <Input value={heroTitle.text} onChange={handleChange} />
             <AccordionSample title="Typography">

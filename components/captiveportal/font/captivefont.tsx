@@ -15,7 +15,7 @@ const CaptiveFont = () => {
     }
     return (
         <div className='border p-4 bg-gray-50'>
-            <h4 className="text-xl font-bold mb-4">Fonts</h4>
+
             {Object.keys(fonts).map((field) => <div className='my-2' key={'fonts ' + field} >
                 <Label><span className='capitalize'>{field}</span></Label>
                 <Input value={fonts[field]} onChange={(e) => handleChange(e, field)} />

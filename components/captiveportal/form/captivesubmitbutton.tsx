@@ -19,7 +19,7 @@ const CaptiveSubmitButton = () => {
     return (
         <div className='border p-4 bg-gray-50'>
             <div className="grid w-full max-w-sm items-center gap-1.5 mb-4">
-                <Label>Submit button</Label>
+                <Label>Content</Label>
                 <Input value={submitText} onChange={handleChange} />
             </div>
             <div className='mt-2'>
