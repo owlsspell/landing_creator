@@ -3,6 +3,7 @@ import CaptiveInputs from '@/components/captiveportal/form/captiveinputs';
 import CaptiveSubmitButton from '@/components/captiveportal/form/captivesubmitbutton';
 import CaptiveTitles from '@/components/captiveportal/form/captivetitles';
 import HeroTitle from '@/components/captiveportal/hero/hero';
+import BackgroundSettings from '@/components/captiveportal/background/captiveoverlay';
 
 const CaptivePortalForm = () => {
 
@@ -13,6 +14,7 @@ const CaptivePortalForm = () => {
       <CaptiveInputs />
       <CaptiveSubmitButton />
       <HeroTitle />
+      <BackgroundSettings />
       <button
         className="w-3/5 px-6 py-3 mt-4 font-bold text-green-100 bg-green-400 border rounded hover:bg-green-600 text-md"
         type="submit"

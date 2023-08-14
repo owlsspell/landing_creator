@@ -9,15 +9,16 @@ export default function SamplePortal() {
   const heroDiv = useBoundStore((state) => state.heroDiv);
   const overlay = useBoundStore((state) => state.backgroundOverlay);
   const submitText = useBoundStore((state) => state.submitText);
-  const submitClasses = useBoundStore((state) => state.submitClasses);
+  const submitStyle = useBoundStore((state) => state.submitClasses);
   const fields = useBoundStore((state) => state.fields);
   const signin = useBoundStore((state) => state.signin)
 
-  const [hover, setHover] = useState(`bg-${submitClasses.background}`)
-
+  const [hover, setHover] = useState(`bg-${submitStyle.background}`)
   useEffect(() => {
-    setHover(`bg-${submitClasses.background}`)
-  }, [submitClasses.background])
+    setHover(`bg-${submitStyle.background}`)
+  }, [submitStyle.background])
+
+  const submitClasses = useMemo(() => getClassNames(submitStyle), [submitStyle])
 
   const backgroundClasses = useMemo(() => getClassNames(overlay), [overlay])
 
@@ -98,9 +99,9 @@ export default function SamplePortal() {
                         placeholder={fields[3].placeholder} />
                     </label>
                   </div>
-                  <input type="submit" value={submitText} className={`px-4 py-2 my-2 font-sans font-bold text-${submitClasses.text}  rounded cursor-pointer ${hover}`}
-                    onMouseEnter={() => setHover('bg-' + submitClasses.hover)}
-                    onMouseLeave={() => setHover(`bg-${submitClasses.background}`)}
+                  <input type="submit" value={submitText} className={`px-4 py-2 my-2 font-sans font-bold rounded cursor-pointer  ${submitClasses} ${hover}`}
+                    onMouseEnter={() => setHover('bg-' + submitStyle.hover)}
+                    onMouseLeave={() => setHover(`bg-${submitStyle.background}`)}
                   />
                   {/* <input type="submit" value="SIGN IN" class="px-4 py-2 my-2 font-sans font-bold text-white bg-green-900 rounded cursor-pointer hover:bg-green-700 " /> */}
                 </div>
