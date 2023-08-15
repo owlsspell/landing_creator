@@ -3,5 +3,5 @@ import { produce } from "immer";
 
 export const createFontsSlice = (set) => ({
     fonts: defaultValues.fonts,
-    updateFonts: (field, content) => set(produce((state) => { state.fonts[field] = content })),
+    updateFonts: (content, field) => set(produce((state) => { state.fonts[field] = content })),
 })

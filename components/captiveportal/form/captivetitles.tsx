@@ -4,10 +4,7 @@ import React from 'react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { useBoundStore } from '@/store/state';
-import { AccordionSample } from '@/components/accordion';
-import ComboboxContainer, { ComboboxContainerForColors } from '@/components/comboboxcontainer';
-import { allVariables, exclusionList } from '@/store/data/all';
-
+import Comboboxes from '@/components/comboboxes';
 
 const CaptiveTitles = () => {
     const signin = useBoundStore((state) => state.signin)
@@ -21,17 +18,10 @@ const CaptiveTitles = () => {
             {inputs.map((field, index) => {
                 return <div className="grid w-full max-w-sm items-center gap-1.5 mb-2" key={field.text}>
                     <Label>Field {index + 1}</Label>
-                    <Input value={signin[index].text} onChange={(e) => updateSigninText(index, e.target.value)} />
-                    <AccordionSample title="Typography">
-                        <div className='grid grid-cols-2 gap-2'>
-                            {Object.keys(field.classes).map((key) =>
-                                exclusionList.includes(key) ?
-                                    <ComboboxContainerForColors key={key} title={key} stateValue={field.classes[key]} setStateValue={(val) => updateSigninClasses(index, key, val)} values={allVariables[key]} />
-                                    :
-                                    <ComboboxContainer key={key} title={key} stateValue={field.classes[key]} setStateValue={(val) => updateSigninClasses(index, key, val)} values={allVariables[key]} />
-                            )}
-                        </div>
-                    </AccordionSample>
+                    <Input value={signin[index].text} onChange={(e) => updateSigninText(e.target.value, index)} />
+
+                    <Comboboxes title="Typography" classes={field.classes} updateClasses={updateSigninClasses} index={index} />
+
                 </div>
 
             })}

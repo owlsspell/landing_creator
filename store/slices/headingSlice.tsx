@@ -4,6 +4,6 @@ import { produce } from "immer";
 export const createHeadingsSlice = (set) => ({
     signin: defaultValues.headings.signin,
     // success: defaultValues.headings.success,
-    updateSigninText: (index, content) => set(produce((state) => { state.signin[index].text = content })),
-    updateSigninClasses: (index, field, content) => set(produce((state) => { state.signin[index].classes[field] = content })),
+    updateSigninText: (content, index) => set(produce((state) => { state.signin[index].text = content })),
+    updateSigninClasses: (content, field, index) => set(produce((state) => { state.signin[index].classes[field] = content })),
 })

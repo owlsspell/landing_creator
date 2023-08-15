@@ -11,7 +11,7 @@ const CaptiveFont = () => {
     const updateFonts = useBoundStore((state) => state.updateFonts);
 
     const handleChange = (e, field) => {
-        updateFonts(field, e.target.value)
+        updateFonts( e.target.value,field)
     }
     return (
         <div className='border p-4 bg-gray-50'>
