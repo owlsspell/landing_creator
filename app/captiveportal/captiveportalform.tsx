@@ -12,7 +12,7 @@ import CaptiveNoticePage from '@/components/captiveportal/success/notices';
 const CaptivePortalForm = () => {
 
   return (
-    <form className="flex flex-col text-left gap-y-4 w-96 overflow-y-scroll px-1" onSubmit={(e) => console.log(e)}>
+    <form className="flex flex-col text-left gap-y-4 w-96 overflow-auto px-1" onSubmit={(e) => console.log(e)}>
       <h1 className="text-2xl font-bold">Form Editor</h1>
       <AccordionSample title="Slowpokes Portal" textSize="text-xl">
         <AccordionSample title="Fonts" textSize="text-lg">
