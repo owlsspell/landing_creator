@@ -25,7 +25,7 @@ export default function CaptivePortalPage() {
         loading: () => console.log('loading')
       });
     }
-  }, [fonts])
+  }, [])
 
   return (
     <div>
