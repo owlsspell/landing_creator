@@ -12,6 +12,7 @@ export default function SamplePortal() {
   const submitStyle = useBoundStore((state) => state.submitClasses);
   const fields = useBoundStore((state) => state.fields);
   const signin = useBoundStore((state) => state.signin)
+  const fonts = useBoundStore((state) => state.fonts)
 
   const [hover, setHover] = useState(`bg-${submitStyle.background}`)
   useEffect(() => {
@@ -34,6 +35,9 @@ export default function SamplePortal() {
   const classesTitle2 = useMemo(() => getClassNames(signin[1].classes), [signin[1].classes])
   const classesTitle3 = useMemo(() => getClassNames(signin[2].classes), [signin[2].classes])
 
+  const generateFontStyle = (font) => (font !== undefined ? {
+    fontFamily: font === 'sans' ? fonts.sans : fonts.serif
+  } : "")
 
   return (
     <div>
@@ -53,7 +57,9 @@ export default function SamplePortal() {
             </div>
             <div className="flex flex-col justify-center">
               <img className="z-20 mx-auto max-h-32" src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/logo.png" />
-              <h2 className={"z-20 " + heroTextClasses}>{heroTitle.text}
+              <h2 className={"z-20 " + heroTextClasses}
+                style={generateFontStyle(heroTitle.classes.font)}
+              >{heroTitle.text}
               </h2>
             </div>
           </div>
@@ -64,9 +70,9 @@ export default function SamplePortal() {
           className="z-20 flex flex-col justify-center pb-0 my-0 mb-0 bg-transparent sm:flex-1 sm:pt-2 sm:px-2 lg:flex-none lg:px-20 xl:px-24">
           <div className="w-full h-auto px-6 py-6 mx-auto bg-white sm:shadow-2xl sm:w-96 sm:rounded-2xl">
 
-            <TitleText key={signin[0].text} text={signin[0].text} classes={classesTitle1} />
-            <TitleText key={signin[1].text} text={signin[1].text} classes={classesTitle2} />
-            <TitleText key={signin[2].text} text={signin[2].text} classes={classesTitle3} />
+            <TitleText key={signin[0].text} text={signin[0].text} classes={classesTitle1} font={signin[0].classes.font} />
+            <TitleText key={signin[1].text} text={signin[1].text} classes={classesTitle2} font={signin[1].classes.font} />
+            <TitleText key={signin[2].text} text={signin[2].text} classes={classesTitle3} font={signin[2].classes.font} />
 
             <div className="mt-6">
               <form name="submit" id="submit" action="#" method="POST" className="space-y-6">
@@ -121,7 +127,15 @@ export default function SamplePortal() {
 }
 
 
-const TitleText = ({ text, classes }) =>
-  <p className={classes} key={text}>
+
+const TitleText = ({ text, classes, font }) => {
+  const fonts = useBoundStore((state) => state.fonts)
+  return <p className={classes} key={text}
+    style={(font !== undefined ? {
+      fontFamily: font === 'sans' ? fonts.sans : fonts.serif
+    } : "")}
+  >
     {text}
   </p>
+}
+

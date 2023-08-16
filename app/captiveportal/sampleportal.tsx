@@ -3,6 +3,8 @@ import { useBoundStore } from "@/store/state";
 import { useMemo } from "react";
 
 export default function SamplePortal() {
+  const fonts = useBoundStore((state) => state.fonts)
+
   const successText = useBoundStore((state) => state.successText);
   const successClasses = useBoundStore((state) => state.successClasses);
   const successStyle = useMemo(() => getClassNames(successClasses), [successClasses])
@@ -23,6 +25,10 @@ export default function SamplePortal() {
   const classesText = [classesText1, classesText2, classesText3]
   const overlayClasses = [overlayClasses1, overlayClasses2, overlayClasses3]
   const imageClasses = [imageClasses1, imageClasses2, imageClasses3]
+
+  const generateFontStyle = (font) => (font !== undefined ? {
+    fontFamily: font === 'sans' ? fonts.sans : fonts.serif
+  } : "")
 
   return (
     <>
@@ -64,14 +70,14 @@ export default function SamplePortal() {
           <div className="w-full h-auto px-6 py-6 mx-auto bg-white sm:shadow-2xl sm:w-96 sm:rounded-2xl">
 
             <div>
-              <p className={successStyle}>
+              <p className={successStyle} style={generateFontStyle(successClasses.font)}>
                 {successText}
               </p>
             </div>
             <div className="flex flex-col p-2 mt-2 h-80">
               {notices.map((notice, index) =>
                 <div key={index} className="relative flex flex-col justify-center w-full mt-4 overflow-hidden rounded-lg shadow-2xl h-1/3">
-                  <p className={"z-30 px-4 " + (classesText[index])}>
+                  <p className={"z-30 px-4 " + (classesText[index])} style={generateFontStyle(notice.message.classes.font)}>
 
                     {notice.message.text}
                   </p>

@@ -1,25 +1,24 @@
 'use client';
 
 import React from 'react';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
 import { useBoundStore } from '@/store/state';
+import { fontsList } from "@/store/data/fontsList"
+import { Combobox } from '@/components/ui/combobox';
 
 const CaptiveFont = () => {
 
     const fonts = useBoundStore((state) => state.fonts);
     const updateFonts = useBoundStore((state) => state.updateFonts);
 
-    const handleChange = (e, field) => {
-        updateFonts( e.target.value,field)
-    }
     return (
         <div className='border p-4 bg-gray-50'>
-
-            {Object.keys(fonts).map((field) => <div className='my-2' key={'fonts ' + field} >
-                <Label><span className='capitalize'>{field}</span></Label>
-                <Input value={fonts[field]} onChange={(e) => handleChange(e, field)} />
-            </div>)}
+            {Object.keys(fonts).map((key) => <div className="grid grid-cols-4 gap-2 mb-2" key={key}>
+                <div className='flex items-center'>{key}</div>
+                <div className='flex justify-end col-span-3'>
+                    <Combobox stateValue={fonts[key]} setStateValue={(val) => updateFonts(val, key)} values={fontsList} />
+                </div>
+            </div>
+            )}
         </div>
     );
 };

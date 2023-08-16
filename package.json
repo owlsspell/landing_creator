@@ -47,6 +47,7 @@
     "tailwind-merge": "^1.14.0",
     "tailwind-variants": "^0.1.13",
     "typescript": "5.1.6",
+    "webfontloader": "^1.6.28",
     "zustand": "^4.4.1"
   },
   "devDependencies": {

@@ -14,7 +14,7 @@ const CaptivePortalForm = () => {
   return (
     <form className="flex flex-col text-left gap-y-4 w-96 overflow-auto px-1" onSubmit={(e) => console.log(e)}>
       <h1 className="text-2xl font-bold">Form Editor</h1>
-      <AccordionSample title="Slowpokes Portal" textSize="text-xl">
+      <AccordionSample title="Slowpokes Portal" textSize="text-xl text-left">
         <AccordionSample title="Fonts" textSize="text-lg">
           <CaptiveFont />
         </AccordionSample>
@@ -35,7 +35,7 @@ const CaptivePortalForm = () => {
         </AccordionSample>
       </AccordionSample>
 
-      <AccordionSample title="Slowpokes Success Portal" textSize="text-xl">
+      <AccordionSample title="Slowpokes Success Portal" textSize="text-xl text-left">
         <AccordionSample title="Title" textSize="text-lg">
           <CaptiveSuccessPage />
         </AccordionSample>

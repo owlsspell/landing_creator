@@ -40,6 +40,7 @@ export function Combobox({ stateValue, setStateValue, values }) {
                             <CommandItem
                                 key={val}
                                 onSelect={(currentValue) => {
+                                    currentValue = values.find(v => v.toUpperCase() === currentValue.toUpperCase())
                                     setValue((currentValue === value || currentValue === 'default') ? "" : currentValue)
                                     setStateValue(currentValue === 'default' ? "" : currentValue)
                                     setOpen(false)
