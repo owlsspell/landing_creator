@@ -59,7 +59,7 @@ export default function SamplePortal() {
             />
             <div className="flex flex-col justify-center">
               <img className="z-20 mx-auto max-h-32" src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/logo.png" />
-              <h2 className="z-20 mt-0 font-sans text-3xl font-bold text-black text-top ">Try our coffee</h2>
+              <h2 className="z-20 mt-0 font-sans text-3xl font-bold text-black text-top " style={{ fontFamily: fonts.sans }}>Try our coffee</h2>
             </div>
           </div>
         </div>

@@ -78,36 +78,40 @@ export default function SamplePortal() {
               <form name="submit" id="submit" action="#" method="POST" className="space-y-6">
                 <div className="flex flex-col gap-4">
                   <label className="block" key={fields[0].name}>
-                    <span className="font-sans text-gray-700">{fields[0].label}</span>
+                    <span className="font-sans text-gray-700" style={{ fontFamily: fonts.sans }}>{fields[0].label}</span>
                     <input type="text" name={fields[0].name} id={fields[0].name}
                       className="block w-full mt-1 font-sans bg-gray-100 border-transparent rounded-md focus:border-gray-500 focus:bg-white focus:ring-0 "
                       placeholder={fields[0].placeholder}
+                      style={{ fontFamily: fonts.sans }}
                     />
                   </label>
                   <label className="block" key={fields[1].name}>
-                    <span className="font-sans text-gray-700">{fields[1].label}</span>
+                    <span className="font-sans text-gray-700" style={{ fontFamily: fonts.sans }}>{fields[1].label}</span>
                     <input type="text" name={fields[1].name} id={fields[1].name}
                       className="block w-full mt-1 font-sans bg-gray-100 border-transparent rounded-md focus:border-gray-500 focus:bg-white focus:ring-0 "
                       placeholder={fields[1].placeholder}
+                      style={{ fontFamily: fonts.sans }}
                     />
                   </label>
                   <div className="flex flex-row gap-4" >
                     <label className="block" key={fields[2].name}>
-                      <span className="font-sans text-gray-700">{fields[2].label}</span>
+                      <span className="font-sans text-gray-700" style={{ fontFamily: fonts.sans }}>{fields[2].label}</span>
                       <input type="text" name={fields[2].name}
                         className="block w-full mt-1 font-sans bg-gray-100 border-transparent rounded-md focus:border-gray-500 focus:bg-white focus:ring-0 "
-                        placeholder={fields[2].placeholder} />
+                        placeholder={fields[2].placeholder}
+                        style={{ fontFamily: fonts.sans }} />
                     </label>
                     <label className="block" key={fields[3].name}>
-                      <span className="font-sans text-gray-700">{fields[3].label}</span>
+                      <span className="font-sans text-gray-700" style={{ fontFamily: fonts.sans }}>{fields[3].label}</span>
                       <input type="text" name={fields[3].name}
                         className="block w-full mt-1 font-sans bg-gray-100 border-transparent rounded-md focus:border-gray-500 focus:bg-white focus:ring-0 "
-                        placeholder={fields[3].placeholder} />
+                        placeholder={fields[3].placeholder} style={{ fontFamily: fonts.sans }} />
                     </label>
                   </div>
                   <input type="submit" value={submitText} className={`px-4 py-2 my-2 font-sans font-bold rounded cursor-pointer  ${submitClasses} ${hover}`}
                     onMouseEnter={() => setHover('bg-' + submitStyle.hover)}
                     onMouseLeave={() => setHover(`bg-${submitStyle.background}`)}
+                    style={{ fontFamily: fonts.sans }}
                   />
                   {/* <input type="submit" value="SIGN IN" class="px-4 py-2 my-2 font-sans font-bold text-white bg-green-900 rounded cursor-pointer hover:bg-green-700 " /> */}
                 </div>
