@@ -42,8 +42,8 @@ export default function SamplePortal() {
   return (
     <div>
       <div className="relative flex flex-col min-h-screen bg-gray-400 sm:flex-row">
-        <img className={"absolute inset-0 z-10 hidden object-cover object-top w-full h-full sm:block " + heroImageClasses} src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg" alt="" />
-        <div className={"absolute inset-0 z-10 hidden object-cover w-full h-full sm:block " + backgroundClasses}>
+        <img className={"absolute inset-0 z-10 hidden object-cover object-top w-full h-full sm:block overflow-visible " + heroImageClasses} src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg" alt="" />
+        <div className={"absolute inset-0 z-10 hidden object-cover w-full h-full sm:block overflow-visible " + backgroundClasses}>
         </div>
 
         <div className="relative flex flex-col justify-center h-56 overflow-hidden border sm:flex-1 sm:h-auto">

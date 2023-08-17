@@ -35,11 +35,11 @@ export default function SamplePortal() {
       <div className="relative flex flex-col min-h-screen bg-gray-400 sm:flex-row">
 
         <img
-          className="absolute inset-0 z-10 hidden object-cover object-top w-full h-full sm:block "
+          className="absolute inset-0 z-10 hidden object-cover object-top w-full h-full sm:block overflow-visible"
           src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg"
         />
         <div
-          className="absolute inset-0 z-10 hidden object-cover w-full h-full sm:block from-transparent to-black opacity-90 bg-gradient-to-b "
+          className="absolute inset-0 z-10 hidden object-cover w-full h-full sm:block from-transparent to-black opacity-90 bg-gradient-to-b overflow-visible"
         />
 
 

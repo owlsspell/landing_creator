@@ -28,21 +28,21 @@ export default function CaptivePortalPage() {
   }, [])
 
   return (
-    <div>
+    <div className='w-full'>
       <h1 className={title()}>Captive Portal Editor</h1>
 
       <div className="flex flex-row p-4 mt-8 border-2 border-gray-700 rounded-lg gap-x-8 max-h-screen	w-full ">
-        <Tabs defaultValue="portal" className='w-full' >
+        <Tabs defaultValue="portal" className='w-full overflow-hidden' >
           <div className=''>
             <TabsList >
               <TabsTrigger value="portal">Slowpoke</TabsTrigger>
               <TabsTrigger value="success">Slowpoke success</TabsTrigger>
             </TabsList>
           </div>
-          <TabsContent value="portal">
+          <TabsContent value="portal" className='overflow-scroll h-full'>
             <SlowpokePortal />
           </TabsContent>
-          <TabsContent value="success">
+          <TabsContent value="success" className='overflow-scroll h-full'>
             <SamplePortal />
           </TabsContent>
         </Tabs>
