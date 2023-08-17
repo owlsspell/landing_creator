@@ -25,7 +25,6 @@ const Gallery = ({ saveImage }) => {
     function getImages() {
         axios.get('/api/images')
             .then(function (response) {
-                console.log(response);
                 setImages(response.data)
             })
             .catch(function (error) {
@@ -56,7 +55,6 @@ const Gallery = ({ saveImage }) => {
             }
         })
             .then(function (response) {
-                console.log(response);
                 getImages()
             })
             .catch(function (error) {
@@ -72,26 +70,23 @@ const Gallery = ({ saveImage }) => {
         <DialogContent>
             <DialogHeader>
                 <DialogTitle>Images</DialogTitle>
-                <DialogDescription>
-                    <div className='flex my-4'>
-                        <Input type="file" name="someExpressFiles" onChange={handleFileChange} />
-                        <Button type="submit" onClick={handleSubmit} disabled={loading}>Submit</Button>
-                    </div>
-                    <div className='flex mb-4'>
-                        {images && images.map(image =>
-                            <div className='w-20 h-20 relative mr-2'>
-                                <Image key={image} src={`/uploads/images/slowpokes/${image}`} alt="" layout='fill'
-                                    objectFit='cover'
-                                    className={activeImage === image ? 'scale-110' : ""}
-                                    onClick={() => setActiveImage(image)}
-                                />
-                            </div>)}
-                    </div>
-                    <div className='w-full flex '>
-                        <DialogTrigger asChild>
-                            <Button className='mr-0 ml-auto w-20' onClick={() => saveImage(activeImage)}>Save</Button>
-                        </DialogTrigger> </div>
-                </DialogDescription>
+                <div className='flex py-1'>
+                    <Input type="file" name="someExpressFiles" onChange={handleFileChange} />
+                    <Button type="submit" onClick={handleSubmit} disabled={loading}>Submit</Button>
+                </div>
+                <div className='flex py-2'>
+                    {images && images.map(image =>
+                        <div className='w-20 h-20 relative mr-2' key={image}>
+                            <Image src={`/uploads/images/slowpokes/${image}`} alt="" fill
+                                className={`object-cover ${activeImage === image ? 'scale-110' : ""}`}
+                                onClick={() => setActiveImage(image)}
+                            />
+                        </div>)}
+                </div>
+                <div className='w-full flex '>
+                    <DialogTrigger asChild>
+                        <Button className='mr-0 ml-auto w-20' onClick={() => saveImage(activeImage)}>Save</Button>
+                    </DialogTrigger> </div>
             </DialogHeader>
         </DialogContent>
 

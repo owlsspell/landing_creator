@@ -6,22 +6,25 @@ import CaptivePortalForm from './captiveportalform';
 import SlowpokePortal from './slowpokesportal';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useEffect } from 'react';
-import WebFont from 'webfontloader';
 import { fontsList } from '@/store/data/fontsList';
 
 export default function CaptivePortalPage() {
 
   useEffect(() => {
-    if (window) {
-      WebFont.load({
-        google: {
-          families: fontsList
-        },
-        active: function () {
-          console.log('fonts loaded');
-        },
-        loading: () => console.log('loading')
-      });
+    const isServer = () => typeof window === 'undefined'
+
+    if (!isServer()) {
+      import('webfontloader').then(imported => {
+        imported.load({
+          google: {
+            families: fontsList
+          },
+          active: function () {
+            console.log('fonts loaded');
+          },
+          loading: () => console.log('loading')
+        });
+      })
     }
   }, [])
 
