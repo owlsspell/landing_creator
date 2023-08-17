@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import path from "path";
 import { writeFile } from "fs/promises";
+import { promises as fs } from "fs";
 
 export const POST = async (req, res) => {
   const formData = await req.formData();
@@ -17,7 +18,7 @@ export const POST = async (req, res) => {
   console.log(filename);
   try {
     await writeFile(
-      path.join(process.cwd(), `public/uploads/${dir}` + filename),
+      path.join(process.cwd(), `public/uploads/images/${dir}/` + filename),
       buffer
     );
     return NextResponse.json({ Message: "Success", status: 201 });
@@ -25,4 +26,13 @@ export const POST = async (req, res) => {
     console.log("Error occured ", error);
     return NextResponse.json({ Message: "Failed", status: 500 });
   }
+};
+
+export const GET = async (req, res) => {
+  const imageDirectory = path.join(
+    process.cwd(),
+    "/public/uploads/images/slowpokes"
+  );
+  const imageFileNames = await fs.readdir(imageDirectory);
+  return NextResponse.json(imageFileNames);
 };

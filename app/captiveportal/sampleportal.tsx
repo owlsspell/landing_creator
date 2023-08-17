@@ -83,7 +83,8 @@ export default function SamplePortal() {
                   </p>
                   <img
                     className={"absolute z-10 object-cover w-full h-full " + imageClasses[index]}
-                    src={"http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/" + notice.image.url}
+                    src={"/uploads/images/slowpokes/" + notice.image.url}
+                  // src={"http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/" + notice.image.url}
                   />
                   <div className={"absolute inset-0 z-20 w-full h-full " + overlayClasses[index]} />
                   <a

@@ -5,13 +5,11 @@ import SamplePortal from './sampleportal';
 import CaptivePortalForm from './captiveportalform';
 import SlowpokePortal from './slowpokesportal';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { useBoundStore } from '@/store/state';
 import { useEffect } from 'react';
 import WebFont from 'webfontloader';
 import { fontsList } from '@/store/data/fontsList';
 
 export default function CaptivePortalPage() {
-  const fonts = useBoundStore((state) => state.fonts);
 
   useEffect(() => {
     if (window) {
