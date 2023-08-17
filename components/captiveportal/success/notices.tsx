@@ -16,7 +16,8 @@ const CaptiveNoticePage = () => {
     const updateNoticeOverlayClasses = useBoundStore((state) => state.updateNoticeOverlayClasses);
     const updateNoticeLink = useBoundStore((state) => state.updateNoticeLink);
 
-    const [inputs, setInputs] = React.useState(notices)
+    const [inputs, setInputs] = useState(notices)
+    const [loading, setLoading] = useState(false)
 
     const [file, setFile] = useState<File>();
 
@@ -27,13 +28,12 @@ const CaptiveNoticePage = () => {
     const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             setFile(e.target.files[0]);
-            console.log('e.target.files', e.target.files);
 
         }
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('file', file);
+        setLoading(true)
         const formData = new FormData();
         formData.append("name", file.name);
         formData.append('file', file)
@@ -48,7 +48,10 @@ const CaptiveNoticePage = () => {
             })
             .catch(function (error) {
                 console.log(error);
-            });
+            })
+            .finally(function () {
+                setLoading(false)
+            })
     };
 
 
@@ -65,7 +68,7 @@ const CaptiveNoticePage = () => {
                         <Label>Image for {index + 1} notice</Label>
                         <div className='flex'>
                             <Input type="file" name="someExpressFiles" onChange={handleFileChange} />
-                            <Button type="submit" onClick={handleSubmit}>Submit</Button>
+                            <Button type="submit" onClick={handleSubmit} disabled={loading}>Submit</Button>
                         </div>
                         <Comboboxes title="Typography" classes={field.message.classes} updateClasses={updateNoticeMessageClasses} index={index} />
                         <Comboboxes title="Overlay" classes={field.overlay.classes} updateClasses={updateNoticeOverlayClasses} index={index} />
