@@ -17,7 +17,11 @@ const CaptiveTitles = () => {
         <div className='border p-4 bg-gray-50'>
             {inputs.map((field, index) => {
                 return <div className="grid w-full max-w-sm items-center gap-1.5 mb-2" key={field.text}>
-                    <Label>Field {index + 1}</Label>
+                    <div className='flex justify-between items-center'>
+                        <Label>Field {index + 1}</Label>
+                        <input type="checkbox" checked={signin[index].text !== ""} onChange={() => updateSigninText("", index)} className='w-6 h-6' />
+
+                    </div>
                     <Input value={signin[index].text} onChange={(e) => updateSigninText(e.target.value, index)} />
 
                     <Comboboxes title="Typography" classes={field.classes} updateClasses={updateSigninClasses} index={index} />

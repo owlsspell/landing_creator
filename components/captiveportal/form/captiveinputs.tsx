@@ -11,17 +11,31 @@ const CaptiveInputs = () => {
     const updateFields = useBoundStore((state) => state.updateFields);
     const [inputs, setInputs] = React.useState(fields)
 
-    const handleChange = (e, field, index) => {
-        updateFields(field, index, e.target.value)
+    const handleChange = (val, field, index) => {
+        updateFields(field, index, val)
+    }
+
+    const clearFields = (e, index) => {
+        if (e.target.checked) {
+            handleChange("", "label", index)
+        } else {
+            handleChange(null, "label", index)
+            handleChange("", "placeholder", index)
+        }
     }
     return (
         <div className='border p-4 bg-gray-50'>
             {inputs.map((field, index) => {
                 return <div className="grid w-full max-w-sm items-center gap-1.5 mb-2" key={field.label}>
-                    <Label>Field {index + 1}</Label>
-                    <Input value={fields[index].label} onChange={(e) => handleChange(e, "label", index)} />
+                    <div className='flex justify-between items-center mt-2'>
+                        <Label>Field {index + 1}</Label>
+                        {(field.name === "name" || field.name === "email") ? "" :
+                            <input type="checkbox" checked={fields[index].label !== null} onChange={(e) => clearFields(e, index)} className='w-6 h-6' />}
+                    </div>
+                    <Input value={fields[index].label ?? ""} onChange={(e) => handleChange(e.target.value, "label", index)} />
                     <Label>Placeholder {index + 1}</Label>
-                    <Input value={fields[index].placeholder} onChange={(e) => handleChange(e, "placeholder", index)} />
+                    <Input value={fields[index].placeholder ?? ""} onChange={(e) => handleChange(e.target.value, "placeholder", index)} />
+
 
                 </div>
             })}
