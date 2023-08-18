@@ -5,7 +5,6 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import axios from 'axios';
 import {
     DialogContent,
-    DialogDescription,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
@@ -56,6 +55,7 @@ const Gallery = ({ saveImage }) => {
         })
             .then(function (response) {
                 getImages()
+                console.log('response', response);
             })
             .catch(function (error) {
                 console.log(error);
