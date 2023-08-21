@@ -26,7 +26,7 @@ export default function SamplePortal() {
   const overlayClasses = [overlayClasses1, overlayClasses2, overlayClasses3]
   const imageClasses = [imageClasses1, imageClasses2, imageClasses3]
 
-  const generateFontStyle = (font) => (font !== undefined ? {
+  const generateFontStyle = (font: String) => (font !== undefined ? {
     fontFamily: font === 'sans' ? fonts.sans : fonts.serif
   } : "")
 
@@ -36,7 +36,7 @@ export default function SamplePortal() {
 
         <img
           className="absolute inset-0 z-10 hidden object-cover object-top w-full h-full sm:block overflow-visible"
-          src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg"
+          src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg" alt="hero"
         />
         <div
           className="absolute inset-0 z-10 hidden object-cover w-full h-full sm:block from-transparent to-black opacity-90 bg-gradient-to-b overflow-visible"
@@ -47,7 +47,7 @@ export default function SamplePortal() {
 
           <img
             className="absolute inset-0 block object-cover object-top w-full h-56 sm:hidden "
-            src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg"
+            src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg" alt="hero"
           />
           <div
             className="absolute inset-0 block object-cover w-full h-56 sm:hidden from-transparent to-black opacity-90 bg-gradient-to-b "
@@ -58,7 +58,7 @@ export default function SamplePortal() {
               className="absolute inset-0 z-20 w-full h-full sm:rounded-2xl from-white to-white opacity-90 bg-gradient-to-b rounded-2xl "
             />
             <div className="flex flex-col justify-center">
-              <img className="z-20 mx-auto max-h-32" src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/logo.png" />
+              <img className="z-20 mx-auto max-h-32" src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/logo.png" alt="logo" />
               <h2 className="z-20 mt-0 font-sans text-3xl font-bold text-black text-top " style={{ fontFamily: fonts.sans }}>Try our coffee</h2>
             </div>
           </div>
@@ -70,20 +70,21 @@ export default function SamplePortal() {
           <div className="w-full h-auto px-6 py-6 mx-auto bg-white sm:shadow-2xl sm:w-96 sm:rounded-2xl">
 
             <div>
-              <p className={successStyle} style={generateFontStyle(successClasses.font)}>
+              <p className={successStyle} style={generateFontStyle(successClasses.font) || undefined}>
                 {successText}
               </p>
             </div>
             <div className="flex flex-col p-2 mt-2 h-80">
               {notices.map((notice, index) =>
                 <div key={index} className="relative flex flex-col justify-center w-full mt-4 overflow-hidden rounded-lg shadow-2xl h-1/3">
-                  <p className={"z-30 px-4 " + (classesText[index])} style={generateFontStyle(notice.message.classes.font)}>
+                  <p className={"z-30 px-4 " + (classesText[index])} style={generateFontStyle(notice.message.classes.font) || undefined}>
 
                     {notice.message.text}
                   </p>
                   <img
                     className={"absolute z-10 object-cover w-full h-full " + imageClasses[index]}
                     src={"/uploads/images/slowpokes/" + notice.image.url}
+                    alt="notice"
                   // src={"http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/" + notice.image.url}
                   />
                   <div className={"absolute inset-0 z-20 w-full h-full " + overlayClasses[index]} />

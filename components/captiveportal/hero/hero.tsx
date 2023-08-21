@@ -25,7 +25,7 @@ const HeroTitle = () => {
     const heroDiv = useBoundStore((state) => state.heroDiv);
     const updateHeroDiv = useBoundStore((state) => state.updateHeroDiv);
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         updateHeroTitleText(e.target.value)
     }
 

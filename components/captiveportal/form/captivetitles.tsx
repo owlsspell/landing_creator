@@ -11,7 +11,7 @@ const CaptiveTitles = () => {
     const updateSigninText = useBoundStore((state) => state.updateSigninText)
     const updateSigninClasses = useBoundStore((state) => state.updateSigninClasses)
 
-    const [inputs, setInputs] = React.useState(signin)
+    const [inputs,] = React.useState(signin)
 
     return (
         <div className='border p-4 bg-gray-50'>

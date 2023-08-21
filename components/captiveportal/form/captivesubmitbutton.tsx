@@ -12,7 +12,7 @@ const CaptiveSubmitButton = () => {
     const submitClasses = useBoundStore((state) => state.submitClasses);
     const updateSubmitClasses = useBoundStore((state) => state.updateSubmitClasses);
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         updateSubmitContent(e.target.value)
     }
 

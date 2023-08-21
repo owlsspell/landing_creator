@@ -35,7 +35,7 @@ export default function SamplePortal() {
   const classesTitle2 = useMemo(() => getClassNames(signin[1].classes), [signin[1].classes])
   const classesTitle3 = useMemo(() => getClassNames(signin[2].classes), [signin[2].classes])
 
-  const generateFontStyle = (font) => (font !== undefined ? {
+  const generateFontStyle = (font: String) => (font !== undefined ? {
     fontFamily: font === 'sans' ? fonts.sans : fonts.serif
   } : "")
 
@@ -58,7 +58,7 @@ export default function SamplePortal() {
             <div className="flex flex-col justify-center">
               <img className="z-20 mx-auto max-h-32" src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/logo.png" />
               <h2 className={"z-20 " + heroTextClasses}
-                style={generateFontStyle(heroTitle.classes.font)}
+                style={generateFontStyle(heroTitle.classes.font) || undefined}
               >{heroTitle.text}
               </h2>
             </div>
@@ -132,12 +132,12 @@ export default function SamplePortal() {
 
 
 
-const TitleText = ({ text, classes, font }) => {
+const TitleText = ({ text, classes, font }: any) => {
   const fonts = useBoundStore((state) => state.fonts)
   return <p className={classes} key={text}
     style={(font !== undefined ? {
       fontFamily: font === 'sans' ? fonts.sans : fonts.serif
-    } : "")}
+    } : "") || undefined}
   >
     {text}
   </p>

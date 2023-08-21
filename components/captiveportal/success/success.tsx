@@ -8,12 +8,12 @@ import Comboboxes from '@/components/comboboxes';
 
 const CaptiveSuccessPage = () => {
 
-    const successText = useBoundStore((state) => state.successText);
+    const successText = useBoundStore((state) => state.successText) as string;
     const successClasses = useBoundStore((state) => state.successClasses);
     const updateSuccessText = useBoundStore((state) => state.updateSuccessText);
     const updateSuccessClasses = useBoundStore((state) => state.updateSuccessClasses);
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         updateSuccessText(e.target.value)
     }
     return (

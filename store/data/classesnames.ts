@@ -1,4 +1,4 @@
-export const classesNames = {
+export const classesNames: { [char: string]: string } = {
   font: "font-",
   size: "text-",
   color: "text-",

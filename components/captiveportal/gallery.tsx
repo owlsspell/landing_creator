@@ -13,8 +13,8 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
-
-const Gallery = ({ saveImage }) => {
+// eslint-disable-next-line no-unused-vars
+const Gallery = ({ saveImage }: { saveImage: (param: any) => void }) => {
     const [images, setImages] = useState([])
     const [activeImage, setActiveImage] = useState("")
     const [file, setFile] = useState<File>();
@@ -41,8 +41,9 @@ const Gallery = ({ saveImage }) => {
 
         }
     };
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
+        if (!file) return
         setLoading(true)
         const formData = new FormData();
         formData.append("name", file.name);

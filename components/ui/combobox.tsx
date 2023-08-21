@@ -16,7 +16,14 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 
-export function Combobox({ stateValue, setStateValue, values }) {
+interface ComboboxType {
+    stateValue: string | undefined
+    // eslint-disable-next-line no-unused-vars
+    setStateValue: (params: any) => void
+    values?: string[]
+}
+
+export function Combobox({ stateValue, setStateValue, values }: ComboboxType) {
     const [open, setOpen] = React.useState(false)
     const [value, setValue] = React.useState(stateValue)
 
@@ -36,13 +43,13 @@ export function Combobox({ stateValue, setStateValue, values }) {
             <PopoverContent className="min-w-[200px] w-full p-0">
                 <Command>
                     <CommandGroup>
-                        {values.map((val) => (
+                        {values && values.map((val) => (
                             <CommandItem
                                 key={val}
                                 onSelect={(currentValue) => {
-                                    currentValue = values.find(v => v.toUpperCase() === currentValue.toUpperCase())
-                                    setValue((currentValue === value || currentValue === 'default') ? "" : currentValue)
-                                    setStateValue(currentValue === 'default' ? "" : currentValue)
+                                    const customCurrentValue = values.find(v => v.toUpperCase() === currentValue.toUpperCase())
+                                    setValue((customCurrentValue === value || customCurrentValue === 'default') ? "" : customCurrentValue)
+                                    setStateValue((customCurrentValue === 'default') ? "" : customCurrentValue)
                                     setOpen(false)
                                 }}
                             >

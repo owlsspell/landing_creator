@@ -5,7 +5,8 @@ import ComboboxContainer, { ComboboxContainerForColors } from "./comboboxcontain
 type ComboboxTypes = {
     title: string,
     classes: any
-    updateClasses: (val, key, index) => void
+    // eslint-disable-next-line no-unused-vars
+    updateClasses: (content: string, field: string, index: number) => void
     index?: number
 }
 
@@ -14,9 +15,9 @@ const Comboboxes = ({ title, classes, updateClasses, index }: ComboboxTypes) =>
         <div className='grid grid-cols-2 gap-2'>
             {Object.keys(classes).map((key) =>
                 exclusionList.includes(key) ?
-                    <ComboboxContainerForColors key={key} title={key} stateValue={classes[key]} setStateValue={(val) => updateClasses(val, key, index)} values={allVariables[key]} />
+                    <ComboboxContainerForColors key={key} title={key} stateValue={classes[key]} setStateValue={(val) => updateClasses(val, key, index as number)} values={allVariables[key]} />
                     :
-                    <ComboboxContainer key={key} title={key} stateValue={classes[key]} setStateValue={(val) => updateClasses(val, key, index)} values={allVariables[key]} />
+                    <ComboboxContainer key={key} title={key} stateValue={classes[key]} setStateValue={(val) => updateClasses(val, key, index as number)} values={allVariables[key]} />
             )}
         </div>
     </AccordionSample>

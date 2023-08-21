@@ -20,10 +20,10 @@ const CaptiveNoticePage = () => {
     const updateNoticeLink = useBoundStore((state) => state.updateNoticeLink);
     const updateNoticeImage = useBoundStore((state) => state.updateNoticeImage);
 
-    const [inputs, setInputs] = useState(notices)
+    const [inputs,] = useState(notices)
 
 
-    const handleChange = (e, index) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
         updateNoticesMessageText(e.target.value, index)
     }
 

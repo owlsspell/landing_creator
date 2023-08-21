@@ -1,7 +1,14 @@
 import defaultValues from "@/store/defaultslowpokes.json"
 import { produce } from "immer";
+import { BackgroundSlice, FontsSlice, FormsSlice, HeroSlice, NoticesSlice, SignInSlice, SuccessPageSlice } from '../types'
+import { StateCreator } from "zustand";
 
-export const createHeroSlice = (set) => ({
+export const createHeroSlice: StateCreator<
+    FormsSlice & SignInSlice & BackgroundSlice & HeroSlice & FontsSlice & SuccessPageSlice & NoticesSlice,
+    [["zustand/devtools", never]],
+    [],
+    HeroSlice
+> = (set) => ({
     heroTitle: defaultValues.hero.title,
     updateHeroTitleText: (content) => set(produce((state) => { state.heroTitle.text = content })),
     updateHeroTitleClasses: (content, field) => set(produce((state) => { state.heroTitle.classes[field] = content })),

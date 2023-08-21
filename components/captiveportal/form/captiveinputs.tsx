@@ -9,13 +9,13 @@ const CaptiveInputs = () => {
 
     const fields = useBoundStore((state) => state.fields);
     const updateFields = useBoundStore((state) => state.updateFields);
-    const [inputs, setInputs] = React.useState(fields)
+    const [inputs,] = React.useState(fields)
 
-    const handleChange = (val, field, index) => {
-        updateFields(field, index, val)
+    const handleChange = (val: string | null, field: string, index: number) => {
+        updateFields(field, index, val as string)
     }
 
-    const clearFields = (e, index) => {
+    const clearFields = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
         if (e.target.checked) {
             handleChange("", "label", index)
         } else {

@@ -1,6 +1,5 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import path from "path";
-import { writeFile } from "fs/promises";
 import { promises as fs } from "fs";
 import AWS from "aws-sdk";
 
@@ -29,7 +28,7 @@ import AWS from "aws-sdk";
 //   }
 // };
 
-export const POST = async (req, res) => {
+export const POST = async (req: NextRequest) => {
   const digitalOceanSpaces = process.env.NEXT_PUBLIC_ENDPOINT;
   const bucketName = process.env.NEXT_PUBLIC_BUCKETNAME;
 
@@ -46,13 +45,16 @@ export const POST = async (req, res) => {
 
   const dir = formData.get("dir");
 
-  const file = formData.get("file");
-  const name = formData.get("name");
-  const fileName = folder + dir + "/" + Date.now() + name.replaceAll(" ", "_");
+  const file = formData.get("file") as File;
+  const name = formData.get("name") as String;
+
+  const fileName = name
+    ? folder + dir + "/" + Date.now() + name.replaceAll(" ", "_")
+    : name;
 
   const buffer = Buffer.from(await file.arrayBuffer());
 
-  const params = {
+  const params: any = {
     Body: buffer,
     Bucket: bucketName,
     Key: fileName,
@@ -61,7 +63,7 @@ export const POST = async (req, res) => {
   s3.putObject(params)
     .on("build", (request) => {
       request.httpRequest.headers.Host = `${digitalOceanSpaces}`;
-      request.httpRequest.headers["Content-Length"] = file.size;
+      request.httpRequest.headers["Content-Length"] = file.size.toString();
       request.httpRequest.headers["Content-Type"] = file.type;
       request.httpRequest.headers["x-amz-acl"] = "public-read";
     })
@@ -69,14 +71,15 @@ export const POST = async (req, res) => {
       if (err) {
         console.log("errorCallback: " + err);
         return NextResponse.json({ error: err });
+      } else {
+        const imageUrl = `${process.env.NEXT_PUBLIC_ENDPOINT}/${fileName}`;
+        console.log(imageUrl, fileName);
+        return NextResponse.json({ imageUrl, name: fileName });
       }
     });
-  const imageUrl = `${process.env.NEXT_PUBLIC_ENDPOINT}/${fileName}`;
-  console.log(imageUrl, fileName);
-  return NextResponse.json({ imageUrl, name: fileName });
 };
 
-export const GET = async (req, res) => {
+export const GET = async () => {
   const imageDirectory = path.join(
     process.cwd(),
     "/public/uploads/images/slowpokes"
