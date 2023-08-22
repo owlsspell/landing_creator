@@ -1,10 +1,10 @@
 import defaultValues from "@/store/defaultslowpokes.json"
 import { produce } from "immer";
-import { BackgroundSlice, FontsSlice, FormsSlice, HeroSlice, NoticesSlice, SignInSlice, SuccessPageSlice } from '../types'
+import { BackgroundSlice, FontsSlice, FormsSlice, HeroSlice, NoticesSlice, SignInSlice, SuccessPageSlice, UpdateStateSlice } from '../types'
 import { StateCreator } from "zustand";
 
 export const createNoticesSlice: StateCreator<
-    FormsSlice & SignInSlice & BackgroundSlice & HeroSlice & FontsSlice & SuccessPageSlice & NoticesSlice,
+    FormsSlice & SignInSlice & BackgroundSlice & HeroSlice & FontsSlice & SuccessPageSlice & NoticesSlice & UpdateStateSlice,
     [["zustand/devtools", never]],
     [],
     NoticesSlice

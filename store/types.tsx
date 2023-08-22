@@ -1,14 +1,22 @@
 /* eslint-disable no-unused-vars */
 
-export interface PortalState {
-
-    fonts: Fonts;
-    hero: Hero;
-    background: Background;
-    headings: Headings;
-    notices: Notice[];
-    form: Form;
-
+export interface UpdateStateSlice {
+    updateState: (newState: PortalInputs) => void;
+}
+export interface Statetype {
+    backgroundOverlay: OverlayClasses
+    fonts: Fonts,
+    submitText: string;
+    submitClasses: SubmitClasses;
+    fields: Fields[];
+    signin: Title[];
+    heroTitle: Title;
+    heroImage: HeroImage;
+    heroOverlay: OverlayClasses;
+    heroDiv: DivClasses;
+    notices: Notice[]
+    successText: String;
+    successClasses: TitleClasses;
 }
 export interface PortalInputs {
     fonts: Fonts;
@@ -57,12 +65,8 @@ export interface FormsSlice {
 
 export interface Form {
     submit: Submit;
-    fields: Fields;
+    fields: { standard: Fields[] };
 }
-
-// export interface Fields {
-//     standard: Standard[];
-// }
 
 export interface Fields {
     name: string;
