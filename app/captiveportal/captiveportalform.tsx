@@ -97,7 +97,7 @@ const CaptivePortalForm = () => {
       </AccordionSample>
 
       <button
-        className=" px-6 py-3 mt-4 font-bold text-green-100 bg-green-400 border rounded hover:bg-green-600 text-md"
+        className="px-6 py-3 mt-4 font-bold text-green-100 bg-green-400 border rounded hover:bg-green-600 text-md disabled:bg-slate-400"
         type="submit"
         disabled={loading}
       >
