@@ -14,13 +14,14 @@ export default function SamplePortal() {
   const heroOverlay = useBoundStore((state) => state.heroOverlay);
   const heroDiv = useBoundStore((state) => state.heroDiv);
 
+  const overlay = useBoundStore((state) => state.backgroundOverlay);
+  const backgroundClasses = useMemo(() => getClassNames(overlay), [overlay])
+
   const heroTextClasses = useMemo(() => getClassNames(heroTitle.classes), [heroTitle.classes])
   const heroImageClasses = useMemo(() => getClassNames(heroImage.classes), [heroImage.classes])
   const heroOverlayClasses = useMemo(() => getClassNames(heroOverlay), [heroOverlay])
   const heroDivClasses = useMemo(() => getClassNames(heroDiv), [heroDiv])
 
-  const overlay = useBoundStore((state) => state.backgroundOverlay);
-  const backgroundClasses = useMemo(() => getClassNames(overlay), [overlay])
 
   const notices = useBoundStore((state) => state.notices);
   const classesText1 = useMemo(() => getClassNames(notices[0].message.classes), [notices[0].message.classes])
@@ -54,13 +55,27 @@ export default function SamplePortal() {
 
         <div className="relative flex flex-col justify-center h-56 overflow-hidden border sm:flex-1 sm:h-auto">
 
+
+
           <img className={"absolute inset-0 block object-cover w-full h-56 sm:hidden " + heroImageClasses} src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg" alt="" />
-          <div className={"absolute inset-0 block object-cover w-full h-56 sm:hidden " + backgroundClasses}>
-          </div>
+          <div className={"absolute inset-0 block object-cover w-full h-56 sm:hidden " + backgroundClasses}
+          />
 
           <div className={"relative w-full h-auto p-8 mx-auto " + heroDivClasses}>
             <div className={"absolute inset-0 z-20 w-full h-full " + heroOverlayClasses}>
             </div>
+            {/* <img
+            className="absolute inset-0 block object-cover object-top w-full h-56 sm:hidden "
+            src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg" alt="hero"
+          />
+          <div
+            className="absolute inset-0 block object-cover w-full h-56 sm:hidden from-transparent to-black opacity-90 bg-gradient-to-b "
+          />
+
+          <div className="relative w-full h-auto p-8 mx-auto md:w-96 ">
+            <div
+              className="absolute inset-0 z-20 w-full h-full sm:rounded-2xl from-white to-white opacity-90 bg-gradient-to-b rounded-2xl "
+            /> */}
             <div className="flex flex-col justify-center">
               <img className="z-20 mx-auto max-h-32" src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/logo.png" />
               <h2 className={"z-20 " + heroTextClasses}
