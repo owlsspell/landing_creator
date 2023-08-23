@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { useBoundStore } from '@/store/state';
-import Comboboxes from '@/components/comboboxes';
+import Comboboxes, { ComboboxesTypography } from '@/components/comboboxes';
 import {
     Dialog,
     DialogTrigger,
@@ -44,7 +44,10 @@ const CaptiveNoticePage = () => {
                             </DialogTrigger>
                             <Gallery saveImage={(val) => updateNoticeImage(val, index)} />
                         </Dialog >
+
+                        <ComboboxesTypography value={notices[index].message.text} updateValue={(val) => updateNoticesMessageText(val, index)} classes={field.message.classes} updateClasses={updateNoticeMessageClasses} index={index} />
                         <Comboboxes title="Typography" classes={field.message.classes} updateClasses={updateNoticeMessageClasses} index={index} />
+
                         <Comboboxes title="Overlay" classes={field.overlay.classes} updateClasses={updateNoticeOverlayClasses} index={index} />
                     </div>
                 })}

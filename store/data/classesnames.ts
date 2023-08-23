@@ -19,4 +19,5 @@ export const classesNames: { [char: string]: string } = {
   hover: "hover:bg-",
   text: "text-",
   tracking: "tracking-",
+  italic: "",
 };

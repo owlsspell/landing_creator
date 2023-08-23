@@ -4,7 +4,7 @@ import React from 'react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { useBoundStore } from '@/store/state';
-import Comboboxes from '@/components/comboboxes';
+import Comboboxes, { ComboboxesTypography } from '@/components/comboboxes';
 
 const CaptiveTitles = () => {
     const signin = useBoundStore((state) => state.signin)
@@ -24,6 +24,7 @@ const CaptiveTitles = () => {
                     </div>
                     <Input value={signin[index].text} onChange={(e) => updateSigninText(e.target.value, index)} />
 
+                    <ComboboxesTypography value={signin[index].text} updateValue={(val) => updateSigninText(val, index)} classes={signin[index].classes} updateClasses={updateSigninClasses} index={index} />
                     <Comboboxes title="Typography" classes={field.classes} updateClasses={updateSigninClasses} index={index} />
 
                 </div>

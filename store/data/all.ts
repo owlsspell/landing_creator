@@ -70,3 +70,12 @@ export const exclusionList = [
   "hover",
   "text",
 ];
+
+export const exclusionListForTypography = [
+  "size",
+  "align",
+  "color",
+  "weight",
+  "italic",
+  "uppercase",
+];

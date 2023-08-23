@@ -4,7 +4,7 @@ import React from 'react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { useBoundStore } from '@/store/state';
-import Comboboxes from '@/components/comboboxes';
+import Comboboxes, { ComboboxesTypography } from '@/components/comboboxes';
 
 const CaptiveSuccessPage = () => {
 
@@ -18,9 +18,10 @@ const CaptiveSuccessPage = () => {
     }
     return (
         <div className='border p-4 bg-gray-50'>
-            <div className='my-2' >
+            <div className='my-2'>
                 <Label><span className='capitalize'>Success text</span></Label>
                 <Input value={successText} onChange={handleChange} />
+                <ComboboxesTypography value={successText} updateValue={(val) => updateSuccessText(val)} classes={successClasses} updateClasses={updateSuccessClasses} />
                 <Comboboxes title="Typography" classes={successClasses} updateClasses={updateSuccessClasses} />
             </div>
         </div>
