@@ -14,7 +14,7 @@ import { useAuth } from '@clerk/nextjs';
 
 const CaptivePortalForm = () => {
   const store = useBoundStore((state) => state)
-  const { userId } = useAuth();
+  const { orgId } = useAuth();
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -52,7 +52,7 @@ const CaptivePortalForm = () => {
       }
     }
 
-    axios.post('/api/database', { userId, json })
+    axios.post('/api/database', { orgId, json })
       .then(function (response) {
         console.log('response', response);
       })

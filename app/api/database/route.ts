@@ -2,8 +2,8 @@ import { usersJsonDB } from "@/config/db";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
-  const userId = req.nextUrl.searchParams.get("userId");
-  const result = await usersJsonDB.findOne({ userId });
+  const orgId = req.nextUrl.searchParams.get("orgId");
+  const result = await usersJsonDB.findOne({ orgId });
   if (result) {
     return NextResponse.json(result.json);
   } else {
@@ -12,10 +12,10 @@ export const GET = async (req: NextRequest) => {
 };
 
 export const POST = async (req: NextRequest) => {
-  const { userId, json } = await req.json();
+  const { orgId, json } = await req.json();
   const result = await usersJsonDB.replaceOne(
-    { userId },
-    { userId, json },
+    { orgId },
+    { orgId, json },
     { upsert: true }
   );
 
