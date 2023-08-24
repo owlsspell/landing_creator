@@ -57,9 +57,9 @@ export const ComboboxesTypography = ({ value, updateValue, classes, updateClasse
             icon={<TextPosition />}
         />
         <ColorPickerTypography value={classes.color ? classes.color : 'black'} setStateValue={(val) => updateClasses(val, 'color', index as number)} />
-        <div className={"flex flex-row justify-start px-1 py-1 border-1 rounded-md bg-white min-w-fit gap-x-2 cursor-pointer" + (classes.weight === 'bold' ? ' bg-gray-200' : "")} onClick={handleWeight}>  <FontBold /></div>
-        <div className={"flex flex-row justify-start px-1 py-1 border-1 rounded-md bg-white min-w-fit gap-x-2 cursor-pointer" + (classes.italic === 'italic' ? ' bg-gray-200' : "")} onClick={handleItalic}>  <FontItalic /></div>
-        <div className={"flex flex-row justify-start px-1 py-1 border-1 rounded-md bg-white min-w-fit gap-x-2 cursor-pointer" + (isUppercase ? ' bg-gray-200' : "")} onClick={handleUppercase}>  <TextUppercase /></div>
+        <div className={"flex flex-row justify-start px-1 py-1 border-1 rounded-md min-w-fit gap-x-2 cursor-pointer" + (classes.weight === 'bold' ? ' bg-gray-200' : " bg-white")} onClick={handleWeight}>  <FontBold /></div>
+        <div className={"flex flex-row justify-start px-1 py-1 border-1 rounded-md min-w-fit gap-x-2 cursor-pointer" + (classes.italic === 'italic' ? ' bg-gray-200' : " bg-white")} onClick={handleItalic}>  <FontItalic /></div>
+        <div className={"flex flex-row justify-start px-1 py-1 border-1 rounded-md min-w-fit gap-x-2 cursor-pointer" + (isUppercase ? ' bg-gray-200' : " bg-white")} onClick={handleUppercase}>  <TextUppercase /></div>
     </div>
 
 }

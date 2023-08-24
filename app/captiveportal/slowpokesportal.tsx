@@ -1,13 +1,9 @@
+import HeroSection from "@/components/captiveportal/herosection";
 import { getClassNames } from "@/handler/handler";
 import { useBoundStore } from "@/store/state";
 import { useEffect, useMemo, useState } from 'react';
 
 export default function SamplePortal() {
-  const heroTitle = useBoundStore((state) => state.heroTitle);
-  const heroImage = useBoundStore((state) => state.heroImage);
-  const heroOverlay = useBoundStore((state) => state.heroOverlay);
-  const heroDiv = useBoundStore((state) => state.heroDiv);
-  const overlay = useBoundStore((state) => state.backgroundOverlay);
   const submitText = useBoundStore((state) => state.submitText);
   const submitStyle = useBoundStore((state) => state.submitClasses);
   const fields = useBoundStore((state) => state.fields);
@@ -21,51 +17,15 @@ export default function SamplePortal() {
 
   const submitClasses = useMemo(() => getClassNames(submitStyle), [submitStyle])
 
-  const backgroundClasses = useMemo(() => getClassNames(overlay), [overlay])
-
-  const heroTextClasses = useMemo(() => getClassNames(heroTitle.classes), [heroTitle.classes])
-
-  const heroImageClasses = useMemo(() => getClassNames(heroImage.classes), [heroImage.classes])
-
-  const heroOverlayClasses = useMemo(() => getClassNames(heroOverlay), [heroOverlay])
-
-  const heroDivClasses = useMemo(() => getClassNames(heroDiv), [heroDiv])
-
   const classesTitle1 = useMemo(() => getClassNames(signin[0].classes), [signin[0].classes])
   const classesTitle2 = useMemo(() => getClassNames(signin[1].classes), [signin[1].classes])
   const classesTitle3 = useMemo(() => getClassNames(signin[2].classes), [signin[2].classes])
 
-  const generateFontStyle = (font: String) => (font !== undefined ? {
-    fontFamily: font === 'sans' ? fonts.sans : fonts.serif
-  } : "")
 
   return (
     <div>
       <div className="relative flex flex-col min-h-screen bg-gray-400 sm:flex-row">
-        <img className={"absolute inset-0 z-10 hidden object-cover object-top w-full h-full sm:block overflow-visible " + heroImageClasses} src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg" alt="" />
-        <div className={"absolute inset-0 z-10 hidden object-cover w-full h-full sm:block overflow-visible " + backgroundClasses}>
-        </div>
-
-        <div className="relative flex flex-col justify-center h-56 overflow-hidden border sm:flex-1 sm:h-auto">
-
-          <img className={"absolute inset-0 block object-cover w-full h-56 sm:hidden " + heroImageClasses} src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg" alt="" />
-          <div className={"absolute inset-0 block object-cover w-full h-56 sm:hidden " + backgroundClasses}>
-          </div>
-
-          <div className={"relative w-full h-auto p-8 mx-auto " + heroDivClasses}>
-            <div className={"absolute inset-0 z-20 w-full h-full " + heroOverlayClasses}>
-            </div>
-            <div className="flex flex-col justify-center">
-              <img className="z-20 mx-auto max-h-32" src="http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/logo.png" />
-              <h2 className={"z-20 " + heroTextClasses}
-                style={generateFontStyle(heroTitle.classes.font) || undefined}
-              >{heroTitle.text}
-              </h2>
-            </div>
-          </div>
-        </div>
-
-
+        <HeroSection />
         <div
           className="z-20 flex flex-col justify-center pb-0 my-0 mb-0 bg-transparent sm:flex-1 sm:pt-2 sm:px-2 lg:flex-none lg:px-20 xl:px-24">
           <div className="w-full h-auto px-6 py-6 mx-auto bg-white sm:shadow-2xl sm:w-96 sm:rounded-2xl">
