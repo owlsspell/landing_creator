@@ -23,8 +23,8 @@ const Gallery = ({ saveImage }: { saveImage: (param: any) => void }) => {
 
     const [loading, setLoading] = useState(false)
 
-    function getImages() {
-        axios.get('/api/images', { params: { orgId } })
+    async function getImages() {
+        return await axios.get('/api/images', { params: { orgId } })
             .then(function (response) {
                 setImages(response.data)
             })
@@ -56,9 +56,10 @@ const Gallery = ({ saveImage }: { saveImage: (param: any) => void }) => {
                 "Content-type": "multipart/form-data"
             }
         })
-            .then(function (response) {
-                getImages()
-                console.log('response', response);
+            .then(async function (response) {
+                setLoading(true)
+                await getImages()
+                setLoading(false)
             })
             .catch(function (error) {
                 console.log(error);
@@ -77,9 +78,9 @@ const Gallery = ({ saveImage }: { saveImage: (param: any) => void }) => {
                     <Input type="file" name="someExpressFiles" onChange={handleFileChange} />
                     <Button type="submit" onClick={handleSubmit} disabled={loading}>Submit</Button>
                 </div>
-                <div className='flex py-2'>
+                <div className='flex py-2 flex-wrap	'>
                     {images.length === 0 ? "Loading..." : images.map((image: any) =>
-                        <div className='w-20 h-20 relative mr-2' key={image.ETag}>
+                        <div className='w-20 h-20 relative m-1' key={image.Key}>
                             <Image src={process.env.NEXT_PUBLIC_ENDPOINT + "/" + image.Key} alt="" fill
                                 className={`object-cover ${(activeImage === image.Key) ? 'scale-110' : ""}`}
                                 onClick={() => setActiveImage(image.Key)}
