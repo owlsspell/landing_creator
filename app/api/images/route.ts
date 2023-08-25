@@ -1,32 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import path from "path";
-import { promises as fs } from "fs";
 import AWS from "aws-sdk";
-
-// export const POST = async (req, res) => {
-//   const formData = await req.formData();
-//   const file = formData.get("file");
-//   const dir = formData.get("dir");
-
-//   if (!file) {
-//     return NextResponse.json({ error: "No files received." }, { status: 400 });
-//   }
-
-//   const buffer = Buffer.from(await file.arrayBuffer());
-
-//   const filename = Date.now() + file.name.replaceAll(" ", "_");
-//   console.log(filename);
-//   try {
-//     await writeFile(
-//       path.join(process.cwd(), `public/uploads/images/${dir}/` + filename),
-//       buffer
-//     );
-//     return NextResponse.json({ Message: "Success", status: 201 });
-//   } catch (error) {
-//     console.log("Error occured ", error);
-//     return NextResponse.json({ Message: "Failed", status: 500 });
-//   }
-// };
 
 export const POST = async (req: NextRequest) => {
   const digitalOceanSpaces = process.env.NEXT_PUBLIC_ENDPOINT;
@@ -40,16 +13,15 @@ export const POST = async (req: NextRequest) => {
     secretAccessKey: process.env.NEXT_PUBLIC_SECRET_ACCESS_KEY,
   });
 
-  const folder = "public-ggg-merchant-info/";
+  const folder = "public/images/captiveportal/merchants/";
   const formData = await req.formData();
 
-  const dir = formData.get("dir");
-
+  const orgId = formData.get("orgId");
   const file = formData.get("file") as File;
   const name = formData.get("name") as String;
 
   const fileName = name
-    ? folder + dir + "/" + Date.now() + name.replaceAll(" ", "_")
+    ? folder + orgId + "/" + Date.now() + name.replaceAll(" ", "_")
     : name;
 
   const buffer = Buffer.from(await file.arrayBuffer());
@@ -72,18 +44,44 @@ export const POST = async (req: NextRequest) => {
         console.log("errorCallback: " + err);
         return NextResponse.json({ error: err });
       } else {
-        const imageUrl = `${process.env.NEXT_PUBLIC_ENDPOINT}/${fileName}`;
-        console.log(imageUrl, fileName);
-        return NextResponse.json({ imageUrl, name: fileName });
+        return NextResponse.next();
       }
     });
+  const imageUrl = `${process.env.NEXT_PUBLIC_ENDPOINT}/${fileName}`;
+
+  return NextResponse.json({ imageUrl, name: fileName });
 };
 
-export const GET = async () => {
-  const imageDirectory = path.join(
-    process.cwd(),
-    "/public/uploads/images/slowpokes"
+export const GET = async (req: NextRequest) => {
+  const orgId = req.nextUrl.searchParams.get("orgId");
+
+  const bucket = process.env.NEXT_PUBLIC_BUCKETNAME;
+  const spacesEndpoint = new AWS.Endpoint("nyc3.digitaloceanspaces.com");
+
+  const s3 = new AWS.S3({
+    endpoint: spacesEndpoint,
+    accessKeyId: process.env.NEXT_PUBLIC_ACCESS_KEY_ID,
+    secretAccessKey: process.env.NEXT_PUBLIC_SECRET_ACCESS_KEY,
+  });
+
+  const path_to_folder = "public/images/captiveportal/merchants/" + orgId + "/";
+
+  const params = {
+    Bucket: bucket as string,
+    Prefix: path_to_folder,
+  };
+  let result;
+  await new Promise((response) =>
+    s3.listObjects(params, async function (err, data) {
+      if (err) {
+        console.log("Could not load objects from S3", err);
+        response({ Message: "Failed", status: 500 });
+        return NextResponse.json({ Message: "Failed", status: 500 });
+      } else {
+        result = data.Contents;
+      }
+      response(data.Contents);
+    })
   );
-  const imageFileNames = await fs.readdir(imageDirectory);
-  return NextResponse.json(imageFileNames);
+  return NextResponse.json(result);
 };

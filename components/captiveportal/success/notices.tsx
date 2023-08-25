@@ -26,6 +26,10 @@ const CaptiveNoticePage = () => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
         updateNoticesMessageText(e.target.value, index)
     }
+    const saveImage = (url: string, index: number) => {
+        updateNoticeImage(process.env.NEXT_PUBLIC_ENDPOINT + "/" + url, index)
+    }
+
 
     return (
         <div className='border p-4 bg-gray-50'>
@@ -42,7 +46,7 @@ const CaptiveNoticePage = () => {
                                     Open gallery
                                 </div>
                             </DialogTrigger>
-                            <Gallery saveImage={(val) => updateNoticeImage(val, index)} />
+                            <Gallery saveImage={(url) => saveImage(url, index)} />
                         </Dialog >
 
                         <ComboboxesTypography value={notices[index].message.text} updateValue={(val) => updateNoticesMessageText(val, index)} classes={field.message.classes} updateClasses={updateNoticeMessageClasses} index={index} />

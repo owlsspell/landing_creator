@@ -56,7 +56,7 @@ export default function SamplePortal() {
                   </p>
                   <img
                     className={"absolute z-10 object-cover w-full h-full " + imageClasses[index]}
-                    src={"/uploads/images/slowpokes/" + notice.image.url}
+                    src={notice.image.url}
                     alt="notice"
                   // src={"http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/" + notice.image.url}
                   />

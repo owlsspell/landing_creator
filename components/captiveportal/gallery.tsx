@@ -12,17 +12,19 @@ import {
 import Image from 'next/image'
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useAuth } from '@clerk/nextjs';
 
 // eslint-disable-next-line no-unused-vars
 const Gallery = ({ saveImage }: { saveImage: (param: any) => void }) => {
     const [images, setImages] = useState([])
     const [activeImage, setActiveImage] = useState("")
     const [file, setFile] = useState<File>();
+    const { orgId } = useAuth();
 
     const [loading, setLoading] = useState(false)
 
     function getImages() {
-        axios.get('/api/images')
+        axios.get('/api/images', { params: { orgId } })
             .then(function (response) {
                 setImages(response.data)
             })
@@ -43,12 +45,12 @@ const Gallery = ({ saveImage }: { saveImage: (param: any) => void }) => {
     };
     const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        if (!file) return
+        if (!file || !orgId) return
         setLoading(true)
         const formData = new FormData();
         formData.append("name", file.name);
         formData.append('file', file)
-        formData.append('dir', "slowpokes")
+        formData.append('orgId', orgId)
         axios.post('/api/images', formData, {
             headers: {
                 "Content-type": "multipart/form-data"
@@ -76,11 +78,11 @@ const Gallery = ({ saveImage }: { saveImage: (param: any) => void }) => {
                     <Button type="submit" onClick={handleSubmit} disabled={loading}>Submit</Button>
                 </div>
                 <div className='flex py-2'>
-                    {images && images.map(image =>
-                        <div className='w-20 h-20 relative mr-2' key={image}>
-                            <Image src={`/uploads/images/slowpokes/${image}`} alt="" fill
-                                className={`object-cover ${activeImage === image ? 'scale-110' : ""}`}
-                                onClick={() => setActiveImage(image)}
+                    {images.length === 0 ? "Loading..." : images.map((image: any) =>
+                        <div className='w-20 h-20 relative mr-2' key={image.ETag}>
+                            <Image src={process.env.NEXT_PUBLIC_ENDPOINT + "/" + image.Key} alt="" fill
+                                className={`object-cover ${(activeImage === image.Key) ? 'scale-110' : ""}`}
+                                onClick={() => setActiveImage(image.Key)}
                             />
                         </div>)}
                 </div>
