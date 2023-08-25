@@ -32,24 +32,36 @@ export const POST = async (req: NextRequest) => {
     Key: fileName,
   };
 
-  s3.putObject(params)
-    .on("build", (request) => {
-      request.httpRequest.headers.Host = `${digitalOceanSpaces}`;
-      request.httpRequest.headers["Content-Length"] = file.size.toString();
-      request.httpRequest.headers["Content-Type"] = file.type;
-      request.httpRequest.headers["x-amz-acl"] = "public-read";
-    })
-    .send((err) => {
-      if (err) {
-        console.log("errorCallback: " + err);
-        return NextResponse.json({ error: err });
-      } else {
-        return NextResponse.next();
-      }
+  try {
+    s3.putObject(params)
+      .on("build", (request) => {
+        request.httpRequest.headers.Host = `${digitalOceanSpaces}`;
+        request.httpRequest.headers["Content-Length"] = file.size.toString();
+        request.httpRequest.headers["Content-Type"] = file.type;
+        request.httpRequest.headers["x-amz-acl"] = "public-read";
+      })
+      .send((err) => {
+        if (err) {
+          console.log("errorCallback: " + err);
+          return NextResponse.json({ error: err });
+        } else {
+          return NextResponse.next();
+        }
+      });
+  } catch (err) {
+    return NextResponse.json({
+      message: "Failed to load image",
+      status: 500,
     });
+  }
+
   const imageUrl = `${process.env.NEXT_PUBLIC_ENDPOINT}/${fileName}`;
 
-  return NextResponse.json({ imageUrl, name: fileName });
+  return NextResponse.json({
+    imageUrl,
+    name: fileName,
+    message: "Uploaded successfully",
+  });
 };
 
 export const GET = async (req: NextRequest) => {

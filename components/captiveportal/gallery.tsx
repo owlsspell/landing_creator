@@ -15,27 +15,13 @@ import { Input } from '@/components/ui/input';
 import { useAuth } from '@clerk/nextjs';
 
 // eslint-disable-next-line no-unused-vars
-const Gallery = ({ saveImage }: { saveImage: (param: any) => void }) => {
-    const [images, setImages] = useState([])
+const Gallery = ({ saveImage, images, getImages }: { saveImage: (param: any) => void, images: any, getImages: () => void }) => {
     const [activeImage, setActiveImage] = useState("")
+    const [message, setMessage] = useState("")
     const [file, setFile] = useState<File>();
     const { orgId } = useAuth();
 
     const [loading, setLoading] = useState(false)
-
-    async function getImages() {
-        return await axios.get('/api/images', { params: { orgId } })
-            .then(function (response) {
-                setImages(response.data)
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-
-    }
-    useEffect(() => {
-        getImages()
-    }, [])
 
     const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
@@ -43,6 +29,7 @@ const Gallery = ({ saveImage }: { saveImage: (param: any) => void }) => {
 
         }
     };
+
     const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         if (!file || !orgId) return
@@ -57,9 +44,13 @@ const Gallery = ({ saveImage }: { saveImage: (param: any) => void }) => {
             }
         })
             .then(async function (response) {
+                setMessage(response.data.message)
                 setLoading(true)
-                await getImages()
+                setTimeout(() => {
+                    getImages()
+                }, 1000)
                 setLoading(false)
+                console.log(response.data);
             })
             .catch(function (error) {
                 console.log(error);
@@ -69,6 +60,12 @@ const Gallery = ({ saveImage }: { saveImage: (param: any) => void }) => {
             })
     };
 
+    useEffect(() => {
+        if (message.length > 0) {
+            setTimeout(() => { setMessage("") }, 3000)
+        }
+    }, [message])
+
     return (
 
         <DialogContent>
@@ -76,8 +73,10 @@ const Gallery = ({ saveImage }: { saveImage: (param: any) => void }) => {
                 <DialogTitle>Images</DialogTitle>
                 <div className='flex py-1'>
                     <Input type="file" name="someExpressFiles" onChange={handleFileChange} />
-                    <Button type="submit" onClick={handleSubmit} disabled={loading}>Submit</Button>
+                    <Button type="submit" className="disabled:opacity-75" onClick={handleSubmit} disabled={loading}>Submit</Button>
+
                 </div>
+                {message}
                 <div className='flex py-2 flex-wrap	'>
                     {images.length === 0 ? "Loading..." : images.map((image: any) =>
                         <div className='w-20 h-20 relative m-1' key={image.Key}>

@@ -10,6 +10,8 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import Gallery from '../gallery';
+import axios from 'axios';
+import { useAuth } from '@clerk/nextjs';
 
 const CaptiveNoticePage = () => {
 
@@ -22,6 +24,7 @@ const CaptiveNoticePage = () => {
 
     const [inputs,] = useState(notices)
 
+    const { orgId } = useAuth();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
         updateNoticesMessageText(e.target.value, index)
@@ -30,7 +33,18 @@ const CaptiveNoticePage = () => {
         updateNoticeImage(process.env.NEXT_PUBLIC_ENDPOINT + "/" + url, index)
     }
 
+    const [images, setImages] = useState([])
 
+    async function getImages() {
+        return await axios.get('/api/images', { params: { orgId } })
+            .then(function (response) {
+                setImages(response.data)
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+
+    }
     return (
         <div className='border p-4 bg-gray-50'>
             <div className='my-2' >
@@ -41,12 +55,12 @@ const CaptiveNoticePage = () => {
                         <Label>Link for {index + 1} notice</Label>
                         <Input value={notices[index].link} onChange={(e) => updateNoticeLink(e.target.value, index)} />
                         <Dialog>
-                            <DialogTrigger data-state="open">
+                            <DialogTrigger data-state="open" onClick={getImages}>
                                 <div className='flex justify-start border py-2 px-4 text-center rounded-md bg-slate-200'>
                                     Open gallery
                                 </div>
                             </DialogTrigger>
-                            <Gallery saveImage={(url) => saveImage(url, index)} />
+                            <Gallery saveImage={(url) => saveImage(url, index)} images={images} getImages={getImages} />
                         </Dialog >
 
                         <ComboboxesTypography value={notices[index].message.text} updateValue={(val) => updateNoticesMessageText(val, index)} classes={field.message.classes} updateClasses={updateNoticeMessageClasses} index={index} />
