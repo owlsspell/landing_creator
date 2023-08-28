@@ -9,6 +9,8 @@ export const createBackgroundSlice: StateCreator<
     [],
     BackgroundSlice
 > = (set) => ({
+    logoImage: "",
+    updateLogoImage: (content) => set(produce((state) => { state.logoImage = content })),
     backgroundOverlay: defaultValues.background.overlay.classes,
     updateBackgroundOverlay: (content, field) => set(produce((state) => { state.backgroundOverlay[field] = content })),
 })

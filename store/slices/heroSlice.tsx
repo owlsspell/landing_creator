@@ -9,6 +9,9 @@ export const createHeroSlice: StateCreator<
     [],
     HeroSlice
 > = (set) => ({
+    heroImageUrl: "",
+    updateHeroImage: (content) => set(produce((state) => { state.heroImageUrl = content })),
+
     heroTitle: defaultValues.hero.title,
     updateHeroTitleText: (content) => set(produce((state) => { state.heroTitle.text = content })),
     updateHeroTitleClasses: (content, field) => set(produce((state) => { state.heroTitle.classes[field] = content })),

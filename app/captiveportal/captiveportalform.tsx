@@ -11,9 +11,14 @@ import CaptiveNoticePage from '@/components/captiveportal/success/notices';
 import { useBoundStore } from '@/store/state';
 import axios from 'axios';
 import { useAuth } from '@clerk/nextjs';
+import GalleryButton from '@/components/gallery/gallerybutton';
+import { Label } from '@/components/ui/label';
 
 const CaptivePortalForm = () => {
   const store = useBoundStore((state) => state)
+  const updateLogoImage = useBoundStore((state) => state.updateLogoImage);
+  const updateHeroImage = useBoundStore((state) => state.updateHeroImage);
+
   const { orgId } = useAuth();
   const [loading, setLoading] = useState(false)
 
@@ -66,6 +71,10 @@ const CaptivePortalForm = () => {
   return (
     <form className="flex flex-col text-left gap-y-4 w-96 overflow-auto px-1" onSubmit={handleSubmit}>
       <h1 className="text-2xl font-bold">Form Editor</h1>
+      <Label>Image: logo </Label>
+      <GalleryButton saveImage={(url) => updateLogoImage(url)} />
+      <Label>Image: background (transparent) </Label>
+      <GalleryButton saveImage={(url) => updateHeroImage(url)} />
       <AccordionSample title="Slowpokes Portal" textSize="text-xl text-left">
         <AccordionSample title="Fonts" textSize="text-lg">
           <CaptiveFont />

@@ -31,6 +31,8 @@ export interface Background {
     overlay: Overlay;
 }
 export interface BackgroundSlice {
+    logoImage: string
+    updateLogoImage: (content: string) => void;
     backgroundOverlay: OverlayClasses
     updateBackgroundOverlay: (content: string, field: string) => void;
 }
@@ -121,6 +123,8 @@ export interface SuccessPageSlice {
     updateSuccessClasses: (content: string, field: string) => void;
 }
 export interface HeroSlice {
+    heroImageUrl: string;
+    updateHeroImage: (content: string) => void;
     heroTitle: Title;
     updateHeroTitleText: (content: string) => void;
     updateHeroTitleClasses: (content: string, field: string) => void;
