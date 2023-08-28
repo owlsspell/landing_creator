@@ -14,14 +14,15 @@ export const POST = async (req: NextRequest) => {
   });
 
   const folder = "public/images/captiveportal/merchants/";
-  const formData = await req.formData();
 
+  const formData = await req.formData();
   const orgId = formData.get("orgId");
   const file = formData.get("file") as File;
   const name = formData.get("name") as String;
+  const dir = formData.get("dir") as String;
 
   const fileName = name
-    ? folder + orgId + "/" + Date.now() + name.replaceAll(" ", "_")
+    ? folder + orgId + "/" + dir + "/" + Date.now() + name.replaceAll(" ", "_")
     : name;
 
   const buffer = Buffer.from(await file.arrayBuffer());
@@ -66,6 +67,7 @@ export const POST = async (req: NextRequest) => {
 
 export const GET = async (req: NextRequest) => {
   const orgId = req.nextUrl.searchParams.get("orgId");
+  const dir = req.nextUrl.searchParams.get("directory");
 
   const bucket = process.env.NEXT_PUBLIC_BUCKETNAME;
   const spacesEndpoint = new AWS.Endpoint("nyc3.digitaloceanspaces.com");
@@ -76,7 +78,8 @@ export const GET = async (req: NextRequest) => {
     secretAccessKey: process.env.NEXT_PUBLIC_SECRET_ACCESS_KEY,
   });
 
-  const path_to_folder = "public/images/captiveportal/merchants/" + orgId + "/";
+  const path_to_folder =
+    "public/images/captiveportal/merchants/" + orgId + "/" + dir + "/";
 
   const params = {
     Bucket: bucket as string,

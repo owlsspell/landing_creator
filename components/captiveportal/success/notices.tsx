@@ -35,15 +35,8 @@ const CaptiveNoticePage = () => {
                         <Input value={notices[index].message.text} onChange={(e) => handleChange(e, index)} />
                         <Label>Link for {index + 1} notice</Label>
                         <Input value={notices[index].link} onChange={(e) => updateNoticeLink(e.target.value, index)} />
-                        {/* <Dialog>
-                            <DialogTrigger data-state="open" onClick={getImages}>
-                                <div className='flex justify-start border py-2 px-4 text-center rounded-md bg-slate-200'>
-                                    Open gallery
-                                </div>
-                            </DialogTrigger>
-                            <Gallery saveImage={(url) => saveImage(url, index)} images={images} getImages={getImages} />
-                        </Dialog > */}
-                        <GalleryButton saveImage={(url) => saveImage(url, index)} />
+
+                        <GalleryButton saveImage={(url) => saveImage(url, index)} directory="notices" />
                         <ComboboxesTypography value={notices[index].message.text} updateValue={(val) => updateNoticesMessageText(val, index)} classes={field.message.classes} updateClasses={updateNoticeMessageClasses} index={index} />
                         <Comboboxes title="Typography" classes={field.message.classes} updateClasses={updateNoticeMessageClasses} index={index} />
 

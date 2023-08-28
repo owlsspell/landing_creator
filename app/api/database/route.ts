@@ -12,10 +12,10 @@ export const GET = async (req: NextRequest) => {
 };
 
 export const POST = async (req: NextRequest) => {
-  const { orgId, json } = await req.json();
+  const { orgId, json, logoUrl, heroUrl } = await req.json();
   const result = await usersJsonDB.replaceOne(
     { orgId },
-    { orgId, json },
+    { orgId, logo: logoUrl, background: heroUrl, json },
     { upsert: true }
   );
 

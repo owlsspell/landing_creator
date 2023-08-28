@@ -10,16 +10,20 @@ import Gallery from './gallery';
 import axios from 'axios';
 import { useAuth } from '@clerk/nextjs';
 
-interface GaleryType {
+interface GaleryButtonType {
     // eslint-disable-next-line no-unused-vars
     saveImage: (param: any) => void,
+    // eslint-disable-next-line no-unused-vars
+    checkConditions?: (param: any) => string,
+    widthForLoading?: number
+    directory: string
 }
-const GalleryButton = ({ saveImage }: GaleryType) => {
+const GalleryButton = ({ directory, ...props }: GaleryButtonType) => {
     const [images, setImages] = useState([])
     const { orgId } = useAuth();
 
     async function getImages() {
-        return await axios.get('/api/images', { params: { orgId } })
+        return await axios.get('/api/images', { params: { orgId, directory } })
             .then(function (response) {
                 setImages(response.data)
             })
@@ -35,7 +39,7 @@ const GalleryButton = ({ saveImage }: GaleryType) => {
                     Open gallery
                 </div>
             </DialogTrigger>
-            <Gallery getImages={getImages} images={images} saveImage={saveImage} />
+            <Gallery getImages={getImages} images={images} directory={directory} {...props} />
         </Dialog >
 
     );

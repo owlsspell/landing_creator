@@ -16,7 +16,10 @@ import { Label } from '@/components/ui/label';
 
 const CaptivePortalForm = () => {
   const store = useBoundStore((state) => state)
+
+  const logoImage = useBoundStore((state) => state.logoImage);
   const updateLogoImage = useBoundStore((state) => state.updateLogoImage);
+  const heroImageUrl = useBoundStore((state) => state.heroImageUrl);
   const updateHeroImage = useBoundStore((state) => state.updateHeroImage);
 
   const { orgId } = useAuth();
@@ -57,7 +60,7 @@ const CaptivePortalForm = () => {
       }
     }
 
-    axios.post('/api/database', { orgId, json })
+    axios.post('/api/database', { orgId, json, logoUrl: logoImage, heroUrl: heroImageUrl })
       .then(function (response) {
         console.log('response', response);
       })
@@ -68,13 +71,22 @@ const CaptivePortalForm = () => {
       })
   }
 
+
+  const checkConditions = (width: number) => {
+    if (width < 1200) {
+      return "Image must be at least 1200 pixels"
+    } else {
+      return ""
+    }
+  }
+
   return (
     <form className="flex flex-col text-left gap-y-4 w-96 overflow-auto px-1" onSubmit={handleSubmit}>
       <h1 className="text-2xl font-bold">Form Editor</h1>
       <Label>Image: logo </Label>
-      <GalleryButton saveImage={(url) => updateLogoImage(url)} />
+      <GalleryButton saveImage={(url) => updateLogoImage(url)} directory="logo" />
       <Label>Image: background (transparent) </Label>
-      <GalleryButton saveImage={(url) => updateHeroImage(url)} />
+      <GalleryButton saveImage={(url) => updateHeroImage(url)} checkConditions={checkConditions} widthForLoading={1500} directory="hero" />
       <AccordionSample title="Slowpokes Portal" textSize="text-xl text-left">
         <AccordionSample title="Fonts" textSize="text-lg">
           <CaptiveFont />
