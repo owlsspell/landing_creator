@@ -30,7 +30,7 @@ const CaptiveNoticePage = () => {
         updateNoticesMessageText(e.target.value, index)
     }
     const saveImage = (url: string, index: number) => {
-        updateNoticeImage(process.env.NEXT_PUBLIC_ENDPOINT + "/" + url, index)
+        updateNoticeImage(url, index)
     }
 
     const [images, setImages] = useState([])
