@@ -1,6 +1,7 @@
 import HeroSection from "@/components/captiveportal/herosection";
 import { getClassNames } from "@/handler/handler";
 import { useBoundStore } from "@/store/state";
+import { Notice } from "@/store/types";
 import { useMemo } from "react";
 
 export default function SamplePortal() {
@@ -48,7 +49,7 @@ export default function SamplePortal() {
               </p>
             </div>
             <div className="flex flex-col p-2 mt-2 h-80">
-              {notices.map((notice, index) =>
+              {notices.map((notice: Notice, index: number) =>
                 <div key={index} className="relative flex flex-col justify-center w-full mt-4 overflow-hidden rounded-lg shadow-2xl h-1/3">
                   <p className={"z-30 px-4 " + (classesText[index])} style={generateFontStyle(notice.message.classes.font) || undefined}>
 

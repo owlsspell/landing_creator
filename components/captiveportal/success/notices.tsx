@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { useBoundStore } from '@/store/state';
 import Comboboxes, { ComboboxesTypography } from '@/components/comboboxes';
 import GalleryButton from '@/components/gallery/gallerybutton';
+import { Notice } from '@/store/types';
 
 const CaptiveNoticePage = () => {
 
@@ -29,7 +30,7 @@ const CaptiveNoticePage = () => {
     return (
         <div className='border p-4 bg-gray-50'>
             <div className='my-2' >
-                {inputs.map((field, index) => {
+                {inputs.map((field: Notice, index: number) => {
                     return <div className="grid w-full max-w-sm items-center gap-1.5 mb-2" key={field.message.text}>
                         <Label>Notice {index + 1}</Label>
                         <Input value={notices[index].message.text} onChange={(e) => handleChange(e, index)} />

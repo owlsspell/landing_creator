@@ -19,20 +19,22 @@ export interface Statetype {
     successClasses: TitleClasses;
 }
 export interface PortalInputs {
-    fonts: Fonts;
-    hero: Hero;
-    background: Background;
-    headings: Headings;
-    notices: Notice[];
-    form: Form;
+    json: {
+        fonts: Fonts;
+        hero: Hero;
+        background: Background;
+        headings: Headings;
+        notices: Notice[];
+        form: Form;
+    }
+    logo: string;
+    background: string;
 }
 
 export interface Background {
     overlay: Overlay;
 }
 export interface BackgroundSlice {
-    logoImage: string
-    updateLogoImage: (content: string) => void;
     backgroundOverlay: OverlayClasses
     updateBackgroundOverlay: (content: string, field: string) => void;
 }
@@ -122,9 +124,13 @@ export interface SuccessPageSlice {
     updateSuccessText: (content: string) => void;
     updateSuccessClasses: (content: string, field: string) => void;
 }
-export interface HeroSlice {
+export interface ImagesSlice {
     heroImageUrl: string;
     updateHeroImage: (content: string) => void;
+    logoImage: string
+    updateLogoImage: (content: string) => void;
+}
+export interface HeroSlice {
     heroTitle: Title;
     updateHeroTitleText: (content: string) => void;
     updateHeroTitleClasses: (content: string, field: string) => void;

@@ -4,6 +4,7 @@ import React from 'react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { useBoundStore } from '@/store/state';
+import { Fields } from '@/store/types';
 
 const CaptiveInputs = () => {
 
@@ -25,7 +26,7 @@ const CaptiveInputs = () => {
     }
     return (
         <div className='border p-4 bg-gray-50'>
-            {inputs.map((field, index) => {
+            {inputs.map((field: Fields, index: number) => {
                 return <div className="grid w-full max-w-sm items-center gap-1.5 mb-2" key={field.label}>
                     <div className='flex justify-between items-center mt-2'>
                         <Label>Field: {field.label}</Label>
