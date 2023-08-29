@@ -21,6 +21,8 @@ export default function HeroSection() {
     const logoImage = useBoundStore((state) => state.logoImage);
     const heroImageUrl = useBoundStore((state) => state.heroImageUrl);
 
+    const getDivWidth = useMemo(() => `md-portal:${heroDivClasses}`, [heroDivClasses])
+
     const generateFontStyle = (font: String) => (font !== undefined ? {
         fontFamily: font === 'sans' ? fonts.sans : fonts.serif
     } : "")
@@ -31,7 +33,7 @@ export default function HeroSection() {
         </div>
 
 
-        <div className="relative flex flex-col justify-center h-56 overflow-hidden border sm:flex-1 sm:h-auto">
+        <div className="relative flex flex-col justify-center h-56 overflow-hidden border xl:flex-1 xl:h-auto lg:w-95">
 
 
 
@@ -39,7 +41,8 @@ export default function HeroSection() {
             <div className={"absolute inset-0 block object-cover w-full h-56 sm:hidden " + backgroundClasses}
             />
 
-            <div className={"relative w-full h-auto p-8 mx-auto " + heroDivClasses}>
+            <div className={"relative w-full h-auto p-8 mx-auto " + getDivWidth}>
+                {/* <div className={"relative w-full h-auto p-8 mx-auto " + 'md-portal:' + heroDivClasses}> */}
                 <div className={"absolute inset-0 z-20 w-full h-full " + heroOverlayClasses}>
                 </div>
                 {/* <img

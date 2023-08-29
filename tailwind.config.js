@@ -27,6 +27,11 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        'sm-portal': '1000px',
+        'md-portal': '1500px',
+        'lg-portal': '1860px',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

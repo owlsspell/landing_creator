@@ -72,15 +72,15 @@ export default function CaptivePortalPage() {
       </> :
         <>
           <h1 className={title()}>Captive Portal Editor</h1>
-          <div className="flex flex-row p-4 mt-8 border-2 border-gray-700 rounded-lg gap-x-8 max-h-screen	w-full ">
-            <Tabs defaultValue="portal" className='w-full overflow-hidden' >
+          <div className="flex flex-row p-4 mt-8 border-2 border-gray-700 rounded-lg gap-x-8 max-h-screen w-full">
+            <Tabs defaultValue="portal" className=' overflow-hidden' >
               <div className=''>
                 <TabsList >
                   <TabsTrigger value="portal">Slowpoke</TabsTrigger>
                   <TabsTrigger value="success">Slowpoke success</TabsTrigger>
                 </TabsList>
               </div>
-              <TabsContent value="portal" className='overflow-scroll h-full'>
+              <TabsContent value="portal" className='overflow-scroll h-full min-h-[calc(100%-65px)]'>
                 <SlowpokePortal />
               </TabsContent>
               <TabsContent value="success" className='overflow-scroll h-full'>

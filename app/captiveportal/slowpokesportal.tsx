@@ -23,12 +23,12 @@ export default function SamplePortal() {
 
 
   return (
-    <div>
-      <div className="relative flex flex-col min-h-screen bg-gray-400 sm:flex-row">
+    <>
+      <div className="relative flex xl:flex-row flex-col min-h-screen bg-gray-400 max-w-[calc(100vw-24rem)] ">
         <HeroSection />
         <div
-          className="z-20 flex flex-col justify-center pb-0 my-0 mb-0 bg-transparent sm:flex-1 sm:pt-2 sm:px-2 lg:flex-none lg:px-20 xl:px-24">
-          <div className="w-full h-auto px-6 py-6 mx-auto bg-white sm:shadow-2xl sm:w-96 sm:rounded-2xl">
+          className="z-20 flex flex-col justify-center pb-0 my-0 mb-0 bg-transparent sm:flex-1 sm:pt-2 sm:px-2 md:flex-none xl:px-2 sm-portal:px-0 lg-portal:px-20 ">
+          <div className="w-full h-auto px-6 py-6 mx-auto bg-white xl:shadow-2xl xl:w-96 xl:rounded-2xl">
 
             <TitleText key={signin[0].text} text={signin[0].text} classes={classesTitle1} font={signin[0].classes.font} />
             <TitleText key={signin[1].text} text={signin[1].text} classes={classesTitle2} font={signin[1].classes.font} />
@@ -86,7 +86,7 @@ export default function SamplePortal() {
 
       </div >
 
-    </div >
+    </ >
   );
 }
 
