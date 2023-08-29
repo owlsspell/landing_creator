@@ -4,18 +4,19 @@ import React from 'react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { useBoundStore } from '@/store/state';
+import { Fields } from '@/store/types';
 
 const CaptiveInputs = () => {
 
     const fields = useBoundStore((state) => state.fields);
     const updateFields = useBoundStore((state) => state.updateFields);
-    const [inputs, setInputs] = React.useState(fields)
+    const [inputs,] = React.useState(fields)
 
-    const handleChange = (val, field, index) => {
-        updateFields(field, index, val)
+    const handleChange = (val: string | null, field: string, index: number) => {
+        updateFields(field, index, val as string)
     }
 
-    const clearFields = (e, index) => {
+    const clearFields = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
         if (e.target.checked) {
             handleChange("", "label", index)
         } else {
@@ -25,15 +26,15 @@ const CaptiveInputs = () => {
     }
     return (
         <div className='border p-4 bg-gray-50'>
-            {inputs.map((field, index) => {
+            {inputs.map((field: Fields, index: number) => {
                 return <div className="grid w-full max-w-sm items-center gap-1.5 mb-2" key={field.label}>
                     <div className='flex justify-between items-center mt-2'>
-                        <Label>Field {index + 1}</Label>
+                        <Label>Field: {field.label}</Label>
                         {(field.name === "name" || field.name === "email") ? "" :
                             <input type="checkbox" checked={fields[index].label !== null} onChange={(e) => clearFields(e, index)} className='w-6 h-6' />}
                     </div>
                     <Input value={fields[index].label ?? ""} onChange={(e) => handleChange(e.target.value, "label", index)} />
-                    <Label>Placeholder {index + 1}</Label>
+                    <Label>{field.label} Placeholder</Label>
                     <Input value={fields[index].placeholder ?? ""} onChange={(e) => handleChange(e.target.value, "placeholder", index)} />
 
 

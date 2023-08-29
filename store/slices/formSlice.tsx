@@ -1,7 +1,14 @@
 import defaultValues from "@/store/defaultslowpokes.json"
 import { produce } from "immer";
+import { StateCreator } from "zustand";
+import { BackgroundSlice, FontsSlice, FormsSlice, HeroSlice, ImagesSlice, NoticesSlice, SignInSlice, SuccessPageSlice, UpdateStateSlice } from '../types'
 
-export const createFormSlice = (set) => ({
+export const createFormSlice: StateCreator<
+    FormsSlice & SignInSlice & BackgroundSlice & HeroSlice & FontsSlice & SuccessPageSlice & NoticesSlice & UpdateStateSlice & ImagesSlice,
+    [["zustand/devtools", never]],
+    [],
+    FormsSlice
+> = (set) => ({
     submitText: defaultValues.form.submit.content,
     submitClasses: defaultValues.form.submit.classes,
     updateSubmitContent: (content) => set(produce((state) => {

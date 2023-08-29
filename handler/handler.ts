@@ -1,6 +1,6 @@
 import { classesNames } from "@/store/data/classesnames";
 
-export const getClassNames = (classesObj) =>
+export const getClassNames = (classesObj: any) =>
   Object.keys(classesObj)
     .map((key) =>
       classesObj[key] === undefined ? "" : classesNames[key] + classesObj[key]

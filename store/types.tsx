@@ -1,5 +1,25 @@
-export interface PortalState {
-    portals: {
+/* eslint-disable no-unused-vars */
+
+export interface UpdateStateSlice {
+    updateState: (newState: PortalInputs) => void;
+}
+export interface Statetype {
+    backgroundOverlay: OverlayClasses
+    fonts: Fonts,
+    submitText: string;
+    submitClasses: SubmitClasses;
+    fields: Fields[];
+    signin: Title[];
+    heroTitle: Title;
+    heroImage: HeroImage;
+    heroOverlay: OverlayClasses;
+    heroDiv: DivClasses;
+    notices: Notice[]
+    successText: String;
+    successClasses: TitleClasses;
+}
+export interface PortalInputs {
+    json: {
         fonts: Fonts;
         hero: Hero;
         background: Background;
@@ -7,21 +27,17 @@ export interface PortalState {
         notices: Notice[];
         form: Form;
     }
-    updatePortals: (data: PortalInputs) => void
-}
-export interface PortalInputs {
-    fonts: Fonts;
-    hero: Hero;
-    background: Background;
-    headings: Headings;
-    notices: Notice[];
-    form: Form;
+    logo: string;
+    background: string;
 }
 
 export interface Background {
     overlay: Overlay;
 }
-
+export interface BackgroundSlice {
+    backgroundOverlay: OverlayClasses
+    updateBackgroundOverlay: (content: string, field: string) => void;
+}
 export interface Overlay {
     classes: OverlayClasses;
 }
@@ -34,21 +50,29 @@ export interface OverlayClasses {
     rounded?: string;
 }
 
+export interface FontsSlice {
+    fonts: Fonts,
+    updateFonts: (content: string, field: string) => void;
+}
 export interface Fonts {
     sans: string;
     serif: string;
 }
+export interface FormsSlice {
+    submitText: string;
+    submitClasses: SubmitClasses;
+    updateSubmitContent: (content: string) => void;
+    updateSubmitClasses: (value: string, field: string) => void;
+    fields: Fields[];
+    updateFields: (field: string, index: number, value: string) => void;
+}
 
 export interface Form {
     submit: Submit;
-    fields: Fields;
+    fields: { standard: Fields[] };
 }
 
 export interface Fields {
-    standard: Standard[];
-}
-
-export interface Standard {
     name: string;
     label: string;
     value: string;
@@ -65,6 +89,13 @@ export interface SubmitClasses {
     background: string;
     hover: string;
 }
+
+export interface SignInSlice {
+    signin: Title[]
+    updateSigninText: (content: string, index: number) => void;
+    updateSigninClasses: (content: string, field: string, index: number) => void;
+}
+
 
 export interface Headings {
     signin: Title[];
@@ -87,6 +118,29 @@ export interface TitleClasses {
     "margin-bottom"?: string;
 }
 
+export interface SuccessPageSlice {
+    successText: String;
+    successClasses: TitleClasses;
+    updateSuccessText: (content: string) => void;
+    updateSuccessClasses: (content: string, field: string) => void;
+}
+export interface ImagesSlice {
+    heroImageUrl: string;
+    updateHeroImage: (content: string) => void;
+    logoImage: string
+    updateLogoImage: (content: string) => void;
+}
+export interface HeroSlice {
+    heroTitle: Title;
+    updateHeroTitleText: (content: string) => void;
+    updateHeroTitleClasses: (content: string, field: string) => void;
+    heroImage: HeroImage;
+    updateHeroImageClasses: (content: string, field: string) => void;
+    heroOverlay: OverlayClasses;
+    updateHeroOverlay: (content: string, field: string) => void;
+    heroDiv: DivClasses;
+    updateHeroDiv: (content: string, field: string) => void;
+}
 export interface Hero {
     title: Title;
     image: HeroImage;
@@ -109,7 +163,15 @@ export interface HeroImage {
 export interface ImageClasses {
     fit: string;
 }
-
+export interface NoticesSlice {
+    notices: Notice[]
+    updateNoticesMessageText: (content: string, index: number) => void;
+    updateNoticeLink: (content: string, index: number) => void;
+    updateNoticeImage: (content: string, index: number) => void;
+    updateNoticeMessageClasses: (content: string, field: string, index: number) => void;
+    updateNoticeImageClasses: (content: string, field: string, index: number) => void;
+    updateNoticeOverlayClasses: (content: string, field: string, index: number) => void;
+}
 export interface Notice {
     message: Title;
     link: string;

@@ -207,3 +207,75 @@ export const NextUILogo: React.FC<IconSvgProps> = (props) => {
     </svg>
   );
 };
+
+export const FontSize: React.FC<IconSvgProps> = (props) => {
+  const { width, height = 22 } = props;
+
+  return (
+    <svg fill="#000000" width={width} height={height} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="m22 6-3-4-3 4h2v4h-2l3 4 3-4h-2V6zM9.307 4l-6 16h2.137l1.875-5h6.363l1.875 5h2.137l-6-16H9.307zm-1.239 9L10.5 6.515 12.932 13H8.068z" />
+    </svg>
+  );
+};
+
+export const FontBold: React.FC<IconSvgProps> = (props) => {
+  const { width, height = 22 } = props;
+
+  return (
+    <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M5.10505 12C4.70805 12 4.4236 11.912 4.25171 11.736C4.0839 11.5559 4 11.2715 4 10.8827V4.11733C4 3.72033 4.08595 3.43588 4.25784 3.26398C4.43383 3.08799 4.71623 3 5.10505 3C6.42741 3 8.25591 3 9.02852 3C10.1373 3 11.0539 3.98153 11.0539 5.1846C11.0539 6.08501 10.6037 6.81855 9.70327 7.23602C10.8657 7.44851 11.5176 8.62787 11.5176 9.48128C11.5176 10.5125 10.9902 12 9.27734 12C8.77742 12 6.42626 12 5.10505 12ZM8.37891 8.00341H5.8V10.631H8.37891C8.9 10.631 9.6296 10.1211 9.6296 9.29877C9.6296 8.47643 8.9 8.00341 8.37891 8.00341ZM5.8 4.36903V6.69577H8.17969C8.53906 6.69577 9.27734 6.35939 9.27734 5.50002C9.27734 4.64064 8.48047 4.36903 8.17969 4.36903H5.8Z"
+        fill="#000000"
+      />
+    </svg>
+  );
+};
+export const FontColor: React.FC<IconSvgProps> = (props) => {
+  const { width, height = 22, color = "#000000" } = props;
+
+  return (
+    <svg className={'fill-current text-' + color} width={width} height={height} stroke="#cbd5e1" stroke-width="1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 18h14v3H5zm7.5-14h-1c-.401 0-.764.24-.921.609L5.745 16h2.173l1.273-3h5.604l1.268 3h2.171L13.421 4.61A1 1 0 0 0 12.5 4zm-2.46 7 1.959-4.616L13.95 11h-3.91z" />
+    </svg>
+  );
+};
+
+export const TextPosition: React.FC<IconSvgProps> = (props) => {
+  const { width, height = 22 } = props;
+
+  return (
+    <svg fill="#000000" width={width} height={height} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M21,19 C21.5522847,19 22,19.4477153 22,20 C22,20.5522847 21.5522847,21 21,21 L3,21 C2.44771525,21 2,20.5522847 2,20 C2,19.4477153 2.44771525,19 3,19 L21,19 Z M18,15 C18.5522847,15 19,15.4477153 19,16 C19,16.5522847 18.5522847,17 18,17 L6,17 C5.44771525,17 5,16.5522847 5,16 C5,15.4477153 5.44771525,15 6,15 L18,15 Z M21,11 C21.5522847,11 22,11.4477153 22,12 C22,12.5522847 21.5522847,13 21,13 L3,13 C2.44771525,13 2,12.5522847 2,12 C2,11.4477153 2.44771525,11 3,11 L21,11 Z M18,7 C18.5522847,7 19,7.44771525 19,8 C19,8.55228475 18.5522847,9 18,9 L6,9 C5.44771525,9 5,8.55228475 5,8 C5,7.44771525 5.44771525,7 6,7 L18,7 Z M21,3 C21.5522847,3 22,3.44771525 22,4 C22,4.55228475 21.5522847,5 21,5 L3,5 C2.44771525,5 2,4.55228475 2,4 C2,3.44771525 2.44771525,3 3,3 L21,3 Z" />
+    </svg>
+  );
+};
+
+export const FontItalic: React.FC<IconSvgProps> = (props) => {
+  const { width, height = 22 } = props;
+
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g id="Edit / Italic">
+        <path id="Vector" d="M8 19H10M10 19H12M10 19L14 5M12 5H14M14 5H16" stroke="#000000" stroke-width="2" strokeLinecap="round" stroke-linejoin="round" />
+      </g>
+    </svg>
+  );
+};
+export const TextUppercase: React.FC<IconSvgProps> = (props) => {
+  const { width, height = 20 } = props;
+
+  return (
+    <svg width={width} height={height} version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 26 26" >
+      <g>
+        <g>
+          <path d="M19.32,26H6.679v-1.076c0.556-0.199,1.117-0.372,1.686-0.52c0.568-0.15,1.18-0.272,1.837-0.373
+			v-22.1H5.408L3.401,7.244H2.455c-0.076-0.495-0.139-1.06-0.19-1.691C2.214,4.924,2.171,4.28,2.132,3.621
+			c-0.039-0.652-0.069-1.3-0.093-1.929C2.013,1.063,2,0.496,2,0h22c0,0.496-0.014,1.055-0.039,1.672
+			c-0.026,0.619-0.058,1.257-0.097,1.913s-0.075,1.3-0.114,1.932c-0.038,0.631-0.095,1.209-0.172,1.728h-0.996l-1.99-5.313h-4.756
+			v22.101c0.656,0.125,1.27,0.248,1.836,0.373c0.569,0.123,1.117,0.295,1.648,0.52V26z"/>
+        </g>
+      </g>
+    </svg>
+  );
+};

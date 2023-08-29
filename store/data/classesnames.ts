@@ -1,4 +1,4 @@
-export const classesNames = {
+export const classesNames: { [char: string]: string } = {
   font: "font-",
   size: "text-",
   color: "text-",
@@ -19,4 +19,5 @@ export const classesNames = {
   hover: "hover:bg-",
   text: "text-",
   tracking: "tracking-",
+  italic: "",
 };

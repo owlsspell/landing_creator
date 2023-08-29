@@ -21,9 +21,10 @@ interface ComboboxType {
     // eslint-disable-next-line no-unused-vars
     setStateValue: (params: any) => void
     values?: string[]
+    icon: React.ReactElement
 }
 
-export function Combobox({ stateValue, setStateValue, values }: ComboboxType) {
+export function TypographyBox({ stateValue, setStateValue, values, icon }: ComboboxType) {
     const [open, setOpen] = React.useState(false)
     const [value, setValue] = React.useState(stateValue)
 
@@ -34,10 +35,10 @@ export function Combobox({ stateValue, setStateValue, values }: ComboboxType) {
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="w-[200px] justify-between"
+                    className="h-full p-1 justify-between"
                 >
-                    {value ? value : <span></span>}
-                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    {icon}
+                    <ChevronsUpDown className="ml-1 h-3 w-3 shrink-0 opacity-50" />
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="min-w-[200px] w-full p-0">

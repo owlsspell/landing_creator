@@ -11,6 +11,7 @@ import {
 interface ColorPickerProps {
     label?: string
     value?: string
+    // eslint-disable-next-line no-unused-vars
     setStateValue: (val: string) => any
 }
 
@@ -18,7 +19,7 @@ export const ColorPicker = ({ label, value, setStateValue }: ColorPickerProps) =
 
     const [color, setColor] = useState(value)
 
-    const handleColorClick = (event) => {
+    const handleColorClick = (event: any) => {
         setColor(event?.target?.value);
         setStateValue(event?.target?.value)
     };

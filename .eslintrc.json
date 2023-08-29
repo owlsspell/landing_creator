@@ -4,23 +4,29 @@
     "quotes": "off",
     "semi": 0,
     "react/jsx-one-expression-per-line": [0, { "allow": "none" }],
-    "spaced-comment": ["error", "always", {
-      "line": {
+    "spaced-comment": [
+      "error",
+      "always",
+      {
+        "line": {
           "markers": ["/"],
           "exceptions": ["-", "+"]
-      },
-      "block": {
+        },
+        "block": {
           "markers": ["!"],
           "exceptions": ["*"],
           "balanced": true
+        }
       }
-    }],
-    "import/no-extraneous-dependencies": ["error", {
-      "includeInternal": false,
-      "devDependencies": ["test/**"],
-      "optionalDependencies": false,
-      "peerDependencies": false,
-      "bundledDependencies": false
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "includeInternal": false,
+        "devDependencies": ["test/**"],
+        "optionalDependencies": false,
+        "peerDependencies": false,
+        "bundledDependencies": false
       }
     ],
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
@@ -33,20 +39,26 @@
         "ts": "never",
         "tsx": "never"
       }
-   ],
-   "react/jsx-props-no-spreading": [1, {
-    "html": "ignore",
-    "custom": "enforce",
-    "explicitSpread": "enforce"
-}]
+    ],
+    "react/jsx-props-no-spreading": [
+      1,
+      {
+        "html": "ignore",
+        "custom": "enforce",
+        "explicitSpread": "enforce"
+      }
+    ]
   },
   "overrides": [
     {
-        "files": ["*.tsx"],
-        "rules": {
-            "no-undef": "off",
-            "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }]
-        }
+      "files": ["*.tsx"],
+      "rules": {
+        "no-undef": "off",
+        "react/jsx-filename-extension": [
+          1,
+          { "extensions": [".js", ".jsx", ".tsx"] }
+        ]
+      }
     }
   ]
 }

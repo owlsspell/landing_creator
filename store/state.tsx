@@ -7,8 +7,11 @@ import { createHeroSlice } from './slices/heroSlice'
 import { createFontsSlice } from './slices/fontSlice'
 import { createSuccessPageSlice } from './slices/successPageSlice'
 import { createNoticesSlice } from './slices/noticesSlice'
+import { BackgroundSlice, FontsSlice, FormsSlice, HeroSlice, ImagesSlice, NoticesSlice, SignInSlice, SuccessPageSlice, UpdateStateSlice } from './types'
+import { createUpdateStateSlice } from './slices/updateStateSlice'
+import { createImagesSlice } from './slices/imagesSlice'
 
-export const useBoundStore = create((devtools((...a) => ({
+export const useBoundStore = create<FormsSlice & SignInSlice & BackgroundSlice & HeroSlice & FontsSlice & SuccessPageSlice & NoticesSlice & UpdateStateSlice & ImagesSlice>()(devtools((...a) => ({
     ...createFormSlice(...a),
     ...createHeadingsSlice(...a),
     ...createBackgroundSlice(...a),
@@ -16,6 +19,8 @@ export const useBoundStore = create((devtools((...a) => ({
     ...createFontsSlice(...a),
     ...createSuccessPageSlice(...a),
     ...createNoticesSlice(...a),
-}))))
+    ...createUpdateStateSlice(...a),
+    ...createImagesSlice(...a),
+})))
 
 

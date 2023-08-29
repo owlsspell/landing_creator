@@ -11,7 +11,7 @@ import { objectPosition } from "./objectposition";
 import tailwindColors from "./tailwindcolors";
 import { widthList } from "./widthList";
 
-export const allVariables = {
+export const allVariables: allVariablesType = {
   align: aligns,
   font: fonts,
   size: sizes,
@@ -34,6 +34,34 @@ export const allVariables = {
   tracking: trackingList,
 };
 
+export interface tailwindColorsType {
+  monoNames: string[];
+  colorNames: string[];
+  colorVariants: number[];
+}
+export interface allVariablesType extends Record<string, any> {
+  align: string[];
+  font: string[];
+  size: string[];
+  color: tailwindColorsType;
+  weight: string[];
+  "margin-top": string[];
+  "margin-bottom": string[];
+  "margin-left": string[];
+  "margin-right": string[];
+  "color-from": tailwindColorsType;
+  "color-to": tailwindColorsType;
+  opacity: string[];
+  gradient: string[];
+  rounded: string[];
+  fit: string[];
+  width: string[];
+  background: tailwindColorsType;
+  hover: tailwindColorsType;
+  text: tailwindColorsType;
+  tracking: string[];
+}
+
 export const exclusionList = [
   "color",
   "color-from",
@@ -41,4 +69,13 @@ export const exclusionList = [
   "background",
   "hover",
   "text",
+];
+
+export const exclusionListForTypography = [
+  "size",
+  "align",
+  "color",
+  "weight",
+  "italic",
+  "uppercase",
 ];
