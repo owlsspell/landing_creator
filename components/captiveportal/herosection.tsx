@@ -21,7 +21,7 @@ export default function HeroSection() {
     const logoImage = useBoundStore((state) => state.logoImage);
     const heroImageUrl = useBoundStore((state) => state.heroImageUrl);
 
-    const getDivWidth = useMemo(() => `md-portal:${heroDivClasses}`, [heroDivClasses])
+    const getDivWidth = useMemo(() => `md-portal:${heroDivClasses}`, [heroDiv])
 
     const generateFontStyle = (font: String) => (font !== undefined ? {
         fontFamily: font === 'sans' ? fonts.sans : fonts.serif

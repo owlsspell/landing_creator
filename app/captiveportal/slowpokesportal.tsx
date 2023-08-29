@@ -27,7 +27,7 @@ export default function SamplePortal() {
       <div className="relative flex xl:flex-row flex-col min-h-screen bg-gray-400 max-w-[calc(100vw-24rem)] ">
         <HeroSection />
         <div
-          className="z-20 flex flex-col justify-center pb-0 my-0 mb-0 bg-transparent sm:flex-1 sm:pt-2 sm:px-2 md:flex-none xl:px-2 sm-portal:px-0 lg-portal:px-20 ">
+          className="z-20 flex flex-col justify-center pb-0 my-0 mb-0 bg-transparent sm:flex-1 sm:pt-2  md:flex-none xl:px-2 sm-portal:px-0 lg-portal:px-20 ">
           <div className="w-full h-auto px-6 py-6 mx-auto bg-white xl:shadow-2xl xl:w-96 xl:rounded-2xl">
 
             <TitleText key={signin[0].text} text={signin[0].text} classes={classesTitle1} font={signin[0].classes.font} />

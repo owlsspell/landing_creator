@@ -81,7 +81,7 @@ const CaptivePortalForm = () => {
   }
 
   return (
-    <form className="flex flex-col text-left gap-y-4 w-96 overflow-auto px-1" onSubmit={handleSubmit}>
+    <form className="flex flex-col text-left gap-y-4 lg:w-96 overflow-auto px-1" onSubmit={handleSubmit}>
       <h1 className="text-2xl font-bold">Form Editor</h1>
       <Label>Image: logo </Label>
       <GalleryButton saveImage={(url) => updateLogoImage(url)} directory="logo" />
