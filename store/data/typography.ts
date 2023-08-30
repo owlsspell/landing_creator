@@ -1,5 +1,5 @@
 export const aligns = ["", "left", "center", "right"];
-export const fonts = ["", "sans", "serif", "mono"];
+export const fonts = ["primary", "secondary"];
 export const sizes = ["", "xs", "sm", "base", "lg", "xl", "2xl", "3xl", "4xl"];
 export const weightList = ["", "normal", "medium", "semibold", "bold"];
 export const trackingList = [

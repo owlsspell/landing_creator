@@ -76,8 +76,8 @@ export default function CaptivePortalPage() {
             <Tabs defaultValue="portal" className=' overflow-hidden' >
               <div className=''>
                 <TabsList >
-                  <TabsTrigger value="portal">Slowpoke</TabsTrigger>
-                  <TabsTrigger value="success">Slowpoke success</TabsTrigger>
+                  <TabsTrigger value="portal">Sign-on Page</TabsTrigger>
+                  <TabsTrigger value="success">Success Page</TabsTrigger>
                 </TabsList>
               </div>
               <TabsContent value="portal" className='overflow-scroll h-full min-h-[calc(100%-65px)]'>

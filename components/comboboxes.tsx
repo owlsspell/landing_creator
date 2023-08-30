@@ -72,7 +72,7 @@ const Comboboxes = ({ title, classes, updateClasses, index }: ComboboxTypes) =>
                     exclusionList.includes(key) ?
                         <ComboboxContainerForColors key={key} title={key} stateValue={classes[key]} setStateValue={(val) => updateClasses(val, key, index as number)} values={allVariables[key]} />
                         :
-                        <ComboboxContainer key={key} title={key} stateValue={classes[key]} setStateValue={(val) => updateClasses(val, key, index as number)} values={allVariables[key]} />
+                        <ComboboxContainer key={key} title={key} stateValue={classes[key] === 'sans' ? 'primary' : classes[key] === 'serif' ? 'secondary' : classes[key]} setStateValue={(val) => updateClasses(val, key, index as number)} values={allVariables[key]} />
             )}
         </div>
     </AccordionSample>

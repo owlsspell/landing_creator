@@ -83,22 +83,15 @@ const CaptivePortalForm = () => {
   return (
     <form className="flex flex-col text-left gap-y-4 lg:w-96 overflow-auto px-1" onSubmit={handleSubmit}>
       <h1 className="text-2xl font-bold">Form Editor</h1>
-      <Label>Image: logo </Label>
-      <GalleryButton saveImage={(url) => updateLogoImage(url)} directory="logo" />
-      <Label>Image: background (transparent) </Label>
-      <GalleryButton saveImage={(url) => updateHeroImage(url)} checkConditions={checkConditions} widthForLoading={1500} directory="hero" />
-      <AccordionSample title="Slowpokes Portal" textSize="text-xl text-left">
+      <AccordionSample title="General" textSize="text-xl text-left">
+        <div className="flex flex-col text-left gap-y-4 overflow-auto px-1">
+          <Label>Image: logo </Label>
+          <GalleryButton saveImage={(url) => updateLogoImage(url)} directory="logo" />
+          <Label>Image: background (transparent) </Label>
+          <GalleryButton saveImage={(url) => updateHeroImage(url)} checkConditions={checkConditions} widthForLoading={1500} directory="hero" />
+        </div>
         <AccordionSample title="Fonts" textSize="text-lg">
           <CaptiveFont />
-        </AccordionSample>
-        <AccordionSample title="Headings" textSize="text-lg">
-          <CaptiveTitles />
-        </AccordionSample>
-        <AccordionSample title="Inputs" textSize="text-lg">
-          <CaptiveInputs />
-        </AccordionSample>
-        <AccordionSample title="Submit button" textSize="text-lg">
-          <CaptiveSubmitButton />
         </AccordionSample>
         <AccordionSample title="Hero section" textSize="text-lg">
           <HeroTitle />
@@ -108,7 +101,19 @@ const CaptivePortalForm = () => {
         </AccordionSample>
       </AccordionSample>
 
-      <AccordionSample title="Slowpokes Success Portal" textSize="text-xl text-left">
+      <AccordionSample title="Sign-on Page" textSize="text-xl text-left">
+        <AccordionSample title="Headings" textSize="text-lg">
+          <CaptiveTitles />
+        </AccordionSample>
+        <AccordionSample title="Inputs" textSize="text-lg">
+          <CaptiveInputs />
+        </AccordionSample>
+        <AccordionSample title="Submit button" textSize="text-lg">
+          <CaptiveSubmitButton />
+        </AccordionSample>
+      </AccordionSample>
+
+      <AccordionSample title="Success Page" textSize="text-xl text-left">
         <AccordionSample title="Title" textSize="text-lg">
           <CaptiveSuccessPage />
         </AccordionSample>

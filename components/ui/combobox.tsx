@@ -49,7 +49,8 @@ export function Combobox({ stateValue, setStateValue, values }: ComboboxType) {
                                 onSelect={(currentValue) => {
                                     const customCurrentValue = values.find(v => v.toUpperCase() === currentValue.toUpperCase())
                                     setValue((customCurrentValue === value || customCurrentValue === 'default') ? "" : customCurrentValue)
-                                    setStateValue((customCurrentValue === 'default') ? "" : customCurrentValue)
+
+                                    setStateValue((customCurrentValue === 'default') ? "" : customCurrentValue === 'primary' ? 'sans' : customCurrentValue === 'secondary' ? 'serif' : customCurrentValue)
                                     setOpen(false)
                                 }}
                             >

@@ -234,7 +234,7 @@ export const FontColor: React.FC<IconSvgProps> = (props) => {
   const { width, height = 22, color = "#000000" } = props;
 
   return (
-    <svg className={'fill-current text-' + color} width={width} height={height} stroke="#cbd5e1" stroke-width="1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <svg className={'fill-current text-' + color} width={width} height={height} stroke="#cbd5e1" strokeWidth="1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M5 18h14v3H5zm7.5-14h-1c-.401 0-.764.24-.921.609L5.745 16h2.173l1.273-3h5.604l1.268 3h2.171L13.421 4.61A1 1 0 0 0 12.5 4zm-2.46 7 1.959-4.616L13.95 11h-3.91z" />
     </svg>
   );
@@ -245,7 +245,7 @@ export const TextPosition: React.FC<IconSvgProps> = (props) => {
 
   return (
     <svg fill="#000000" width={width} height={height} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" d="M21,19 C21.5522847,19 22,19.4477153 22,20 C22,20.5522847 21.5522847,21 21,21 L3,21 C2.44771525,21 2,20.5522847 2,20 C2,19.4477153 2.44771525,19 3,19 L21,19 Z M18,15 C18.5522847,15 19,15.4477153 19,16 C19,16.5522847 18.5522847,17 18,17 L6,17 C5.44771525,17 5,16.5522847 5,16 C5,15.4477153 5.44771525,15 6,15 L18,15 Z M21,11 C21.5522847,11 22,11.4477153 22,12 C22,12.5522847 21.5522847,13 21,13 L3,13 C2.44771525,13 2,12.5522847 2,12 C2,11.4477153 2.44771525,11 3,11 L21,11 Z M18,7 C18.5522847,7 19,7.44771525 19,8 C19,8.55228475 18.5522847,9 18,9 L6,9 C5.44771525,9 5,8.55228475 5,8 C5,7.44771525 5.44771525,7 6,7 L18,7 Z M21,3 C21.5522847,3 22,3.44771525 22,4 C22,4.55228475 21.5522847,5 21,5 L3,5 C2.44771525,5 2,4.55228475 2,4 C2,3.44771525 2.44771525,3 3,3 L21,3 Z" />
+      <path fillRule="evenodd" d="M21,19 C21.5522847,19 22,19.4477153 22,20 C22,20.5522847 21.5522847,21 21,21 L3,21 C2.44771525,21 2,20.5522847 2,20 C2,19.4477153 2.44771525,19 3,19 L21,19 Z M18,15 C18.5522847,15 19,15.4477153 19,16 C19,16.5522847 18.5522847,17 18,17 L6,17 C5.44771525,17 5,16.5522847 5,16 C5,15.4477153 5.44771525,15 6,15 L18,15 Z M21,11 C21.5522847,11 22,11.4477153 22,12 C22,12.5522847 21.5522847,13 21,13 L3,13 C2.44771525,13 2,12.5522847 2,12 C2,11.4477153 2.44771525,11 3,11 L21,11 Z M18,7 C18.5522847,7 19,7.44771525 19,8 C19,8.55228475 18.5522847,9 18,9 L6,9 C5.44771525,9 5,8.55228475 5,8 C5,7.44771525 5.44771525,7 6,7 L18,7 Z M21,3 C21.5522847,3 22,3.44771525 22,4 C22,4.55228475 21.5522847,5 21,5 L3,5 C2.44771525,5 2,4.55228475 2,4 C2,3.44771525 2.44771525,3 3,3 L21,3 Z" />
     </svg>
   );
 };
@@ -256,7 +256,7 @@ export const FontItalic: React.FC<IconSvgProps> = (props) => {
   return (
     <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="Edit / Italic">
-        <path id="Vector" d="M8 19H10M10 19H12M10 19L14 5M12 5H14M14 5H16" stroke="#000000" stroke-width="2" strokeLinecap="round" stroke-linejoin="round" />
+        <path id="Vector" d="M8 19H10M10 19H12M10 19L14 5M12 5H14M14 5H16" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </g>
     </svg>
   );
