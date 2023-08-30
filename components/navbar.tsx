@@ -1,3 +1,4 @@
+'use client'
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-nested-ternary */
@@ -30,10 +31,14 @@ import {
   SearchIcon,
   Logo,
 } from '@/components/icons';
+import { SignInButton, SignOutButton, useAuth } from '@clerk/nextjs';
+import { Button } from './ui/button';
 
 
 // eslint-disable-next-line import/prefer-default-export
 export const Navbar = () => {
+  const { isSignedIn } = useAuth();
+
   const searchInput = (
     <Input
       aria-label="Search"
@@ -131,6 +136,10 @@ export const Navbar = () => {
           ))}
         </div>
       </NavbarMenu>
+      {isSignedIn ?
+        <SignOutButton><Button>Sign out</Button></SignOutButton>
+        : <SignInButton><Button>Sign in</Button></SignInButton>
+      }
     </NextUINavbar>
   );
 };

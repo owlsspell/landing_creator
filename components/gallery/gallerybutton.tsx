@@ -21,8 +21,10 @@ interface GaleryButtonType {
 const GalleryButton = ({ directory, ...props }: GaleryButtonType) => {
     const [images, setImages] = useState([])
     const { orgId } = useAuth();
+    const [loading, setLoading] = useState(false)
 
     async function getImages() {
+        setLoading(true)
         return await axios.get('/api/images', { params: { orgId, directory } })
             .then(function (response) {
                 setImages(response.data)
@@ -30,7 +32,9 @@ const GalleryButton = ({ directory, ...props }: GaleryButtonType) => {
             .catch(function (error) {
                 console.log(error);
             })
-
+            .finally(function () {
+                setLoading(false)
+            })
     }
     return (
         <Dialog>
@@ -39,7 +43,7 @@ const GalleryButton = ({ directory, ...props }: GaleryButtonType) => {
                     Open gallery
                 </div>
             </DialogTrigger>
-            <Gallery getImages={getImages} images={images} directory={directory} {...props} />
+            <Gallery getImages={getImages} images={images} directory={directory} loadingImages={loading} {...props} />
         </Dialog >
 
     );
