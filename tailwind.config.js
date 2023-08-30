@@ -17,6 +17,9 @@ module.exports = {
       // pattern: /^bg-(stone|orange|yellow|emerald|sky|fuchsia)/,
       pattern: /^(bg|text)-slate|^(bg|text)-zinc|^(bg|text)-stone|^(bg|text)-red|^(bg|text)-orange|^(bg|text)-amber|^(bg|text)-yellow|^(bg|text)-lime|^(bg|text)-green|^(bg|text)-emerald|^(bg|text)-teal|^(bg|text)-cyan|^(bg|text)-sky|^(bg|text)-blue|^(bg|text)-indigo|^(bg|text)-violet|^(bg|text)-purple|^(bg|text)-fuchsia|^(bg|text)-pink|^(bg|text)-rose/,
     },
+    {
+      pattern: /text-(5xl|6xl|7xl|8xl|9xl)/,
+    },
   ],
   theme: {
     container: {
