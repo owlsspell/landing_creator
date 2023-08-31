@@ -3,10 +3,14 @@ import { getClassNames } from "@/handler/handler";
 import { useBoundStore } from "@/store/state";
 import { Notice } from "@/store/types";
 import { useMemo } from "react";
+import notice1 from "@/public/images/notice1.jpg"
+import notice2 from "@/public/images/notice2.jpg"
+import notice3 from "@/public/images/notice3.jpg"
+import Image from "next/image";
 
 export default function SamplePortal() {
   const fonts = useBoundStore((state) => state.fonts)
-
+  const images = [notice1, notice2, notice3]
   const successText = useBoundStore((state) => state.successText);
   const successClasses = useBoundStore((state) => state.successClasses);
   const successStyle = useMemo(() => getClassNames(successClasses), [successClasses])
@@ -55,11 +59,10 @@ export default function SamplePortal() {
 
                     {notice.message.text}
                   </p>
-                  <img
+                  <Image fill
                     className={"absolute z-10 object-cover w-full h-full " + imageClasses[index]}
-                    src={process.env.NEXT_PUBLIC_ENDPOINT + "/" + notice.image.url}
+                    src={notice.image.url.length === 0 || notice.image.url === "drinks.jpg" || notice.image.url === "food.jpg" || notice.image.url === "shop.jpg" ? images[index].src : process.env.NEXT_PUBLIC_ENDPOINT + "/" + notice.image.url}
                     alt="notice"
-                  // src={"http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/" + notice.image.url}
                   />
                   <div className={"absolute inset-0 z-20 w-full h-full " + overlayClasses[index]} />
                   <a

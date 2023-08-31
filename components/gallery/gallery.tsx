@@ -45,7 +45,7 @@ const Gallery = ({ saveImage, images, getImages, checkConditions, widthForLoadin
                     file,
                     widthForLoading,
                     widthForLoading,
-                    "PNG",
+                    directory === 'logo' ? "png" : "jpeg",
                     100,
                     0,
                     (uri) => {

@@ -1,6 +1,9 @@
 import { getClassNames } from "@/handler/handler";
 import { useBoundStore } from "@/store/state";
 import { useMemo } from "react";
+import logo from "@/public/images/acme-logo.png"
+import background from "@/public/images/hero.jpg"
+import Image from "next/image";
 
 export default function HeroSection() {
     const fonts = useBoundStore((state) => state.fonts)
@@ -26,7 +29,7 @@ export default function HeroSection() {
     } : "")
 
     return <>
-        <img className={"absolute inset-0 z-10 hidden object-cover object-top w-full h-full sm:block overflow-visible " + heroImageClasses} src={heroImageUrl ? process.env.NEXT_PUBLIC_ENDPOINT + "/" + heroImageUrl : "http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg"} alt="" />
+        <Image fill className={"absolute inset-0 z-10 hidden object-cover object-top w-full h-full sm:block overflow-visible " + heroImageClasses} src={heroImageUrl ? process.env.NEXT_PUBLIC_ENDPOINT + "/" + heroImageUrl : background.src} alt="" />
         <div className={"absolute inset-0 z-10 hidden object-cover w-full h-full sm:block overflow-visible " + backgroundClasses}>
         </div>
 
@@ -35,7 +38,7 @@ export default function HeroSection() {
 
 
 
-            <img className={"absolute inset-0 block object-cover w-full h-56 sm:hidden " + heroImageClasses} src={heroImageUrl ? process.env.NEXT_PUBLIC_ENDPOINT + "/" + heroImageUrl : "http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg"} alt="" />
+            <Image fill className={"absolute inset-0 block object-cover w-full h-56 sm:hidden " + heroImageClasses} src={heroImageUrl ? process.env.NEXT_PUBLIC_ENDPOINT + "/" + heroImageUrl : background.src} alt="" />
             <div className={"absolute inset-0 block object-cover w-full h-56 sm:hidden " + backgroundClasses}
             />
             <div className={"relative w-full h-auto p-8 mx-auto " + 'md-portal:' + heroDivClasses}>
@@ -54,7 +57,7 @@ export default function HeroSection() {
               className="absolute inset-0 z-20 w-full h-full sm:rounded-2xl from-white to-white opacity-90 bg-gradient-to-b rounded-2xl "
             /> */}
                 <div className="flex flex-col justify-center">
-                    <img className="z-20 mx-auto max-h-32" src={logoImage ? process.env.NEXT_PUBLIC_ENDPOINT + "/" + logoImage : "http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/logo.png"} />
+                    <Image fill className="z-20 mx-auto max-h-32" alt="logo" src={logoImage ? process.env.NEXT_PUBLIC_ENDPOINT + "/" + logoImage : logo.src} />
                     <h2 className={"z-20 " + heroTextClasses}
                         style={generateFontStyle(heroTitle.classes.font) || undefined}
                     >{heroTitle.text}

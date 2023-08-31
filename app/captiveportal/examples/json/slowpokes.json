@@ -46,7 +46,8 @@
     }
   },
   "headings": {
-    "signin": [{
+    "signin": [
+      {
         "text": "SIGN IN TO",
         "classes": {
           "font": "sans",
@@ -80,17 +81,19 @@
         }
       }
     ],
-    "success": [{
-      "text": "YOU'RE CONNECTED",
-      "classes": {
-        "font": "serif",
-        "size": "2xl",
-        "color": "green-900",
-        "weight": "bold",
-        "align": "center",
-        "margin-top": "2"
+    "success": [
+      {
+        "text": "YOU'RE CONNECTED",
+        "classes": {
+          "font": "serif",
+          "size": "2xl",
+          "color": "green-900",
+          "weight": "bold",
+          "align": "center",
+          "margin-top": "2"
+        }
       }
-    }]
+    ]
   },
   "notices": [
     {
