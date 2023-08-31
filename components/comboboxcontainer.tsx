@@ -19,7 +19,7 @@ type TypeComboboxContainerForColors = {
 
 const ComboboxContainer = ({ title, ...props }: TypeComboboxContainer) => <>
     <div className='flex items-center'>{title}</div>
-    <div className='flex justify-end'>
+    <div className='flex justify-end col-span-2 md:col-span-1'>
         <Combobox {...props} />
     </div>
 </>

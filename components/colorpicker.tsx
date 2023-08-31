@@ -26,9 +26,9 @@ export const ColorPicker = ({ label, value, setStateValue }: ColorPickerProps) =
 
     return (
         <Popover>
-            <div className="flex flex-col items-start justify-start">
+            <div className="flex flex-col items-start justify-start w-full">
                 {label ? <Label className="mb-2">{label}</Label> : label}
-                <div id="color-swatch-and-class-holder" className="flex flex-row justify-start px-1 py-1 border-2 rounded-md shadow-md min-w-fit w-28 w-[200px] gap-x-2">
+                <div id="color-swatch-and-class-holder" className="flex flex-row justify-start px-1 py-1 border-0 rounded-md shadow-none w-full gap-x-2 justify-end md:border-2 md:shadow-md md:justify-start">
                     <PopoverTrigger>   <div id="current-color-swatch" className={`relative w-6 h-6 shrink-0 ${color ? `bg-${color}` : ""} border border-gray-700 shadow-lg cursor-pointer`}>
 
                         <PopoverContent className="p-0">
@@ -49,7 +49,7 @@ export const ColorPicker = ({ label, value, setStateValue }: ColorPickerProps) =
                         </PopoverContent>
                     </div>
                     </PopoverTrigger>
-                    <PopoverTrigger> <div id="current-color-class">{color}</div></PopoverTrigger>
+                    <PopoverTrigger> <div id="current-color-class" className="hidden md:block">{color}</div></PopoverTrigger>
                 </div>
             </div >
         </Popover >

@@ -20,6 +20,10 @@ module.exports = {
     {
       pattern: /text-(5xl|6xl|7xl|8xl|9xl)/,
     },
+    {
+      pattern: /w-(20|28|40|52|64|72|80|96)/,
+      variants: ['md-portal'],
+    },
   ],
   theme: {
     container: {

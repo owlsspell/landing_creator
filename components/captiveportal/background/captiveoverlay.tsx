@@ -12,8 +12,6 @@ const BackgroundSettings = () => {
     return (
         <div className='border p-4 bg-gray-50'>
             <Comboboxes title="Overlay" classes={backgroundOverlay} updateClasses={updateBackgroundOverlay} />
-
-
         </div>
     );
 };

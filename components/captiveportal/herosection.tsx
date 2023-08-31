@@ -21,8 +21,6 @@ export default function HeroSection() {
     const logoImage = useBoundStore((state) => state.logoImage);
     const heroImageUrl = useBoundStore((state) => state.heroImageUrl);
 
-    const getDivWidth = useMemo(() => `md-portal:${heroDivClasses}`, [heroDiv])
-
     const generateFontStyle = (font: String) => (font !== undefined ? {
         fontFamily: font === 'sans' ? fonts.sans : fonts.serif
     } : "")
@@ -40,9 +38,7 @@ export default function HeroSection() {
             <img className={"absolute inset-0 block object-cover w-full h-56 sm:hidden " + heroImageClasses} src={heroImageUrl ? process.env.NEXT_PUBLIC_ENDPOINT + "/" + heroImageUrl : "http://splash3.gogoguest.com/captiveportal/images/merchant/slowpokes/hero.jpg"} alt="" />
             <div className={"absolute inset-0 block object-cover w-full h-56 sm:hidden " + backgroundClasses}
             />
-
-            <div className={"relative w-full h-auto p-8 mx-auto " + getDivWidth}>
-                {/* <div className={"relative w-full h-auto p-8 mx-auto " + 'md-portal:' + heroDivClasses}> */}
+            <div className={"relative w-full h-auto p-8 mx-auto " + 'md-portal:' + heroDivClasses}>
                 <div className={"absolute inset-0 z-20 w-full h-full " + heroOverlayClasses}>
                 </div>
                 {/* <img

@@ -72,8 +72,8 @@ export default function CaptivePortalPage() {
       </> :
         <>
           <h1 className={title()}>Captive Portal Editor</h1>
-          <div className="flex flex-row p-4 mt-8 border-2 border-gray-700 rounded-lg gap-x-8 max-h-screen w-full">
-            <Tabs defaultValue="portal" className=' overflow-hidden' >
+          <div className="flex flex-row p-4 mt-8 border-2 border-gray-700 rounded-lg gap-x-2 lg:gap-x-8 max-h-screen w-full">
+            <Tabs defaultValue="portal" className='w-full overflow-hidden' >
               <div className=''>
                 <TabsList >
                   <TabsTrigger value="portal">Sign-on Page</TabsTrigger>

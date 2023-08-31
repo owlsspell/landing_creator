@@ -15,7 +15,7 @@ const CaptiveTitles = () => {
     const [inputs,] = React.useState(signin)
 
     return (
-        <div className='border p-4 bg-gray-50'>
+        <div className='border p-2 bg-gray-50 xl:p-4'>
             {inputs.map((field: Title, index: number) =>
                 <div className="grid w-full max-w-sm items-center gap-1.5 mb-2" key={field.text}>
                     <div className='flex justify-between items-center'>

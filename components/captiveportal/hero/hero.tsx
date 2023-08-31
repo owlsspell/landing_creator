@@ -38,7 +38,7 @@ const HeroTitle = () => {
             <Comboboxes title="Typography" classes={heroTitle.classes} updateClasses={updateHeroTitleClasses} />
 
             <AccordionSample title="Image Settings">
-                <div className='grid grid-cols-2 gap-2'>
+                <div className='grid grid-cols-1 gap-2 sm:grid-cols-2'>
                     <ComboboxContainer title="Image Position" stateValue={heroImage.classes.fit} setStateValue={(val) => updateHeroImageClasses(val, 'fit')} values={objectPosition} />
                 </div>
             </AccordionSample>
@@ -46,7 +46,7 @@ const HeroTitle = () => {
             <Comboboxes title="Overlay" classes={heroOverlay} updateClasses={updateHeroOverlay} />
 
             <AccordionSample title="Width">
-                <div className='grid grid-cols-2 gap-2'>
+                <div className='grid grid-cols-1 gap-2 sm:grid-cols-2'>
                     <ComboboxContainer title="Width" stateValue={heroDiv.width} setStateValue={(val) => updateHeroDiv(val, 'width')} values={widthList} />
                 </div>
             </AccordionSample>

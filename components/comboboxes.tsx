@@ -49,7 +49,7 @@ export const ComboboxesTypography = ({ value, updateValue, classes, updateClasse
         }
     }
 
-    return <div className='flex gap-1 mt-2'>
+    return <div className='flex gap-1 mt-2 flex-wrap lg:flex-nowrap'>
         <TypographyBox stateValue={classes.size} setStateValue={(val) => updateClasses(val, 'size', index as number)} values={allVariables.size}
             icon={<FontSize />}
         />
@@ -66,7 +66,8 @@ export const ComboboxesTypography = ({ value, updateValue, classes, updateClasse
 
 const Comboboxes = ({ title, classes, updateClasses, index }: ComboboxTypes) =>
     <AccordionSample title={title}>
-        <div className='grid grid-cols-2 gap-2'>
+        <div className='grid grid-cols-2 gap-2 '>
+            {/* <div className='grid grid-cols-1 gap-2 sm:grid-cols-2'> */}
             {Object.keys(classes).map((key) =>
                 exclusionListForTypography.includes(key) ? "" :
                     exclusionList.includes(key) ?
