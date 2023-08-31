@@ -57,7 +57,7 @@ export default function HeroSection() {
               className="absolute inset-0 z-20 w-full h-full sm:rounded-2xl from-white to-white opacity-90 bg-gradient-to-b rounded-2xl "
             /> */}
                 <div className="flex flex-col justify-center">
-                    <Image fill className="z-20 mx-auto max-h-32" alt="logo" src={logoImage ? process.env.NEXT_PUBLIC_ENDPOINT + "/" + logoImage : logo.src} />
+                    <img className="z-20 mx-auto max-h-32" alt="logo" src={logoImage ? process.env.NEXT_PUBLIC_ENDPOINT + "/" + logoImage : logo.src} />
                     <h2 className={"z-20 " + heroTextClasses}
                         style={generateFontStyle(heroTitle.classes.font) || undefined}
                     >{heroTitle.text}
