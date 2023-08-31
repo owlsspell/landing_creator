@@ -49,7 +49,7 @@ export const ComboboxesTypography = ({ value, updateValue, classes, updateClasse
         }
     }
 
-    return <div className='flex gap-1 mt-2 flex-wrap lg:flex-nowrap'>
+    return <div className='flex gap-1 mt-2 flex-wrap xl:flex-nowrap'>
         <TypographyBox stateValue={classes.size} setStateValue={(val) => updateClasses(val, 'size', index as number)} values={allVariables.size}
             icon={<FontSize />}
         />

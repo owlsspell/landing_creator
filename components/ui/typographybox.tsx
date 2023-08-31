@@ -43,7 +43,7 @@ export function TypographyBox({ stateValue, setStateValue, values, icon }: Combo
             </PopoverTrigger>
             <PopoverContent className="min-w-[200px] w-full p-0">
                 <Command>
-                    <CommandGroup>
+                    <CommandGroup className="max-h-64 overflow-y-scroll">
                         {values && values.map((val) => (
                             <CommandItem
                                 key={val}

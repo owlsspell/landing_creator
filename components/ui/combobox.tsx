@@ -42,7 +42,7 @@ export function Combobox({ stateValue, setStateValue, values }: ComboboxType) {
             </PopoverTrigger>
             <PopoverContent className="min-w-[200px] w-full p-0">
                 <Command>
-                    <CommandGroup>
+                    <CommandGroup className="max-h-64 overflow-y-scroll">
                         {values && values.map((val) => (
                             <CommandItem
                                 key={val}
@@ -65,7 +65,7 @@ export function Combobox({ stateValue, setStateValue, values }: ComboboxType) {
                         ))}
                     </CommandGroup>
                 </Command>
-            </PopoverContent>
-        </Popover>
+            </PopoverContent >
+        </Popover >
     )
 }
