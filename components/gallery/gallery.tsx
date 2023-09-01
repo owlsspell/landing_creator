@@ -8,12 +8,14 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
+    Dialog,
 } from "@/components/ui/dialog"
 import Image from 'next/image'
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useAuth } from '@clerk/nextjs';
 import Resizer from "react-image-file-resizer";
+import CropImage from '../imagecrop';
 
 interface GalleryType {
     images: any
@@ -50,6 +52,7 @@ const Gallery = ({ saveImage, images, getImages, checkConditions, widthForLoadin
                     0,
                     (uri) => {
                         resolve(uri as File);
+                        return uri
                     },
                     "file"
                 );
@@ -150,9 +153,24 @@ const Gallery = ({ saveImage, images, getImages, checkConditions, widthForLoadin
                         }
                     </div>}
                 <div className='w-full flex '>
+                    <Dialog>
+                        <DialogTrigger disabled={files.length === 0}>
+                            <Button className='disabled:bg-slate-400' disabled={files.length === 0} >
+                                Open preview
+                            </Button>
+                        </DialogTrigger>
+                        <DialogContent className='w-screen'>
+                            <DialogHeader>
+                                <DialogTitle>{"Select the area and click 'crop'"}</DialogTitle>
+                                <CropImage files={files} setFiles={setFiles} directory={directory} />
+                            </DialogHeader>
+                        </DialogContent>
+                    </Dialog>
+
                     <DialogTrigger asChild>
                         <Button className='mr-0 ml-auto w-20' onClick={() => saveImage(activeImage)}>Save</Button>
-                    </DialogTrigger> </div>
+                    </DialogTrigger>
+                </div>
             </DialogHeader >
         </DialogContent >
 
