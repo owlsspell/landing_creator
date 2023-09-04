@@ -3,7 +3,6 @@ import { useBoundStore } from "@/store/state";
 import { useMemo } from "react";
 import logo from "@/public/images/acme-logo.png"
 import background from "@/public/images/hero.jpg"
-import Image from "next/image";
 
 export default function HeroSection() {
     const fonts = useBoundStore((state) => state.fonts)
@@ -29,7 +28,7 @@ export default function HeroSection() {
     } : "")
 
     return <>
-        <Image fill className={"absolute inset-0 z-10 hidden object-cover object-top w-full h-full sm:block overflow-visible " + heroImageClasses} src={heroImageUrl ? process.env.NEXT_PUBLIC_ENDPOINT + "/" + heroImageUrl : background.src} alt="" />
+        <img className={"absolute inset-0 z-10 hidden object-cover object-top w-full h-full sm:block overflow-visible " + heroImageClasses} src={heroImageUrl ? process.env.NEXT_PUBLIC_ENDPOINT + "/" + heroImageUrl : background.src} alt="" />
         <div className={"absolute inset-0 z-10 hidden object-cover w-full h-full sm:block overflow-visible " + backgroundClasses}>
         </div>
 
@@ -38,7 +37,7 @@ export default function HeroSection() {
 
 
 
-            <Image fill className={"absolute inset-0 block object-cover w-full h-56 sm:hidden " + heroImageClasses} src={heroImageUrl ? process.env.NEXT_PUBLIC_ENDPOINT + "/" + heroImageUrl : background.src} alt="" />
+            <img className={"absolute inset-0 block object-cover w-full h-56 sm:hidden " + heroImageClasses} src={heroImageUrl ? process.env.NEXT_PUBLIC_ENDPOINT + "/" + heroImageUrl : background.src} alt="" />
             <div className={"absolute inset-0 block object-cover w-full h-56 sm:hidden " + backgroundClasses}
             />
             <div className={"relative w-full h-auto p-8 mx-auto " + 'md-portal:' + heroDivClasses}>

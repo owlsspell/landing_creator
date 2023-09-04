@@ -33,11 +33,13 @@ import {
 } from '@/components/icons';
 import { SignInButton, SignOutButton, useAuth } from '@clerk/nextjs';
 import { Button } from './ui/button';
+import { useRouter } from 'next/navigation';
 
 
 // eslint-disable-next-line import/prefer-default-export
 export const Navbar = () => {
-  const { isSignedIn } = useAuth();
+  const { isSignedIn, orgId } = useAuth();
+  const router = useRouter()
 
   const searchInput = (
     <Input
@@ -59,6 +61,10 @@ export const Navbar = () => {
       type="search"
     />
   );
+
+  const goToProfile = () => {
+    router.push("/org-profile")
+  }
 
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
@@ -136,6 +142,7 @@ export const Navbar = () => {
           ))}
         </div>
       </NavbarMenu>
+      {orgId ? <Button onClick={goToProfile}>Profile</Button> : ""}
       {isSignedIn ?
         <SignOutButton><Button>Sign out</Button></SignOutButton>
         : <SignInButton><Button>Sign in</Button></SignInButton>
