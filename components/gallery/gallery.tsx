@@ -114,8 +114,6 @@ const Gallery = ({ saveImage, images, getImages, checkConditions, widthForLoadin
                 })
                 .finally(function () {
                     setLoading(false)
-                    setFiles({})
-                    setResizedFiles({})
                 })
 
         })
@@ -136,9 +134,13 @@ const Gallery = ({ saveImage, images, getImages, checkConditions, widthForLoadin
         }
     }, [message])
 
-    return (
+    function clear() {
+        setFiles(undefined)
+        setResizedFiles(undefined)
+    }
 
-        <DialogContent>
+    return (
+        <DialogContent onClose={() => clear()}>
             <DialogHeader>
                 <DialogTitle>Images</DialogTitle>
                 <div className='flex py-1'>
@@ -151,9 +153,9 @@ const Gallery = ({ saveImage, images, getImages, checkConditions, widthForLoadin
                     <div className='flex py-2 flex-wrap	'>
                         {
                             images.length === 0 ? "" : images.map((image: any) =>
-                                <div className='w-20 h-20 relative m-1' key={image.Key}>
-                                    <Image src={process.env.NEXT_PUBLIC_ENDPOINT + "/" + image.Key} alt="" fill
-                                        className={`object-cover ${(activeImage === image.Key) ? 'scale-110' : ""}`}
+                                <div className='w-20 h-20 relative m-1 flex items-center' key={image.Key}>
+                                    <img src={process.env.NEXT_PUBLIC_ENDPOINT + "/" + image.Key} alt=""
+                                        className={`object-cover w-full h-full ${(activeImage === image.Key) ? 'scale-110' : ""}`}
                                         onClick={() => setActiveImage(image.Key)}
                                     />
                                 </div>)
@@ -162,11 +164,11 @@ const Gallery = ({ saveImage, images, getImages, checkConditions, widthForLoadin
                 <div className='w-full flex '>
                     <Dialog>
                         <DialogTrigger disabled={files && Object.keys(files).length === 0}>
-                            <Button className='disabled:bg-slate-400' disabled={files && Object.keys(files).length === 0} >
+                            <Button className='disabled:bg-slate-400' disabled={!files || Object.keys(files).length === 0} >
                                 Open preview
                             </Button>
                         </DialogTrigger>
-                        <DialogContent className='w-screen'>
+                        <DialogContent className='w-screen' >
                             <DialogHeader>
                                 <DialogTitle>{"Select the area and click 'crop'"}</DialogTitle>
                                 {resizedFiles && Object.keys(resizedFiles).length === 0 ? "" :

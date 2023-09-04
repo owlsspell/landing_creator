@@ -7,7 +7,6 @@ const nextConfig = {
                 hostname: process.env.NEXT_PUBLIC_HOSTNAME,
             },
         ],
-        domains: [process.env.NEXT_PUBLIC_HOSTNAME]
     },
 };
 
