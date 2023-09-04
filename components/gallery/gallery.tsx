@@ -33,10 +33,10 @@ interface GalleryType {
 const Gallery = ({ saveImage, images, getImages, checkConditions, widthForLoading = 300, directory, loadingImages }: GalleryType) => {
     const [activeImage, setActiveImage] = useState("")
     const [message, setMessage] = useState("")
-    const [files, setFiles] = useState<any>([]);
+    const [files, setFiles] = useState<any>();
+    const [resizedFiles, setResizedFiles] = useState<any>();
     const [error, setError] = useState("");
     const { orgId } = useAuth();
-
     const [loading, setLoading] = useState(false)
 
     const resizeFile = (file: File) => {
@@ -66,8 +66,7 @@ const Gallery = ({ saveImage, images, getImages, checkConditions, widthForLoadin
     const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
 
         if (e.target.files) {
-
-            let arr: any = []
+            setFiles(e.target.files)
             Object.values(e.target.files).map(async (file: File) => {
 
                 if (checkConditions) {
@@ -77,22 +76,19 @@ const Gallery = ({ saveImage, images, getImages, checkConditions, widthForLoadin
                     };
                     img.src = URL.createObjectURL(file);
                 }
-                let res: File = await resizeFile(file) as File;
-                return arr.push(res)
-
             })
-            setFiles(arr)
         }
     };
 
     const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
-        if (files.length === 0) return
+        if (files && Object.keys(files).length === 0) return
+        if (resizedFiles && Object.keys(resizedFiles).length === 0) return
         if (error.length > 0) return
         if (!orgId) return
 
-        files.map((file: File) => {
+        Object.values(resizedFiles).map((file: any) => {
             setLoading(true)
             const formData = new FormData();
             formData.append("name", file.name);
@@ -118,10 +114,21 @@ const Gallery = ({ saveImage, images, getImages, checkConditions, widthForLoadin
                 })
                 .finally(function () {
                     setLoading(false)
+                    setFiles({})
+                    setResizedFiles({})
                 })
 
         })
     };
+
+    useEffect(() => {
+        if (files) {
+            (Object.keys(files) as Array<keyof typeof files>).map(async (key) => {
+                let res: File = await resizeFile(files[key]) as File;
+                setResizedFiles({ ...files, [key]: res })
+            })
+        }
+    }, [files])
 
     useEffect(() => {
         if (message.length > 0) {
@@ -136,7 +143,7 @@ const Gallery = ({ saveImage, images, getImages, checkConditions, widthForLoadin
                 <DialogTitle>Images</DialogTitle>
                 <div className='flex py-1'>
                     <Input type="file" name="someExpressFiles" onChange={handleFileChange} multiple />
-                    <Button type="submit" className="disabled:opacity-50" onClick={handleSubmit} disabled={loading || error.length !== 0}>Submit</Button>
+                    <Button type="submit" className="disabled:opacity-50" onClick={handleSubmit} disabled={loading || error.length !== 0 || !files || Object.keys(files).length === 0}>Submit</Button>
                 </div>
                 {error}
                 {message}
@@ -154,15 +161,17 @@ const Gallery = ({ saveImage, images, getImages, checkConditions, widthForLoadin
                     </div>}
                 <div className='w-full flex '>
                     <Dialog>
-                        <DialogTrigger disabled={files.length === 0}>
-                            <Button className='disabled:bg-slate-400' disabled={files.length === 0} >
+                        <DialogTrigger disabled={files && Object.keys(files).length === 0}>
+                            <Button className='disabled:bg-slate-400' disabled={files && Object.keys(files).length === 0} >
                                 Open preview
                             </Button>
                         </DialogTrigger>
                         <DialogContent className='w-screen'>
                             <DialogHeader>
                                 <DialogTitle>{"Select the area and click 'crop'"}</DialogTitle>
-                                <CropImage files={files} setFiles={setFiles} directory={directory} />
+                                {resizedFiles && Object.keys(resizedFiles).length === 0 ? "" :
+                                    <CropImage files={resizedFiles} setFiles={setResizedFiles} directory={directory} />
+                                }
                             </DialogHeader>
                         </DialogContent>
                     </Dialog>
