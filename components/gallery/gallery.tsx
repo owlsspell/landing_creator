@@ -139,6 +139,7 @@ const Gallery = ({ saveImage, images, getImages, checkConditions, widthForLoadin
     }
 
     return (
+        // @ts-ignore
         <DialogContent onClose={() => clear()}>
             <DialogHeader>
                 <DialogTitle>Images</DialogTitle>
