@@ -128,7 +128,7 @@ const Gallery = ({ saveImage, images, getImages, checkConditions, widthForLoadin
     }, [files])
 
     useEffect(() => {
-        if (message.length > 0) {
+        if (message && message.length > 0) {
             setTimeout(() => { setMessage("") }, 3000)
         }
     }, [message])
@@ -151,13 +151,20 @@ const Gallery = ({ saveImage, images, getImages, checkConditions, widthForLoadin
                 {loadingImages ? <div>Loading...</div> :
                     <div className='flex py-2 flex-wrap	'>
                         {
-                            images.length === 0 ? "" : images.map((image: any) =>
-                                <div className='w-20 h-20 relative m-1 flex items-center' key={image.Key}>
-                                    <img src={process.env.NEXT_PUBLIC_ENDPOINT + "/" + image.Key} alt=""
-                                        className={`object-cover w-full h-full ${(activeImage === image.Key) ? 'scale-110' : ""}`}
-                                        onClick={() => setActiveImage(image.Key)}
-                                    />
-                                </div>)
+                            images.length === 0 ? "" :
+                                images.map((image: any) =>
+                                    <div className='w-20 h-20 relative m-1 flex items-center' key={image}>
+                                        <img src={`${process.env.NEXT_PUBLIC_ENDPOINT}/uploads/images/${directory}/${image}`} alt=""
+                                            className={`object-cover w-full h-full ${(activeImage === image) ? 'scale-110' : ""}`}
+                                            onClick={() => setActiveImage(image)}
+                                        />
+                                    </div>)
+                            // <div className='w-20 h-20 relative m-1 flex items-center' key={image.Key}>
+                            //     <img src={process.env.NEXT_PUBLIC_ENDPOINT + "/" + image.Key} alt=""
+                            //         className={`object-cover w-full h-full ${(activeImage === image.Key) ? 'scale-110' : ""}`}
+                            //         onClick={() => setActiveImage(image.Key)}
+                            //     />
+                            // </div>)
                         }
                     </div>}
                 <div className='w-full flex '>

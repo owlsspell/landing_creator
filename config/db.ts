@@ -1,5 +1,5 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
-const uri = `mongodb+srv://${process.env.NEXT_PUBLIC_DB_USER}:${process.env.NEXT_PUBLIC_DB_PASSWORD}@ggg-merchang-portal.9oc9xfc.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.NEXT_PUBLIC_DB_USER}:${process.env.NEXT_PUBLIC_DB_PASSWORD}@cluster0.vkzy0.mongodb.net/?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, {
   serverApi: {
@@ -9,5 +9,5 @@ const client = new MongoClient(uri, {
   },
 });
 
-export const usersJsonDB = client.db("GoGoGuest").collection("user_json");
+export const usersJsonDB = client.db("editor_db").collection("user_json");
 export default client;

@@ -60,7 +60,7 @@ export default function SamplePortal() {
                   </p>
                   <img
                     className={"absolute z-10 object-cover w-full h-full " + imageClasses[index]}
-                    src={notice.image.url.length === 0 || notice.image.url === "drinks.jpg" || notice.image.url === "food.jpg" || notice.image.url === "shop.jpg" ? images[index].src : process.env.NEXT_PUBLIC_ENDPOINT + "/" + notice.image.url}
+                    src={notice.image.url.length === 0 || notice.image.url === "drinks.jpg" || notice.image.url === "food.jpg" || notice.image.url === "shop.jpg" ? images[index].src : process.env.NEXT_PUBLIC_ENDPOINT + "/uploads/images/notices/" + notice.image.url}
                     alt="notice"
                   />
                   <div className={"absolute inset-0 z-20 w-full h-full " + overlayClasses[index]} />
