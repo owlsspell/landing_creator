@@ -38,7 +38,7 @@ const CaptiveNoticePage = () => {
                         <Input value={notices[index].link} onChange={(e) => updateNoticeLink(e.target.value, index)} />
 
                         <GalleryButton saveImage={(url) => saveImage(url, index)} directory="notices" />
-                        <ComboboxesTypography value={notices[index].message.text} updateValue={(val) => updateNoticesMessageText(val, index)} classes={field.message.classes} updateClasses={updateNoticeMessageClasses} index={index} />
+                        <ComboboxesTypography value={notices[index].message.text} updateValue={(val) => updateNoticesMessageText(val, index)} classes={notices[index].message.classes} updateClasses={updateNoticeMessageClasses} index={index} />
                         <Comboboxes title="Typography" classes={field.message.classes} updateClasses={updateNoticeMessageClasses} index={index} />
 
                         <Comboboxes title="Overlay" classes={field.overlay.classes} updateClasses={updateNoticeOverlayClasses} index={index} />
