@@ -1,40 +1,63 @@
-# Next.js & NextUI Template
+<h1 align="center">Landing creator</h1>
 
-This is a template for creating applications using Next.js 13 (app directory) and NextUI (v2).
+<div align="center">
+  
+[![Typescript](https://img.shields.io/badge/-Typescript-282C34?style=for-the-badge&logo=Typescript)](https://learn.javascript.ru/)
+[![Next](https://img.shields.io/badge/-Next-282C34?style=for-the-badge&logo=nextdotjs)](https://learn.javascript.ru/)
+[![tailwindcss](https://img.shields.io/badge/-tailwind-282C34?style=for-the-badge&logo=tailwindcss)](https://learn.javascript.ru/)
+[![mongodb](https://img.shields.io/badge/-mongodb-282C34?style=for-the-badge&logo=mongodb)](https://learn.javascript.ru/)
+[![Digitalocean](https://img.shields.io/badge/-digitalocean-282C34?style=for-the-badge&logo=digitalocean)](https://learn.javascript.ru/)
 
-## Technologies Used
+</div>
 
-- [Next.js 13](https://nextjs.org/docs/getting-started)
-- [NextUI v2](https://nextui.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [next-themes](https://github.com/pacocoursey/next-themes)
+<img src="./public/readme_assets/art-featured.jpg" width="100%">
 
-## How to Use
+<h2 align="center"><a  href="https://landing-creator-2cxosu15i-owlsspell.vercel.app/captiveportal">Live Demo</a></h2>
 
+## Description
 
-### Use the template with create-next-app
+It is a form editor that dynamically updates the appearance of the site.
+The project is based on the Next.js 13 template and styled with Tailwind CSS.
 
-To create a new project based on this template using `create-next-app`, run the following command:
+### Fields update
 
-```bash
-npx create-next-app -e https://github.com/nextui-org/next-app-template
-```
+Just try something to change
 
-### Install dependencies
+<img src="./public/readme_assets/example_2.gif" width="80%"></p>
 
-```bash
+### Font update
+
+You can change fonts on the entire site in an instant
+
+<img src="./public/readme_assets/example_1.gif" width="80%"></p>
+
+### Images update
+
+You can upload an image, preview it, crop and save it. Or just choose from a previously saved gallery
+
+<img src="./public/readme_assets/example_3.gif" width="80%"></p>
+
+### About the project
+
+The application implements the functions of dynamically updating data with saving it in the Zustang state. Tailwind values are used to update styles. The data is stored in MongoDB.
+
+Pictures are saved in a local directory, but there is also the option to save them in the cloud. Before sending pictures to the server, the user can preview and crop them in advance. Images are automatically reduced before being saved.
+
+Authorization is released using the clerk. Users from the same organization provided by the clerk can edit the same template.
+
+### Stack of technologies:
+
+- Typescript
+- Next.js 13
+- Zustand
+- Tailwind
+- Shadcn ui
+- Clerk
+- Mongodb
+- DigitalOcean
+
+## How to run
+
 npm install
-```
 
-### Run the development server
-
-```bash
 npm run dev
-```
-
-## License
-
-Licensed under the [MIT license](https://github.com/nextui-org/next-app-template/blob/main/LICENSE).
