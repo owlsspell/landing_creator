@@ -2,11 +2,11 @@
 
 <div align="center">
   
-[![Typescript](https://img.shields.io/badge/-Typescript-282C34?style=for-the-badge&logo=Typescript)](https://learn.javascript.ru/)
-[![Next](https://img.shields.io/badge/-Next-282C34?style=for-the-badge&logo=nextdotjs)](https://learn.javascript.ru/)
-[![tailwindcss](https://img.shields.io/badge/-tailwind-282C34?style=for-the-badge&logo=tailwindcss)](https://learn.javascript.ru/)
-[![mongodb](https://img.shields.io/badge/-mongodb-282C34?style=for-the-badge&logo=mongodb)](https://learn.javascript.ru/)
-[![Digitalocean](https://img.shields.io/badge/-digitalocean-282C34?style=for-the-badge&logo=digitalocean)](https://learn.javascript.ru/)
+[![Typescript](https://img.shields.io/badge/-Typescript-282C34?style=for-the-badge&logo=Typescript)](https://www.typescriptlang.org/)
+[![Next](https://img.shields.io/badge/-Next-282C34?style=for-the-badge&logo=nextdotjs)](https://nextjs.org/docs)
+[![tailwindcss](https://img.shields.io/badge/-tailwind-282C34?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
+[![mongodb](https://img.shields.io/badge/-mongodb-282C34?style=for-the-badge&logo=mongodb)](https://www.mongodb.com/)
+[![Digitalocean](https://img.shields.io/badge/-digitalocean-282C34?style=for-the-badge&logo=digitalocean)](https://www.digitalocean.com/)
 
 </div>
 
