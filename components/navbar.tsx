@@ -31,7 +31,7 @@ import {
   SearchIcon,
   Logo,
 } from '@/components/icons';
-import { SignUpButton, SignOutButton, useAuth } from '@clerk/nextjs';
+import { SignInButton, SignUpButton, SignOutButton, useAuth } from '@clerk/nextjs';
 import { Button } from './ui/button';
 import { useRouter } from 'next/navigation';
 
@@ -145,7 +145,10 @@ export const Navbar = () => {
       {orgId ? <Button onClick={goToProfile}>Profile</Button> : ""}
       {isSignedIn ?
         <SignOutButton><Button>Sign out</Button></SignOutButton>
-        : <SignUpButton><Button>Sign in</Button></SignUpButton>
+        : <>
+          <SignInButton><Button>Sign in</Button></SignInButton>
+          <SignUpButton><Button>Sign up</Button></SignUpButton>
+        </>
       }
     </NextUINavbar>
   );
